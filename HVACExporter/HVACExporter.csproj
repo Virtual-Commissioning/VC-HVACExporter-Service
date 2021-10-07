@@ -51,7 +51,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ImperialToMetricConverter.cs" />
-    <Compile Include="Models\System.cs" />
+    <Compile Include="Models\Component.cs" />
+    <Compile Include="Models\ComponentSubclasses\EnergyConversionDevice.cs" />
+    <Compile Include="Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\HeatExchanger.cs" />
+    <Compile Include="Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\Radiator.cs" />
+    <Compile Include="Models\ComponentSubclasses\FittingSubclasses\Cross.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowController.cs" />
+    <Compile Include="Models\ComponentSubclasses\Fitting.cs" />
+    <Compile Include="Models\ComponentSubclasses\FittingSubclasses\Bend.cs" />
+    <Compile Include="Models\ComponentSubclasses\FittingSubclasses\Reduction.cs" />
+    <Compile Include="Models\ComponentSubclasses\FittingSubclasses\Tee.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\Damper.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\DamperSubclasses\BalancingDamper.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\DamperSubclasses\FireDamper.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\DamperSubclasses\MotorizedDamper.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\Valve.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\BalancingValve.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\CheckValve.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\DifferentialPressureValve.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\MotorizedValve.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\SafetyValve.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowMovingDevice.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Fan.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Pump.cs" />
+    <Compile Include="Models\ComponentSubclasses\Segment.cs" />
+    <Compile Include="Models\Connectors\Connector.cs" />
+    <Compile Include="Models\Connectors\ConnectorType.cs" />
+    <Compile Include="Models\Controls\Controller.cs" />
+    <Compile Include="Models\Controls\ControlType.cs" />
+    <Compile Include="Models\Enums\ComponentTypes.cs" />
+    <Compile Include="Models\GeometricTypes\Coordinate.cs" />
+    <Compile Include="Models\GeometricTypes\DirectionVector.cs" />
+    <Compile Include="Models\System\System.cs" />
     <Compile Include="SelectAllFlowSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
