@@ -64,6 +64,24 @@ namespace HVACExporter.Helpers
 
             return collector;
         }
-
+        private string GetSystemType(string systemIdentifiers)
+        {
+            if (systemIdentifiers.ToLower().Contains("varme"))
+            {
+                return "heating";
+            }
+            else if (systemIdentifiers.ToLower().Contains("køling"))
+            {
+                return "cooling";
+            }
+            else if (systemIdentifiers.ToLower().Contains("ventilation"))
+            {
+                return "ventilation";
+            }
+            else
+            {
+                return "not a recognized systemtype";
+            }
+        }
     }
 }
