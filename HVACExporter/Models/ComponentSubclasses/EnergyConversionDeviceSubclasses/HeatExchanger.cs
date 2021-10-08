@@ -26,7 +26,7 @@ namespace HVACExporter.Models.ComponentSubclasses.EnergyConversionDeviceSubclass
                         double nomDpPrimary, double nomDpSecondary)
             : base(id, tag, systemName, systemType)
         {
-            NomPower =
+            NomPower = nomPower;
             NomSupplyTemperaturePrimary = nomSupplyTemperaturePrimary;
             NomReturnTemperaturePrimary = nomSupplyTemperatureSecondary;
             NomSupplyTemperatureSecondary = nomReturnTemperaturePrimary;
