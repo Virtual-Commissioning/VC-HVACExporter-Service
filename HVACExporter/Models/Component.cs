@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 using HVACExporter.Helpers;
 using HVACExporter.Models.Enums;
 using HVACExporter.Models.GeometricTypes;
+using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Connectors;
 using System;
 using System.Collections.Generic;
