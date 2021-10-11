@@ -25,8 +25,11 @@ namespace HVACExporter
             var doc = uiapp.ActiveUIDocument.Document;
 
             // Loop through all mechanical components
+
+            Systems system = new Systems();
             var allElements = HelperFunctions.GetConnectorElements(doc);
 
+            system = Mapper.MapAllComponents(allElements);
 
             return Result.Succeeded;
         }
