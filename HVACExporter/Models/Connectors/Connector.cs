@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HVACExporter.Models.GeometricTypes;
-using HVACExporter.Models.Connectors;
+﻿using HVACExporter.Models.GeometricTypes;
 
 namespace HVACExporter.Models.Connectors
 {
@@ -13,17 +7,19 @@ namespace HVACExporter.Models.Connectors
         public string Tag { get; set; }
         public double Dimension { get; set; }
         public string Shape { get; set; }
+        public double DesignFlow { get; set; }
         public Coordinate Coordinate { get; set; }
         public DirectionVector DirectionVector { get; set; }
         public ConnectorType ConnectorType { get; set; }
 
 
-        public Connector(string tag, double dimension, string shape, Coordinate coordinate,
+        public Connector(string tag, double dimension, string shape, double designFlow, Coordinate coordinate,
                          DirectionVector directionVector, ConnectorType connectorType)
         {
             Tag = tag;
             Dimension = dimension;
             Shape = shape;
+            DesignFlow = designFlow;
             Coordinate = coordinate;
             DirectionVector = directionVector;
             ConnectorType = connectorType;

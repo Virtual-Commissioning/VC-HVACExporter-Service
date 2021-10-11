@@ -65,6 +65,7 @@ namespace HVACExporter.Models
                     string connectedToId = "Not connected";
                     double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(connector.Radius);
                     string shape = connector.Shape.ToString();
+                    double designFlow = connector.Flow;
                     var connectorType = GetDirectionOfConnector(connector);
 
                     XYZ origin = connector.Origin;
@@ -74,13 +75,14 @@ namespace HVACExporter.Models
 
                     Coordinate coordinate = new Coordinate(x, y, z);
 
-                    return new Connectors.Connector(connectedToId, diameter, shape, coordinate, directionVector, connectorType);
+                    return new Connectors.Connector(connectedToId, diameter, shape, designFlow, coordinate, directionVector, connectorType);
                 }
                 else
                 {
                     string connectedToId = revitConnector.Owner.Id.ToString();
                     double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
                     string shape = revitConnector.Shape.ToString();
+                    double designFlow = connector.Flow;
                     var connectorType = GetDirectionOfConnector(connector);
 
                     XYZ origin = revitConnector.Origin;
@@ -90,7 +92,7 @@ namespace HVACExporter.Models
 
                     Coordinate coordinate = new Coordinate(x, y, z);
 
-                    return new Connectors.Connector(connectedToId, diameter, shape, coordinate, directionVector, connectorType);
+                    return new Connectors.Connector(connectedToId, diameter, shape, designFlow, coordinate, directionVector, connectorType);
                 }
 
             }

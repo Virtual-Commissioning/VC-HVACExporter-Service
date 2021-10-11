@@ -1,6 +1,4 @@
-﻿using HVACExporter.Models.Enums;
-
-namespace HVACExporter.Models.ComponentSubclasses
+﻿namespace HVACExporter.Models.ComponentSubclasses
 {
     public class Segment : Component
     {
