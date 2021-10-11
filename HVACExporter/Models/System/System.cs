@@ -74,11 +74,11 @@ namespace HVACExporter.Models
         public void AddComponent(Component component)
         {
 
-            if (component.SystemName.Contains("frem"))
+            if (component.SystemName.Contains("frem") || component.SystemName.Contains("tilluft"))
             {
                 AddSupplyComponent(component);
             }
-            else if (component.SystemName.Contains("retur"))
+            else if (component.SystemName.Contains("retur") || component.SystemName.Contains("fraluft"))
             {
                 AddReturnComponent(component);
             }
