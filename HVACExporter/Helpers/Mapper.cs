@@ -19,6 +19,7 @@ using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI;
 using Segment = HVACExporter.Models.ComponentSubclasses.Segment;
+using HVACExporter.Helpers.ComponentMappers;
 
 namespace HVACExporter.Helpers
 {
@@ -41,13 +42,39 @@ namespace HVACExporter.Helpers
 
                     system.AddComponent(component);
                 }
-                if (elementCategory == "Ducts")
+                else if (elementCategory == "Ducts")
                 {
                     Duct duct = (Duct)element;
 
                     Segment component = SegmentMapper.MapDuctToSegment(duct);
 
                     system.AddComponent(component);
+                }
+                else if (elementCategory == "Pipe Fittings" || elementCategory == "Duct Fittings")
+                {
+                    MEPModel fitting = ((FamilyInstance)element).MEPModel;
+                    string fittingType = ((MechanicalFitting)fitting).PartType.ToString();
+
+
+                    if (fittingType == "Tee")
+                    {
+                        Tee component = FittingMapper.MapFittingTee(fitting);
+
+                        system.AddComponent(component);
+                    }
+
+                    else if (fittingType == "Elbow")
+                    {
+                        Bend component = FittingMapper.MapFittingBend(fitting);
+
+                        system.AddComponent(component);
+                    }
+                    else if (fittingType == "Transition")
+                    {
+                        Reduction component = FittingMapper.MapFittingReduction(fitting);
+
+                        system.AddComponent(component);
+                    }
                 }
             }
 
