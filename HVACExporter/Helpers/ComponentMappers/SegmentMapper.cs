@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Segment = HVACExporter.Models.ComponentSubclasses.Segment;
 
-namespace HVACExporter.Helpers
+namespace HVACExporter.Helpers.ComponentMappers
 {
     public class SegmentMapper
     {
@@ -56,7 +56,5 @@ namespace HVACExporter.Helpers
 
             return component;
         }
-
     }
-
 }
