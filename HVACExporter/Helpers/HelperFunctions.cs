@@ -64,7 +64,7 @@ namespace HVACExporter.Helpers
 
             return collector;
         }
-        private string GetSystemType(string systemIdentifiers)
+        public static string GetSystemType(string systemIdentifiers)
         {
             if (systemIdentifiers.ToLower().Contains("varme"))
             {
