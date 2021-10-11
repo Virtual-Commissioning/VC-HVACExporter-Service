@@ -83,7 +83,7 @@ namespace HVACExporter.Models
                     string connectedToId = revitConnector.Owner.Id.ToString();
                     double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
                     string shape = revitConnector.Shape.ToString();
-                    double designFlow = connector.Flow;
+                    double designFlow = UnitUtils.ConvertFromInternalUnits(connector.Flow,UnitTypeId.LitersPerSecond);
                     var connectorType = GetDirectionOfConnector(connector);
 
                     XYZ origin = revitConnector.Origin;
