@@ -28,7 +28,6 @@ namespace HVACExporter.Helpers.ComponentMappers
             
             return component;
         }
-
         public static MotorizedDamper MapToMotorizedDamper(MEPModel accessory)
         {
             string id = accessory.ConnectorManager.Owner.UniqueId;
@@ -71,6 +70,51 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
             Damper component = new Damper(id, tag, systemIdentifiers, systemType);
+            component.FillConnectedPipeAccessories(accessory);
+
+            return component;
+        }
+        public static BalancingValve MapToBalancingValve(MEPModel accessory)
+        {
+            string id = accessory.ConnectorManager.Owner.UniqueId;
+            string tag = accessory.ConnectorManager.Owner.Id.ToString();
+            string systemIdentifiers = accessory.ConnectorManager.Owner.LookupParameter("System Type").AsValueString().ToLower();
+
+            double kv = accessory.ConnectorManager.Owner.LookupParameter("FSC_kv").AsDouble();
+            double kvs = accessory.ConnectorManager.Owner.LookupParameter("FSC_kvs").AsDouble();
+
+            string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
+
+            BalancingValve component = new BalancingValve(id, tag, systemIdentifiers, systemType, kv, kvs);
+            component.FillConnectedPipeAccessories(accessory);
+
+            return component;
+        }
+        public static MotorizedValve MapToMotorizedValve(MEPModel accessory)
+        {
+            string id = accessory.ConnectorManager.Owner.UniqueId;
+            string tag = accessory.ConnectorManager.Owner.Id.ToString();
+            string systemIdentifiers = accessory.ConnectorManager.Owner.LookupParameter("System Type").AsValueString().ToLower();
+
+            double kv = accessory.ConnectorManager.Owner.LookupParameter("FSC_kv").AsDouble();
+            double kvs = accessory.ConnectorManager.Owner.LookupParameter("FSC_kvs").AsDouble();
+
+            string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
+
+            MotorizedValve component = new MotorizedValve(id, tag, systemIdentifiers, systemType, kv, kvs);
+            component.FillConnectedPipeAccessories(accessory);
+
+            return component;
+        }
+        public static Valve MapToValve(MEPModel accessory)
+        {
+            string id = accessory.ConnectorManager.Owner.UniqueId;
+            string tag = accessory.ConnectorManager.Owner.Id.ToString();
+            string systemIdentifiers = accessory.ConnectorManager.Owner.LookupParameter("System Type").AsValueString().ToLower();
+
+            string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
+
+            Valve component = new Valve(id, tag, systemIdentifiers, systemType);
             component.FillConnectedPipeAccessories(accessory);
 
             return component;

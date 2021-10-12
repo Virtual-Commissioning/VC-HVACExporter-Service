@@ -85,11 +85,10 @@ namespace HVACExporter.Helpers
                     MEPModel accessory = ((FamilyInstance)element).MEPModel;
 
                     string accessoryType = ((FamilyInstance)element).Symbol.Family.get_Parameter(BuiltInParameter.FAMILY_CONTENT_PART_TYPE).AsValueString();
+                    string fscType = HelperFunctions.GetFSCType(element);
 
                     if (accessoryType == "Damper")
                     {
-                        string fscType = HelperFunctions.GetFSCType(element);
-
                         if (fscType == "BalancingDamper")
                         {
                             BalancingDamper component = FlowControllerMapper.MapToBalancingDamper(accessory);
@@ -123,6 +122,39 @@ namespace HVACExporter.Helpers
                         else
                         {
                             Damper component = FlowControllerMapper.MapToDamper(accessory);
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
+                    }
+                    else if (accessoryType.ToLower().Contains("valve"))
+                    {
+                        if (fscType == "BalancingValve")
+                        {
+                            BalancingValve component = FlowControllerMapper.MapToBalancingValve(accessory);
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
+                        else if (fscType == "MotorizedValve")
+                        {
+                            MotorizedValve component = FlowControllerMapper.MapToMotorizedValve(accessory);
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
+                        else
+                        {
+                            Valve component = FlowControllerMapper.MapToValve(accessory);
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
