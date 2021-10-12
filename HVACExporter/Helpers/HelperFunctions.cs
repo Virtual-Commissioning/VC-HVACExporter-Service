@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HVACExporter.Models;
 
 namespace HVACExporter.Helpers
 {
@@ -82,6 +83,14 @@ namespace HVACExporter.Helpers
             {
                 return "not a recognized systemtype";
             }
+        }
+        public static string GetFSCType(Element element)
+        {
+            FamilyInstance familyInstance = (FamilyInstance)element;
+
+            string fscType = familyInstance.Symbol.LookupParameter("FSC_type").AsString();
+
+            return fscType;
         }
     }
 }
