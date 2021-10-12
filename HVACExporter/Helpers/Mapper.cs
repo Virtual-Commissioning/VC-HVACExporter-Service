@@ -20,6 +20,10 @@ using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI;
 using Segment = HVACExporter.Models.ComponentSubclasses.Segment;
 using HVACExporter.Helpers.ComponentMappers;
+using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSubclasses;
+using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses;
+using HVACExporter.Models.Spaces;
+using Space = HVACExporter.Models.Spaces.Space;
 
 namespace HVACExporter.Helpers
 {
@@ -74,6 +78,58 @@ namespace HVACExporter.Helpers
                         Reduction component = FittingMapper.MapFittingReduction(fitting);
 
                         system.AddComponent(component);
+                    }
+                }
+                else if (elementCategory == "Pipe Accessories" || elementCategory == "Duct Accessories")
+                {
+                    MEPModel accessory = ((FamilyInstance)element).MEPModel;
+
+                    string accessoryType = ((FamilyInstance)element).Symbol.Family.get_Parameter(BuiltInParameter.FAMILY_CONTENT_PART_TYPE).AsValueString();
+
+                    if (accessoryType == "Damper")
+                    {
+                        string fscType = HelperFunctions.GetFSCType(element);
+
+                        if (fscType == "BalancingDamper")
+                        {
+                            BalancingDamper component = FlowControllerMapper.MapToBalancingDamper(accessory);
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
+                        else if (fscType == "MotorizedDamper")
+                        {
+                            MotorizedDamper component = FlowControllerMapper.MapToMotorizedDamper(accessory);
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
+                        else if (fscType == "FireDamper")
+                        {
+                            FireDamper component = FlowControllerMapper.MapToFireDamper(accessory);
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
+                        else
+                        {
+                            Damper component = FlowControllerMapper.MapToDamper(accessory);
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
                     }
                 }
             }
