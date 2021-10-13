@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 using HVACExporter.Helpers;
 using HVACExporter.Models.Enums;
 using HVACExporter.Models.GeometricTypes;
+using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Connectors;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace HVACExporter.Models
             SystemType = systemType;
         }
 
-        public void FillConnectedSegments(MEPCurve segment)
+        public void FillConnectedComponents(MEPCurve segment)
         {
             ConnectorSet connectorSet = segment.ConnectorManager.Connectors;
 
@@ -50,7 +51,26 @@ namespace HVACExporter.Models
                 }
             }
         }
+        public void FillConnectedComponents(MEPModel segment)
+        {
+            ConnectorSet connectorSet = segment.ConnectorManager.Connectors;
 
+            foreach (Autodesk.Revit.DB.Connector connector in connectorSet)
+            {
+                ConnectorSet connectorInfo = connector.AllRefs;
+                foreach (Autodesk.Revit.DB.Connector revitConnector in connectorInfo)
+                {
+                    var connectorId = revitConnector.Owner.Id.ToString();
+
+                    if (connectorId == Tag) continue;
+                    //if (revitConnector.Owner.Category.Name.ToLower().Equals("piping systems")) continue;
+
+                    var connectedWith = MapFromRevitConnector(revitConnector, connector);
+
+                    ConnectedWith.Add(connectedWith);
+                }
+            }
+        }
         protected Connectors.Connector MapFromRevitConnector(Autodesk.Revit.DB.Connector revitConnector,
             Autodesk.Revit.DB.Connector connector)
         {
@@ -65,7 +85,7 @@ namespace HVACExporter.Models
                     string connectedToId = "Not connected";
                     double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(connector.Radius);
                     string shape = connector.Shape.ToString();
-                    double designFlow = connector.Flow;
+                    double designFlow = UnitUtils.ConvertFromInternalUnits(connector.Flow, UnitTypeId.LitersPerSecond);
                     var connectorType = GetDirectionOfConnector(connector);
 
                     XYZ origin = connector.Origin;
@@ -82,7 +102,7 @@ namespace HVACExporter.Models
                     string connectedToId = revitConnector.Owner.Id.ToString();
                     double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
                     string shape = revitConnector.Shape.ToString();
-                    double designFlow = connector.Flow;
+                    double designFlow = UnitUtils.ConvertFromInternalUnits(connector.Flow, UnitTypeId.LitersPerSecond);
                     var connectorType = GetDirectionOfConnector(connector);
 
                     XYZ origin = revitConnector.Origin;
