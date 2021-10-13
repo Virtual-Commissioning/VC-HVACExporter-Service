@@ -164,6 +164,24 @@ namespace HVACExporter.Helpers
                         }
                     }
                 }
+                else if (elementCategory == "Mechanical Equipment")
+                {
+                    MEPModel mechanicalEquipment = ((FamilyInstance)element).MEPModel;
+
+                    string fscType = HelperFunctions.GetFSCType(element);
+
+                    if (fscType == "Radiator")
+                    {
+                        Radiator component = MechanicalEquipmentMapper.MapToRadiator(mechanicalEquipment);
+
+                        if (((FamilyInstance)element).Space == null) continue;
+                        Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                        //spacesInModel.AddSpace(space);
+                        component.ContainedInSpaces.Add(space.Id.ToString());
+
+                        system.AddComponent(component);
+                    }
+                }
             }
 
             return system;

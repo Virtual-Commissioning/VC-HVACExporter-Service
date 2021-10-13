@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Helpers\ComponentMappers\FlowControllerMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\FittingMapper.cs" />
+    <Compile Include="Helpers\ComponentMappers\MechanicalEquipmentMapper.cs" />
     <Compile Include="Helpers\HelperFunctions.cs" />
     <Compile Include="Helpers\ImperialToMetricConverter.cs" />
     <Compile Include="Helpers\Mapper.cs" />
