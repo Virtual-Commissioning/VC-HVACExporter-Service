@@ -84,6 +84,39 @@ namespace HVACExporter.Helpers
                 return "not a recognized systemtype";
             }
         }
+        public static string MapSystemOfMechEquipment(MEPModel element)
+        {
+            string elementId = element.ConnectorManager.Owner.Id.ToString();
+            string connectedWithSystem = string.Empty;
+            ConnectorSet elementConnectors = element.ConnectorManager.Connectors;
+
+            foreach (Autodesk.Revit.DB.Connector connector in elementConnectors)
+            {
+
+                ConnectorSet connectorInfo = connector.AllRefs;
+
+                foreach (Autodesk.Revit.DB.Connector revitConnector in connectorInfo)
+                {
+                    var connectorId = revitConnector.Owner.Id.ToString();
+
+                    if (connectorId == elementId) continue;
+                    try
+                    {
+                        connectedWithSystem = revitConnector.Owner.LookupParameter("System Type").AsValueString();
+                        if (connectedWithSystem != "Undefined")
+                        {
+                            return connectedWithSystem;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        continue;
+                    }
+
+                }
+            }
+            return connectedWithSystem;
+        }
         public static string GetFSCType(Element element)
         {
             FamilyInstance familyInstance = (FamilyInstance)element;
@@ -92,5 +125,6 @@ namespace HVACExporter.Helpers
 
             return fscType;
         }
+
     }
 }
