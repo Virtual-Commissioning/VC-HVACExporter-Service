@@ -77,6 +77,7 @@
     <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\DifferentialPressureValve.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\MotorizedValve.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\SafetyValve.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\ShuntValve.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowMovingDevice.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Fan.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Pump.cs" />
