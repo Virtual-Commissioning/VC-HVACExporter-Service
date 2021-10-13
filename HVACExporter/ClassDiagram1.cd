@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HVACExporter.Helpers.ImperialToMetricConverter">
+    <Position X="2.25" Y="15" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ImperialToMetricConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Component">
+    <Position X="18.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ABACBAAAEAAwAAAAAAAAAAAAAAAgBAAAAiQEAAAgAAA=</HashCode>
+      <FileName>Models\Component.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.System">
+    <Position X="4.5" Y="17" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAQAAAAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Models\System\System.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.SubSystem">
+    <Position X="2.25" Y="17" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIIKAAAAAAgAQAAAAAAAAAAQACAAIQAAA=</HashCode>
+      <FileName>Models\System\System.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.EnergyConversionDevice">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\EnergyConversionDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.Fitting">
+    <Position X="13.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\ComponentSubclasses\Fitting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowController">
+    <Position X="24" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowMovingDevice">
+    <Position X="2" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowMovingDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.Segment">
+    <Position X="4" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\Segment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.EnergyConversionDeviceSubclasses.HeatExchanger">
+    <Position X="4.75" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAEAAAQAAAAAEIAAAAAAAAAACAIAAAgAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\HeatExchanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.EnergyConversionDeviceSubclasses.Radiator">
+    <Position X="7.5" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACggEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\Radiator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FittingSubclasses.Bend">
+    <Position X="13" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FittingSubclasses\Bend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FittingSubclasses.Cross">
+    <Position X="14.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FittingSubclasses\Cross.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FittingSubclasses.Reduction">
+    <Position X="16.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FittingSubclasses\Reduction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FittingSubclasses.Tee">
+    <Position X="10" Y="7.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FittingSubclasses\Tee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.Damper">
+    <Position X="20.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\Damper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.Valve">
+    <Position X="28.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\Valve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSubclasses.BalancingDamper">
+    <Position X="18.5" Y="10" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\DamperSubclasses\BalancingDamper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSubclasses.FireDamper">
+    <Position X="20.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\DamperSubclasses\FireDamper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSubclasses.MotorizedDamper">
+    <Position X="22.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\DamperSubclasses\MotorizedDamper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.BalancingValve">
+    <Position X="32" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\BalancingValve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.CheckValve">
+    <Position X="24.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\CheckValve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.DifferentialPressureValve">
+    <Position X="26.25" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\DifferentialPressureValve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.MotorizedValve">
+    <Position X="28.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\MotorizedValve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.SafetyValve">
+    <Position X="30.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\SafetyValve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowMovingDeviceSubclasses.Fan">
+    <Position X="1" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Fan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowMovingDeviceSubclasses.Pump">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Pump.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Connectors.Connector">
+    <Position X="2.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAEAAAgBAAAAAAAAAAAAIAAQAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Connectors\Connector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Controls.Controller">
+    <Position X="4" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAQAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Controls\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.GeometricTypes.Coordinate">
+    <Position X="5.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAE=</HashCode>
+      <FileName>Models\GeometricTypes\Coordinate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.GeometricTypes.DirectionVector">
+    <Position X="7.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAE=</HashCode>
+      <FileName>Models\GeometricTypes\DirectionVector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.Space">
+    <Position X="6.5" Y="17" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\Space.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.SpaceBoundingBox">
+    <Position X="7.25" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\SpaceBoundingBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.SpacesInModel">
+    <Position X="9.25" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\Spaces\Spaces.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.SelectAllFlowSystem" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="15" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SelectAllFlowSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="HVACExporter.Models.Connectors.ConnectorType">
+    <Position X="11.25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAACAAAAIAACAA=</HashCode>
+      <FileName>Models\Connectors\ConnectorType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="HVACExporter.Models.Controls.ControlTypes">
+    <Position X="13" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAEAAAAAAAAAAAAAAAAAAAAgAAAAAAADAAAA=</HashCode>
+      <FileName>Models\Controls\ControlType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="HVACExporter.Models.Enums.ComponentTypes">
+    <Position X="13" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAgAAAAAEAAAAAASAAAAAQAABAAAAAAAA=</HashCode>
+      <FileName>Models\Enums\ComponentTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

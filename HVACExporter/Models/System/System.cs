@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace HVACExporter.Models
 {
-    public class Systems
+    public class System
     {
         public Dictionary<string, SubSystem> SubSystems { get; set; } = new Dictionary<string, SubSystem>();
-        public Systems()
+        public System()
         {
 
         }
