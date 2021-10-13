@@ -74,19 +74,19 @@ namespace HVACExporter.Models
         public void AddComponent(Component component)
         {
 
-            if (component.SystemName.Contains("frem") || component.SystemName.Contains("tilluft"))
+            if (component.SystemName.ToLower().Contains("frem") || component.SystemName.ToLower().Contains("tilluft"))
             {
                 AddSupplyComponent(component);
             }
-            else if (component.SystemName.Contains("retur") || component.SystemName.Contains("fraluft"))
+            else if (component.SystemName.ToLower().Contains("retur") || component.SystemName.ToLower().Contains("fraluft"))
             {
                 AddReturnComponent(component);
             }
-            else if (component.SystemName.Contains("supplier"))
+            else if (component.SystemName.ToLower().Contains("supplier"))
             {
                 AddSupplier(component);
             }
-            else if (component.SystemName.Contains("consumer"))
+            else if (component.SystemName.ToLower().Contains("consumer"))
             {
                 AddConsumer(component);
             }
