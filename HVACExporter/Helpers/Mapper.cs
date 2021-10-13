@@ -163,6 +163,21 @@ namespace HVACExporter.Helpers
                             component.ContainedInSpaces.Add(space.Id.ToString());
                         }
                     }
+                    else
+                    {
+                        if (fscType == "Fan")
+                        {
+                            Fan component = MechanicalEquipmentMapper.MapToFan(accessory);
+
+                            system.AddComponent(component);
+                        }
+                        else if (fscType == "Pump")
+                        {
+                            Pump component = MechanicalEquipmentMapper.MapToPump(accessory);
+
+                            system.AddComponent(component);
+                        }
+                    }
                 }
                 else if (elementCategory == "Mechanical Equipment")
                 {
@@ -178,6 +193,18 @@ namespace HVACExporter.Helpers
                         Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
                         //spacesInModel.AddSpace(space);
                         component.ContainedInSpaces.Add(space.Id.ToString());
+
+                        system.AddComponent(component);
+                    }
+                    else if (fscType == "Fan")
+                    {
+                        Fan component = MechanicalEquipmentMapper.MapToFan(mechanicalEquipment);
+
+                        system.AddComponent(component);
+                    }
+                    else if (fscType == "Pump")
+                    {
+                        Pump component = MechanicalEquipmentMapper.MapToPump(mechanicalEquipment);
 
                         system.AddComponent(component);
                     }
