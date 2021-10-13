@@ -31,7 +31,7 @@ namespace HVACExporter.Helpers.ComponentMappers
                 //, insulationThickness
                 //, insulationThermalConductivity
                 );
-            component.FillConnectedSegments(segment);
+            component.FillConnectedComponents(segment);
 
             return component;
         }
@@ -52,7 +52,7 @@ namespace HVACExporter.Helpers.ComponentMappers
                 //, insulationThickness
                 //, insulationThermalConductivity
                 );
-            component.FillConnectedSegments(segment);
+            component.FillConnectedComponents(segment);
 
             return component;
         }

@@ -31,7 +31,7 @@ namespace HVACExporter.Models
             SystemType = systemType;
         }
 
-        public void FillConnectedSegments(MEPCurve segment)
+        public void FillConnectedComponents(MEPCurve segment)
         {
             ConnectorSet connectorSet = segment.ConnectorManager.Connectors;
 
@@ -51,7 +51,26 @@ namespace HVACExporter.Models
                 }
             }
         }
+        public void FillConnectedComponents(MEPModel segment)
+        {
+            ConnectorSet connectorSet = segment.ConnectorManager.Connectors;
 
+            foreach (Autodesk.Revit.DB.Connector connector in connectorSet)
+            {
+                ConnectorSet connectorInfo = connector.AllRefs;
+                foreach (Autodesk.Revit.DB.Connector revitConnector in connectorInfo)
+                {
+                    var connectorId = revitConnector.Owner.Id.ToString();
+
+                    if (connectorId == Tag) continue;
+                    //if (revitConnector.Owner.Category.Name.ToLower().Equals("piping systems")) continue;
+
+                    var connectedWith = MapFromRevitConnector(revitConnector, connector);
+
+                    ConnectedWith.Add(connectedWith);
+                }
+            }
+        }
         protected Connectors.Connector MapFromRevitConnector(Autodesk.Revit.DB.Connector revitConnector,
             Autodesk.Revit.DB.Connector connector)
         {
