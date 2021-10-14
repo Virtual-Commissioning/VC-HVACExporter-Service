@@ -26,7 +26,7 @@ namespace HVACExporter
 
             // Loop through all mechanical components
 
-            Systems system = new Systems();
+            Models.System system = new Models.System();
             var allElements = HelperFunctions.GetConnectorElements(doc);
 
             system = Mapper.MapAllComponents(allElements);
