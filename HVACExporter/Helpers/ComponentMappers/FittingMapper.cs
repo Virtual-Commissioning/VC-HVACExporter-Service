@@ -25,6 +25,19 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             return component;
         }
+        public static Cross MapFittingCross(MEPModel fitting)
+        {
+            string id = fitting.ConnectorManager.Owner.UniqueId;
+            string tag = fitting.ConnectorManager.Owner.Id.ToString();
+            string systemIdentifiers = fitting.ConnectorManager.Owner.LookupParameter("System Type").AsValueString().ToLower();
+            // Add parameter to add a system name that has heat and supply/return
+            string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
+
+            Cross component = new Cross(id, tag, systemIdentifiers, systemType);
+            component.FillConnectedFittings(fitting);
+
+            return component;
+        }
         public static Bend MapFittingBend(MEPModel fitting)
         {
             string id = fitting.ConnectorManager.Owner.UniqueId;

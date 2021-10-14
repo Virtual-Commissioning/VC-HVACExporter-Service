@@ -66,7 +66,12 @@ namespace HVACExporter.Helpers
 
                         system.AddComponent(component);
                     }
+                    else if (fittingType == "Cross")
+                    {
+                        Cross component = FittingMapper.MapFittingCross(fitting);
 
+                        system.AddComponent(component);
+                    }
                     else if (fittingType == "Elbow")
                     {
                         Bend component = FittingMapper.MapFittingBend(fitting);
