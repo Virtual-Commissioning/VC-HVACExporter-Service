@@ -29,9 +29,9 @@ namespace HVACExporter.Helpers
 {
     public class Mapper
     {
-        public static Systems MapAllComponents(FilteredElementCollector allElements)
+        public static Models.System MapAllComponents(FilteredElementCollector allElements)
         {
-            Systems system = new Systems();
+            Models.System system = new Models.System();
             //SpacesInModel spacesInModel = new SpacesInModel();
 
             foreach (Element element in allElements)
@@ -205,6 +205,12 @@ namespace HVACExporter.Helpers
                     else if (fscType == "Pump")
                     {
                         Pump component = MechanicalEquipmentMapper.MapToPump(mechanicalEquipment);
+
+                        system.AddComponent(component);
+                    }
+                    else if (fscType == "Shunt")
+                    {
+                        ShuntValve component = MechanicalEquipmentMapper.MapToShunt(mechanicalEquipment);
 
                         system.AddComponent(component);
                     }

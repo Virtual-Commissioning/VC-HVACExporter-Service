@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using HVACExporter.Models.ComponentSubclasses.EnergyConversionDeviceSubclasses;
 using HVACExporter.Models.ComponentSubclasses.FlowMovingDeviceSubclasses;
+using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -117,6 +118,22 @@ namespace HVACExporter.Helpers.ComponentMappers
             component.PressureCurve = pressureCurve;
 
             component.FillConnectedMechEquipment(mechanicalEquipment);
+
+            return component;
+        }
+        public static ShuntValve MapToShunt(MEPModel mechanicalEquipment)
+        {
+            string id = mechanicalEquipment.ConnectorManager.Owner.UniqueId;
+            string tag = mechanicalEquipment.ConnectorManager.Owner.Id.ToString();
+            string systemIdentifiers = HelperFunctions.MapSystemOfMechEquipment(mechanicalEquipment);
+
+            string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
+
+            bool hasCheckValve = Convert.ToBoolean(mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_hasCheckValve").AsInteger());
+            double shuntDiameter = UnitUtils.ConvertFromInternalUnits(mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_shuntDiameter").AsDouble(),UnitTypeId.Millimeters);
+
+            ShuntValve component = new ShuntValve(id, tag, systemIdentifiers, systemType, shuntDiameter, hasCheckValve);
+            component.FillConnectedPipeAccessories(mechanicalEquipment);
 
             return component;
         }
