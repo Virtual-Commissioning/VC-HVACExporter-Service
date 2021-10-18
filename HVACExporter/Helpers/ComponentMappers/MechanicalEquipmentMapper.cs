@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HVACExporter.Models.Controls;
 
 namespace HVACExporter.Helpers.ComponentMappers
 {
@@ -65,9 +66,27 @@ namespace HVACExporter.Helpers.ComponentMappers
             {
                 pressureCurve = null;
             }
+
+            Controller controller = null;
+
+            try
+            {
+                string controllerType = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlType").AsString();
+                double controllerSetPoint = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlSetPoint").AsDouble();
+                string processVariableComponentTag = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlTarget").AsString();
+                string processVariableParameterType = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlProcessVariable").AsString();
+
+                controller = new Controller($"{tag}_control",
+                                                       controllerType,
+                                                       controllerSetPoint,
+                                                       processVariableComponentTag,
+                                                       processVariableParameterType);
+            }
+            catch
+            {
+            }
             
-            
-            Fan component = new Fan(id, tag, systemIdentifiers, systemType, null);
+            Fan component = new Fan(id, tag, systemIdentifiers, systemType, controller);
 
             component.PowerCurve = powerCurve;
             component.PressureCurve = pressureCurve;
