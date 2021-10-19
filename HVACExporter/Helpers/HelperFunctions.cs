@@ -117,7 +117,7 @@ namespace HVACExporter.Helpers
             }
             return connectedWithSystem;
         }
-        public static (List<string> systemTypes, List<string> systemNames) GetSystemTypesFromHeatExchanger(MEPModel element)
+        public static (List<string> systemTypes, List<string> systemNames) GetSystemTypesFromConnectors(MEPModel element)
         {
             ConnectorSet connectors = element.ConnectorManager.Connectors;
 

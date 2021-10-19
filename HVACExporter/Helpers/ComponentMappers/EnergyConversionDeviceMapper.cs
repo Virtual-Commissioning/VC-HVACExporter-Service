@@ -27,7 +27,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             double nomSupplyTemperaturePrimary = UnitUtils.ConvertFromInternalUnits(heatExchanger.ConnectorManager.Owner.LookupParameter("FSC_nomSupplyTemp1").AsDouble(),UnitTypeId.Celsius);
             double nomSupplyTemperatureSecondary = UnitUtils.ConvertFromInternalUnits(heatExchanger.ConnectorManager.Owner.LookupParameter("FSC_nomSupplyTemp2").AsDouble(),UnitTypeId.Celsius);
 
-            (List<string> systemTypes, List<string> systemNames) = HelperFunctions.GetSystemTypesFromHeatExchanger(heatExchanger);
+            (List<string> systemTypes, List<string> systemNames) = HelperFunctions.GetSystemTypesFromConnectors(heatExchanger);
 
             for (int i = 0; i < systemTypes.Count(); i++)
             {
