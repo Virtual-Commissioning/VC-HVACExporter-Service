@@ -117,6 +117,31 @@ namespace HVACExporter.Helpers
             }
             return connectedWithSystem;
         }
+        public static (List<string> systemTypes, List<string> systemNames) GetSystemTypesFromHeatExchanger(MEPModel element)
+        {
+            ConnectorSet connectors = element.ConnectorManager.Connectors;
+
+            List<string> systemTypesWithDuplicates = new List<string>();
+            List<string> systemNamesWithDuplicates = new List<string>();
+
+            foreach (Connector connector in connectors)
+            {
+                string systemIdentifier = connector.MEPSystem.LookupParameter("Type").AsValueString();
+
+                string systemType = GetSystemType(systemIdentifier);
+
+                systemTypesWithDuplicates.Add(systemType);
+                systemNamesWithDuplicates.Add(systemIdentifier);
+            }
+
+            HashSet<string> hashTypesWithoutDuplicates = new HashSet<string>(systemTypesWithDuplicates);
+            List<string> systemTypes = hashTypesWithoutDuplicates.ToList();
+
+            HashSet<string> hashNamesWithoutDuplicates = new HashSet<string>(systemNamesWithDuplicates);
+            List<string> systemNames = hashNamesWithoutDuplicates.ToList();
+
+            return (systemTypes, systemNames);
+        }
         public static string GetFSCType(Element element)
         {
             FamilyInstance familyInstance = (FamilyInstance)element;
