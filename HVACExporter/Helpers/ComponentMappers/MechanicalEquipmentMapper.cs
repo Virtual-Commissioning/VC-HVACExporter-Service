@@ -29,7 +29,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             double nomReturnTemperature = UnitUtils.ConvertFromInternalUnits(mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_nomReturnTemp").AsDouble(),UnitTypeId.Celsius);
             double nomRoomTemperature = UnitUtils.ConvertFromInternalUnits(mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_nomRoomTemp").AsDouble(),UnitTypeId.Celsius);
 
-            Radiator component = new Radiator(id, tag, $"{systemType} consumer", systemType, nomPower, nomSupplyTemperature, nomReturnTemperature, nomRoomTemperature, nomDp);
+            Radiator component = new Radiator(id, tag, systemIdentifiers, systemType, nomPower, nomSupplyTemperature, nomReturnTemperature, nomRoomTemperature, nomDp);
 
             component.FillConnectedMechEquipment(mechanicalEquipment);
 
