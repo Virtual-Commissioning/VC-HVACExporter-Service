@@ -137,8 +137,19 @@ namespace HVACExporter.Helpers
             HashSet<string> hashTypesWithoutDuplicates = new HashSet<string>(systemTypesWithDuplicates);
             List<string> systemTypes = hashTypesWithoutDuplicates.ToList();
 
-            HashSet<string> hashNamesWithoutDuplicates = new HashSet<string>(systemNamesWithDuplicates);
-            List<string> systemNames = hashNamesWithoutDuplicates.ToList();
+            List<string> systemNames = new List<string>();
+
+            foreach (string type in systemTypes)
+            {
+                foreach (string name in systemNamesWithDuplicates)
+                {
+                    if (type == GetSystemType(name))
+                    {
+                        systemNames.Add(name);
+                        break;
+                    }
+                }
+            }
 
             return (systemTypes, systemNames);
         }
