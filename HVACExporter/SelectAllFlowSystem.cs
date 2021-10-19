@@ -24,8 +24,6 @@ namespace HVACExporter
             var uiapp = commandData.Application;
             var doc = uiapp.ActiveUIDocument.Document;
 
-            // Loop through all mechanical components
-
             Models.System system = new Models.System();
             var allElements = HelperFunctions.GetConnectorElements(doc);
 
@@ -33,7 +31,5 @@ namespace HVACExporter
 
             return Result.Succeeded;
         }
-
-
     }
 }

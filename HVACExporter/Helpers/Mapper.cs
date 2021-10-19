@@ -182,6 +182,21 @@ namespace HVACExporter.Helpers
 
                             system.AddComponent(component);
                         }
+                        else if (fscType == "HeatExchanger")
+                        {
+                            List<HeatExchanger> components = EnergyConversionDeviceMapper.MapToHeatExchanger(accessory);
+
+                            foreach (HeatExchanger component in components)
+                            {
+                                system.AddComponent(component);
+
+                                if (((FamilyInstance)element).Space == null) continue;
+                                Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                                //spacesInModel.AddSpace(space);
+                                component.ContainedInSpaces.Add(space.Id.ToString());
+                            }
+                        }
+
                     }
                 }
                 else if (elementCategory == "Mechanical Equipment")
@@ -218,6 +233,20 @@ namespace HVACExporter.Helpers
                         ShuntValve component = MechanicalEquipmentMapper.MapToShunt(mechanicalEquipment);
 
                         system.AddComponent(component);
+                    }
+                    else if (fscType == "HeatExchanger")
+                    {
+                        List<HeatExchanger> components = EnergyConversionDeviceMapper.MapToHeatExchanger(mechanicalEquipment);
+                        
+                        foreach (HeatExchanger component in components)
+                        {
+                            system.AddComponent(component);
+
+                            if (((FamilyInstance)element).Space == null) continue;
+                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                            //spacesInModel.AddSpace(space);
+                            component.ContainedInSpaces.Add(space.Id.ToString());
+                        }
                     }
                 }
             }
