@@ -125,6 +125,91 @@ namespace HVACExporter.Helpers
 
             return fscType;
         }
+        public static double GetSegmentInsulationConductivity(Pipe segment)
+        {
+            Document doc = segment.Document;
+            double insulationThermalConductivity = default;
+            
+            var pipeInsulation = InsulationLiningBase
+            .GetInsulationIds(segment.Document, segment.Id)
+            .Select(segment.Document.GetElement)
+            .OfType<PipeInsulation>()
+            .FirstOrDefault();
 
+            var typeId = pipeInsulation.GetTypeId();
+            var type = doc.GetElement(typeId);
+            try
+            {
+                double insulationThermalConductivityFromType = type.LookupParameter("FSC_thermalConductivity").AsDouble();
+                if (insulationThermalConductivityFromType != 0)
+                {
+                    insulationThermalConductivity = UnitUtils.ConvertFromInternalUnits(insulationThermalConductivityFromType, UnitTypeId.WattsPerMeterKelvin);
+                    return insulationThermalConductivity;
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                var materialId = type.LookupParameter("Material").AsElementId();
+                var material = doc.GetElement(materialId) as Material;
+
+                var thermalAssetId = material.ThermalAssetId;
+                var thermalAsset = (PropertySetElement)doc.GetElement(thermalAssetId);
+
+                double insulationThermalConductivityInternalUnits = thermalAsset.get_Parameter(BuiltInParameter.PHY_MATERIAL_PARAM_THERMAL_CONDUCTIVITY).AsDouble();
+                insulationThermalConductivity = UnitUtils.ConvertFromInternalUnits(insulationThermalConductivityInternalUnits, UnitTypeId.WattsPerMeterKelvin);
+                return insulationThermalConductivity;
+            }
+            catch
+            {
+                return insulationThermalConductivity;
+            }
+        }
+        public static double GetSegmentInsulationConductivity(Duct segment)
+        {
+            Document doc = segment.Document;
+            double insulationThermalConductivity = default;
+
+            var ductInsulation = InsulationLiningBase
+            .GetInsulationIds(segment.Document, segment.Id)
+            .Select(segment.Document.GetElement)
+            .OfType<DuctInsulation>()
+            .FirstOrDefault();
+
+            var typeId = ductInsulation.GetTypeId();
+            var type = doc.GetElement(typeId);
+            try
+            {
+                double insulationThermalConductivityFromType = type.LookupParameter("FSC_thermalConductivity").AsDouble();
+                if (insulationThermalConductivityFromType != 0)
+                {
+                    insulationThermalConductivity = UnitUtils.ConvertFromInternalUnits(insulationThermalConductivityFromType, UnitTypeId.WattsPerMeterKelvin);
+                    return insulationThermalConductivity;
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                var materialId = type.LookupParameter("Material").AsElementId();
+                var material = doc.GetElement(materialId) as Material;
+
+                var thermalAssetId = material.ThermalAssetId;
+                var thermalAsset = (PropertySetElement)doc.GetElement(thermalAssetId);
+
+                double insulationThermalConductivityInternalUnits = thermalAsset.get_Parameter(BuiltInParameter.PHY_MATERIAL_PARAM_THERMAL_CONDUCTIVITY).AsDouble();
+                insulationThermalConductivity = UnitUtils.ConvertFromInternalUnits(insulationThermalConductivityInternalUnits, UnitTypeId.WattsPerMeterKelvin);
+                return insulationThermalConductivity;
+            }
+            catch
+            {
+                return insulationThermalConductivity;
+            }
+        }
     }
 }

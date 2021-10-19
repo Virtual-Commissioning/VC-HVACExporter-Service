@@ -21,8 +21,14 @@ namespace HVACExporter.Helpers.ComponentMappers
             string tag = segment.Id.IntegerValue.ToString();
             string systemIdentifiers = segment.LookupParameter("System Type").AsValueString().ToLower();
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
-            //double insulationThickness = UnitUtils.ConvertFromInternalUnits(segment.LookupParameter("Insulation Thickness").AsDouble(), UnitTypeId.Millimeters);
-            //double insulationThermalConductivity = 0;
+            double insulationThickness = UnitUtils.ConvertFromInternalUnits(segment.LookupParameter("Insulation Thickness").AsDouble(), UnitTypeId.Millimeters);
+            double insulationThermalConductivity;
+
+            if (insulationThickness != 0)
+            {
+                insulationThermalConductivity = HelperFunctions.GetSegmentInsulationConductivity(segment);
+            }
+
 
             Segment component = new Segment(id
                 , tag
@@ -42,8 +48,13 @@ namespace HVACExporter.Helpers.ComponentMappers
             string tag = segment.Id.IntegerValue.ToString();
             string systemIdentifiers = segment.LookupParameter("System Type").AsValueString().ToLower();
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
-            //double insulationThickness = UnitUtils.ConvertFromInternalUnits(segment.LookupParameter("Insulation Thickness").AsDouble(), UnitTypeId.Millimeters);
-            //double insulationThermalConductivity = 0;
+            double insulationThickness = UnitUtils.ConvertFromInternalUnits(segment.LookupParameter("Insulation Thickness").AsDouble(), UnitTypeId.Millimeters);
+            double insulationThermalConductivity;
+
+            if (insulationThickness != 0)
+            {
+                insulationThermalConductivity = HelperFunctions.GetSegmentInsulationConductivity(segment);
+            }
 
             Segment component = new Segment(id
                 , tag
