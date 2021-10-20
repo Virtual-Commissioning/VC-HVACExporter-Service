@@ -104,11 +104,10 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemIdentifiers = HelperFunctions.MapSystemOfMechEquipment(mechanicalEquipment);
 
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
-            string controlType = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_pumpControlType").AsString();
 
 
-            Dictionary<double, double> powerCurve = new Dictionary<double, double>();
-            Dictionary<double, double> pressureCurve = new Dictionary<double, double>();
+            Dictionary<double, double> powerCurve;
+            Dictionary<double, double> pressureCurve;
 
             try
             {
@@ -129,8 +128,9 @@ namespace HVACExporter.Helpers.ComponentMappers
                 pressureCurve = null;
             }
 
+            PumpController pumpController = Pump.GetPumpController(mechanicalEquipment);
 
-            Pump component = new Pump(id, tag, systemIdentifiers, systemType, null);
+            Pump component = new Pump(id, tag, systemIdentifiers, systemType, pumpController);
 
             component.PowerCurve = powerCurve;
             component.PressureCurve = pressureCurve;
