@@ -55,9 +55,11 @@
     <Compile Include="Helpers\ComponentMappers\MechanicalEquipmentMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\EnergyConversionDeviceMapper.cs" />
     <Compile Include="Helpers\HelperFunctions.cs" />
+    <Compile Include="Helpers\HttpClient.cs" />
     <Compile Include="Helpers\ImperialToMetricConverter.cs" />
     <Compile Include="Helpers\Mapper.cs" />
     <Compile Include="Helpers\ComponentMappers\SegmentMapper.cs" />
+    <Compile Include="Helpers\JsonParser.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDevice.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\HeatExchanger.cs" />
@@ -95,7 +97,7 @@
     <Compile Include="Models\Spaces\Space.cs" />
     <Compile Include="Models\Spaces\SpaceBoundingBox.cs" />
     <Compile Include="Models\Spaces\Spaces.cs" />
-    <Compile Include="Models\System\System.cs" />
+    <Compile Include="Models\System\Systems.cs" />
     <Compile Include="SelectAllFlowSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
