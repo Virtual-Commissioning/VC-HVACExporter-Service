@@ -76,11 +76,10 @@ namespace HVACExporter.Helpers.ComponentMappers
                 string processVariableComponentTag = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlTarget").AsString();
                 string processVariableParameterType = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlProcessVariable").AsString();
 
-                controller = new Controller($"{tag}_control",
-                                                       controllerType,
-                                                       controllerSetPoint,
-                                                       processVariableComponentTag,
-                                                       processVariableParameterType);
+                controller = new Controller(controllerType,
+                                            controllerSetPoint,
+                                            processVariableComponentTag,
+                                            processVariableParameterType);
             }
             catch
             {
