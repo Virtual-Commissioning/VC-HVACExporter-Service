@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace HVACExporter.Models.Controls.PumpControllerSubclasses
 {
-    class ExternalControl
+    class ExternalControl : PumpController
     {
         public Controller Control { get; set; }
         public ExternalControl(Controller controller)
+            : base()
         {
             Control = controller;
         }

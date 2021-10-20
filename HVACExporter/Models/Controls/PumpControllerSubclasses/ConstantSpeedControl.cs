@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace HVACExporter.Models.Controls.PumpControllerSubclasses
 {
-    class ConstantSpeedControl
+    class ConstantSpeedControl : PumpController
     {
         public double Speed { get; set; }
 
         public ConstantSpeedControl(double speed)
+            : base()
         {
             Speed = CheckSpeed(speed);
         }
