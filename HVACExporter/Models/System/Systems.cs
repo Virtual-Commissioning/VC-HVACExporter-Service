@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models
+namespace HVACExporter.Models.System
 {
-    public class System
+    public class Systems
     {
         public Dictionary<string, SubSystem> SubSystems { get; set; } = new Dictionary<string, SubSystem>();
-        public System()
+        public Systems()
         {
 
         }

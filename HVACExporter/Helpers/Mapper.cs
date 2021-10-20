@@ -24,14 +24,15 @@ using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSub
 using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses;
 using HVACExporter.Models.Spaces;
 using Space = HVACExporter.Models.Spaces.Space;
+using HVACExporter.Models.System;
 
 namespace HVACExporter.Helpers
 {
     public class Mapper
     {
-        public static Models.System MapAllComponents(FilteredElementCollector allElements)
+        public static Systems MapAllComponents(FilteredElementCollector allElements)
         {
-            Models.System system = new Models.System();
+            Systems system = new Systems();
             //SpacesInModel spacesInModel = new SpacesInModel();
 
             foreach (Element element in allElements)
