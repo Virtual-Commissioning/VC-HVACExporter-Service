@@ -8,7 +8,7 @@ namespace HVACExporter.Models.Controls.PumpControllerSubclasses
 {
     class ProportionalPressureControl : PumpController
     {
-        public ProportionalPressureControl(double pressure)
+        public ProportionalPressureControl()
             : base()
         {
             throw new NotImplementedException("This class is not yet supported.");
