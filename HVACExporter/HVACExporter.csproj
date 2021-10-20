@@ -87,8 +87,13 @@
     <Compile Include="Models\ComponentSubclasses\TerminalSubclasses\AirTerminal.cs" />
     <Compile Include="Models\Connectors\Connector.cs" />
     <Compile Include="Models\Connectors\ConnectorType.cs" />
+    <Compile Include="Models\Controls\PumpController.cs" />
     <Compile Include="Models\Controls\Controller.cs" />
     <Compile Include="Models\Controls\ControlType.cs" />
+    <Compile Include="Models\Controls\PumpControllerSubclasses\ExternalControl.cs" />
+    <Compile Include="Models\Controls\PumpControllerSubclasses\ProportionalPressureControl.cs" />
+    <Compile Include="Models\Controls\PumpControllerSubclasses\ConstantPressureControl.cs" />
+    <Compile Include="Models\Controls\PumpControllerSubclasses\ConstantSpeedControl.cs" />
     <Compile Include="Models\Enums\ComponentTypes.cs" />
     <Compile Include="Models\GeometricTypes\Coordinate.cs" />
     <Compile Include="Models\GeometricTypes\DirectionVector.cs" />
