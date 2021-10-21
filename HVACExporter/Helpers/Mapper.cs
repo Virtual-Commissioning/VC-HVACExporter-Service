@@ -11,7 +11,6 @@ using HVACExporter.Models.ComponentSubclasses.FlowMovingDeviceSubclasses;
 using HVACExporter.Models.ComponentSubclasses.FittingSubclasses;
 using HVACExporter.Models.Connectors;
 using HVACExporter.Models.Controls;
-using HVACExporter.Models.Enums;
 using HVACExporter.Models.GeometricTypes;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;

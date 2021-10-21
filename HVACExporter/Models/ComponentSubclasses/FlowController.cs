@@ -1,5 +1,4 @@
 ﻿using Autodesk.Revit.DB;
-using HVACExporter.Models.Enums;
 
 namespace HVACExporter.Models.ComponentSubclasses
 {

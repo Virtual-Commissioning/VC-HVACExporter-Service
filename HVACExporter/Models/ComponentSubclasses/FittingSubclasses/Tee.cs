@@ -1,5 +1,4 @@
-﻿using HVACExporter.Models.Enums;
-using System.Linq;
+﻿using System.Linq;
 
 namespace HVACExporter.Models.ComponentSubclasses.FittingSubclasses
 {
