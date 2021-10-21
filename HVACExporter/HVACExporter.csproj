@@ -54,6 +54,7 @@
     <Compile Include="Helpers\ComponentMappers\FittingMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\MechanicalEquipmentMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\EnergyConversionDeviceMapper.cs" />
+    <Compile Include="Helpers\ComponentMappers\TerminalMapper.cs" />
     <Compile Include="Helpers\HelperFunctions.cs" />
     <Compile Include="Helpers\HttpClient.cs" />
     <Compile Include="Helpers\ImperialToMetricConverter.cs" />

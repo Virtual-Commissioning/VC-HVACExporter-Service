@@ -25,6 +25,7 @@ using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubc
 using HVACExporter.Models.Spaces;
 using Space = HVACExporter.Models.Spaces.Space;
 using HVACExporter.Models.System;
+using HVACExporter.Models.ComponentSubclasses.TerminalSubclasses;
 
 namespace HVACExporter.Helpers
 {
@@ -249,6 +250,26 @@ namespace HVACExporter.Helpers
                             component.ContainedInSpaces.Add(space.Id.ToString());
                         }
                     }
+                }
+                else if (elementCategory == "Air Terminals")
+                {
+                    MEPModel terminal = ((FamilyInstance)element).MEPModel;
+
+                    string fscType = HelperFunctions.GetFSCType(element);
+
+                    if (fscType == "AirTerminal")
+                    {
+                        AirTerminal component = TerminalMapper.MapToAirTerminal(terminal);
+
+                        if (((FamilyInstance)element).Space == null) continue;
+                        Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
+                        //spacesInModel.AddSpace(space);
+                        component.ContainedInSpaces.Add(space.Id.ToString());
+
+                        system.AddComponent(component);
+                    }
+
+
                 }
             }
 
