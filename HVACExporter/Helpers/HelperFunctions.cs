@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HVACExporter.Models;
+using HVACExporter.Models.Controls;
 
 namespace HVACExporter.Helpers
 {
@@ -246,6 +247,27 @@ namespace HVACExporter.Helpers
             {
                 return insulationThermalConductivity;
             }
+        }
+        public static Controller GetController(MEPModel element)
+        {
+            Controller controller = null;
+
+            try
+            {
+                string controllerType = element.ConnectorManager.Owner.LookupParameter("FSC_controlType").AsString();
+                double controllerSetPoint = element.ConnectorManager.Owner.LookupParameter("FSC_controlSetPoint").AsDouble();
+                string processVariableComponentTag = element.ConnectorManager.Owner.LookupParameter("FSC_controlTarget").AsString();
+                string processVariableParameterType = element.ConnectorManager.Owner.LookupParameter("FSC_controlProcessVariable").AsString();
+
+                controller = new Controller(controllerType,
+                                            controllerSetPoint,
+                                            processVariableComponentTag,
+                                            processVariableParameterType);
+            }
+            catch
+            {
+            }
+            return controller;
         }
     }
 }

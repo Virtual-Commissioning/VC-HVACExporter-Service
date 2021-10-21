@@ -7,6 +7,7 @@ using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSub
 using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses;
 using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses;
 using Autodesk.Revit.DB;
+using HVACExporter.Models.Controls;
 
 namespace HVACExporter.Helpers.ComponentMappers
 {
@@ -24,6 +25,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
             BalancingDamper component = new BalancingDamper(id, tag, systemIdentifiers, systemType, kv, kvs);
+            
             component.FillConnectedPipeAccessories(accessory);
             
             return component;
@@ -39,7 +41,10 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
-            MotorizedDamper component = new MotorizedDamper(id, tag, systemIdentifiers, systemType, kv, kvs);
+            Controller control = HelperFunctions.GetController(accessory);
+
+            MotorizedDamper component = new MotorizedDamper(id, tag, systemIdentifiers, systemType, kv, kvs, control);
+            
             component.FillConnectedPipeAccessories(accessory);
 
             return component;
@@ -57,6 +62,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
             FireDamper component = new FireDamper(id, tag, systemIdentifiers, systemType, kv, kvs,fireDamperType);
+            
             component.FillConnectedPipeAccessories(accessory);
 
             return component;
@@ -70,6 +76,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
             Damper component = new Damper(id, tag, systemIdentifiers, systemType);
+            
             component.FillConnectedPipeAccessories(accessory);
 
             return component;
@@ -86,6 +93,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
             BalancingValve component = new BalancingValve(id, tag, systemIdentifiers, systemType, kv, kvs);
+            
             component.FillConnectedPipeAccessories(accessory);
 
             return component;
@@ -101,7 +109,10 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
-            MotorizedValve component = new MotorizedValve(id, tag, systemIdentifiers, systemType, kv, kvs);
+            Controller control = HelperFunctions.GetController(accessory);
+
+            MotorizedValve component = new MotorizedValve(id, tag, systemIdentifiers, systemType, kv, kvs, control);
+            
             component.FillConnectedPipeAccessories(accessory);
 
             return component;
@@ -115,6 +126,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
             Valve component = new Valve(id, tag, systemIdentifiers, systemType);
+            
             component.FillConnectedPipeAccessories(accessory);
 
             return component;

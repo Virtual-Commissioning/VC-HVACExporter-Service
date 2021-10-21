@@ -67,25 +67,9 @@ namespace HVACExporter.Helpers.ComponentMappers
                 pressureCurve = null;
             }
 
-            Controller controller = null;
+            Controller control = HelperFunctions.GetController(mechanicalEquipment);
 
-            try
-            {
-                string controllerType = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlType").AsString();
-                double controllerSetPoint = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlSetPoint").AsDouble();
-                string processVariableComponentTag = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlTarget").AsString();
-                string processVariableParameterType = mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_controlProcessVariable").AsString();
-
-                controller = new Controller(controllerType,
-                                            controllerSetPoint,
-                                            processVariableComponentTag,
-                                            processVariableParameterType);
-            }
-            catch
-            {
-            }
-            
-            Fan component = new Fan(id, tag, systemIdentifiers, systemType, controller);
+            Fan component = new Fan(id, tag, systemIdentifiers, systemType, control);
 
             component.PowerCurve = powerCurve;
             component.PressureCurve = pressureCurve;
