@@ -7,7 +7,7 @@ namespace HVACExporter.Helpers
 {
     public class JsonParser
     {
-        public static string ParseToJson(Systems systemToParse, SpacesInModel spacesToParse)
+        public static string ParseToJson(Systems systemToParse, Spaces spacesToParse)
         {
             string system = ParseSystemToJson(systemToParse);
             string spaces = ParseSpacesToJson(spacesToParse);
@@ -39,7 +39,7 @@ namespace HVACExporter.Helpers
             return JsonConvert.SerializeObject(systemToParse);
         }
 
-        public static string ParseSpacesToJson(SpacesInModel spacesToParse)
+        public static string ParseSpacesToJson(Spaces spacesToParse)
         {
             return JsonConvert.SerializeObject(spacesToParse);
         }

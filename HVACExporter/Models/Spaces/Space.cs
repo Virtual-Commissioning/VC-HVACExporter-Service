@@ -1,5 +1,6 @@
-﻿using Autodesk.Revit.DB;
-using System;
+﻿using HVACExporter.Models.Spaces.IndoorClimate;
+using HVACExporter.Models.Spaces.Geometry;
+using HVACExporter.Models.Spaces.IES;
 
 namespace HVACExporter.Models.Spaces
 {
@@ -7,20 +8,17 @@ namespace HVACExporter.Models.Spaces
     {
         public string Id { get; set; }
         public string Tag { get; set; }
-        public double HeatingDemand { get; set; }
-        public SpaceBoundingBox SpaceBoundingBox { get; set; }
+        public IndoorClimateZone IndoorClimateZone { get; set; }
+        public SpaceGeometry SpaceGeometry { get; set; }
+        public IESParams IESParams { get; set; }
 
-        public Space(string id, string tag, double heatingDemand, SpaceBoundingBox spaceBoundingBox)
+        public Space(string id, string tag, IndoorClimateZone indoorClimateZone, SpaceGeometry spaceGeometry)
         {
             Id = id;
             Tag = tag;
-            HeatingDemand = heatingDemand;
-            SpaceBoundingBox = spaceBoundingBox;
-        }
-
-        public void GetContainedMechanicalElements(Element space)
-        {
-            throw new NotImplementedException();
+            IndoorClimateZone = indoorClimateZone;
+            SpaceGeometry = spaceGeometry;
+            //IESParams = iESParams;
         }
     }
 }
