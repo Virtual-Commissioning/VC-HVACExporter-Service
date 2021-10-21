@@ -3,7 +3,6 @@ using Autodesk.Revit.DB.Plumbing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using HVACExporter.Helpers;
-using HVACExporter.Models.Enums;
 using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Connectors;
