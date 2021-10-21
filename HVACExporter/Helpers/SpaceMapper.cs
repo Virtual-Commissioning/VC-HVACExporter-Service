@@ -17,6 +17,8 @@ namespace HVACExporter.Helpers
             foreach (SpatialElement space in allSpaces)
             {
 
+                if (space.Category.Name != "Spaces") continue;
+
                 //We start of by giving the room its IDs
                 var spaceId = space.UniqueId;
                 var spaceTag = space.Id.ToString();
