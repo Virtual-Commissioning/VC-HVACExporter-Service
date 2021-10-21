@@ -100,9 +100,6 @@
     <Compile Include="Models\Enums\ComponentTypes.cs" />
     <Compile Include="Models\GeometricTypes\Coordinate.cs" />
     <Compile Include="Models\GeometricTypes\DirectionVector.cs" />
-    <Compile Include="Models\Spaces\Space.cs" />
-    <Compile Include="Models\Spaces\SpaceBoundingBox.cs" />
-    <Compile Include="Models\Spaces\Spaces.cs" />
     <Compile Include="Models\System\Systems.cs" />
     <Compile Include="SelectAllFlowSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,6 +108,8 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Spaces\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
