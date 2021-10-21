@@ -101,9 +101,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else if (fscType == "MotorizedDamper")
                         {
@@ -111,9 +110,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else if (fscType == "FireDamper")
                         {
@@ -121,9 +119,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else
                         {
@@ -131,9 +128,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                     }
                     else if (accessoryType.ToLower().Contains("valve"))
@@ -144,9 +140,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else if (fscType == "MotorizedValve")
                         {
@@ -154,9 +149,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else
                         {
@@ -164,9 +158,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                     }
                     else
@@ -192,9 +185,8 @@ namespace HVACExporter.Helpers
                                 system.AddComponent(component);
 
                                 if (((FamilyInstance)element).Space == null) continue;
-                                Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                                //spacesInModel.AddSpace(space);
-                                component.ContainedInSpaces.Add(space.Id.ToString());
+                                
+                                component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                             }
                         }
 
@@ -211,9 +203,8 @@ namespace HVACExporter.Helpers
                         Radiator component = MechanicalEquipmentMapper.MapToRadiator(mechanicalEquipment);
 
                         if (((FamilyInstance)element).Space == null) continue;
-                        Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                        //spacesInModel.AddSpace(space);
-                        component.ContainedInSpaces.Add(space.Id.ToString());
+                        
+                        component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
 
                         system.AddComponent(component);
                     }
@@ -244,9 +235,8 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
 
                             if (((FamilyInstance)element).Space == null) continue;
-                            Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                            //spacesInModel.AddSpace(space);
-                            component.ContainedInSpaces.Add(space.Id.ToString());
+                            
+                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                     }
                 }
@@ -261,9 +251,8 @@ namespace HVACExporter.Helpers
                         AirTerminal component = TerminalMapper.MapToAirTerminal(terminal);
 
                         if (((FamilyInstance)element).Space == null) continue;
-                        Space space = component.GetSpaceAndComponentsInSpace(((FamilyInstance)element));
-                        //spacesInModel.AddSpace(space);
-                        component.ContainedInSpaces.Add(space.Id.ToString());
+                        
+                        component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
 
                         system.AddComponent(component);
                     }
