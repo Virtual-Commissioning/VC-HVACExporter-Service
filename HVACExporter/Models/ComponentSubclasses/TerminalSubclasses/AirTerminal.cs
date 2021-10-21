@@ -7,6 +7,7 @@
            : base(id, tag, systemName, systemType)
         {
             Kv = kv;
+            ComponentType = this.GetType().Name;
         }
     }
 }
