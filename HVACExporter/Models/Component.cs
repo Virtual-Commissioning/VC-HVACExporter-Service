@@ -16,7 +16,6 @@ namespace HVACExporter.Models
     {
         public string Id { get; set; }
         public string Tag { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
         public string ComponentType { get; set; }
         public string SystemName { get; set; }
         public string SystemType { get; set; }
