@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
+using HVACExporter.Models.Spaces;
 
 namespace HVACExporter.Models.Spaces
 {
-    public class SpacesInModel
+    public class Spaces
     {
-        public List<Space> Spaces { get; set; } = new List<Space>();
+        public List<Space> SpacesInModel { get; set; } = new List<Space>();
 
-        public void AddSpace(Space space)
+        public void AddRoom(Space room)
         {
-            if (!IsSpaceInList(space))
+            if (!IsRoomInList(room))
             {
-                Spaces.Add(space);
+                SpacesInModel.Add(room);
             }
         }
 
-        public bool IsSpaceInList(Space space)
+        public bool IsRoomInList(Space room)
         {
-            if (Spaces.Contains(space))
+            if (SpacesInModel.Contains(room))
             {
                 return true;
             }

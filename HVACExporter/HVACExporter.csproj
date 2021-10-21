@@ -63,6 +63,9 @@
     <Compile Include="Helpers\Mapper.cs" />
     <Compile Include="Helpers\ComponentMappers\SegmentMapper.cs" />
     <Compile Include="Helpers\JsonParser.cs" />
+    <Compile Include="Helpers\SpaceMapper.cs" />
+    <Compile Include="Helpers\SpaceMappers\GeometricMapper.cs" />
+    <Compile Include="Helpers\SpaceMappers\IndoorClimateMapper.cs" />
     <Compile Include="Helpers\PromptTokenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,9 +110,23 @@
     <Compile Include="Models\Controls\PumpControllerSubclasses\ConstantSpeedControl.cs" />
     <Compile Include="Models\GeometricTypes\Coordinate.cs" />
     <Compile Include="Models\GeometricTypes\DirectionVector.cs" />
+    <Compile Include="Models\Spaces\Geometry\Edge.cs" />
+    <Compile Include="Models\Spaces\Geometry\SpaceGeometry.cs" />
+    <Compile Include="Models\Spaces\IES\IESParams.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\Cooling.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\EquipmentLoad.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\ExternalLoad.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\HeatGain.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\Heating.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\IndoorClimateZone.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\LightingLoad.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\PeopleLoad.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\Schedule.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\Schedules.cs" />
+    <Compile Include="Models\Spaces\IndoorClimate\Ventilation.cs" />
     <Compile Include="Models\Spaces\Space.cs" />
-    <Compile Include="Models\Spaces\SpaceBoundingBox.cs" />
     <Compile Include="Models\Spaces\Spaces.cs" />
+    <Compile Include="Models\Spaces\ValueMatrix.cs" />
     <Compile Include="Models\System\Systems.cs" />
     <Compile Include="SelectAllFlowSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

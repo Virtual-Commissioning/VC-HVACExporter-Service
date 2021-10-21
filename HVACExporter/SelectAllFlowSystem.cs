@@ -9,10 +9,7 @@ using HVACExporter.Models.ComponentSubclasses;
 using HVACExporter.Models.Controls;
 using HVACExporter.Models;
 using HVACExporter.Models.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+using HVACExporter.Models.Spaces;
 
 namespace HVACExporter
 {
@@ -26,9 +23,13 @@ namespace HVACExporter
             var doc = uiapp.ActiveUIDocument.Document;
 
             Systems system = new Systems();
+            Spaces spaces = new Spaces();
+
             var allElements = HelperFunctions.GetConnectorElements(doc);
+            var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));
 
             system = Mapper.MapAllComponents(allElements);
+            spaces = SpaceMapper.MapAllSpaces(allSpaces);
 
             string serializedJson = JsonParser.ParseToJson(system, spaces);
 

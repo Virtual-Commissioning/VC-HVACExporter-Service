@@ -170,34 +170,6 @@ namespace HVACExporter.Models
             }
         }
 
-        public Space GetSpaceAndComponentsInSpace(FamilyInstance component)
-        {
-
-            BoundingBoxXYZ boundingBox = component.Space.Room.ClosedShell.GetBoundingBox();
-
-            XYZ bbMinCoordinates = boundingBox.Min;
-            XYZ bbMaxCoordinates = boundingBox.Max;
-
-            Coordinate minCoordinates = new Coordinate(
-                ImperialToMetricConverter.ConvertFromFeetToMeters(bbMinCoordinates.X),
-                ImperialToMetricConverter.ConvertFromFeetToMeters(bbMinCoordinates.Y),
-                ImperialToMetricConverter.ConvertFromFeetToMeters(bbMinCoordinates.Z));
-
-            Coordinate maxCoordinates = new Coordinate(
-                ImperialToMetricConverter.ConvertFromFeetToMeters(bbMaxCoordinates.X),
-                ImperialToMetricConverter.ConvertFromFeetToMeters(bbMaxCoordinates.Y),
-                ImperialToMetricConverter.ConvertFromFeetToMeters(bbMaxCoordinates.Z));
-
-            SpaceBoundingBox spaceBoundingBox = new SpaceBoundingBox(minCoordinates, maxCoordinates);
-
-            string id = component.Space.UniqueId.ToString();
-            string tag = component.Space.Id.ToString();
-            double heatingDemand = component.Space.LookupParameter("Design Heating Load").AsDouble();
-
-            Space space = new Space(id, tag, heatingDemand, spaceBoundingBox);
-
-            return space;
-        }
     }
 }
 
