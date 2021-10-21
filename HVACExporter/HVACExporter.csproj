@@ -105,7 +105,6 @@
     <Compile Include="Models\Controls\PumpControllerSubclasses\ProportionalPressureControl.cs" />
     <Compile Include="Models\Controls\PumpControllerSubclasses\ConstantPressureControl.cs" />
     <Compile Include="Models\Controls\PumpControllerSubclasses\ConstantSpeedControl.cs" />
-    <Compile Include="Models\Enums\ComponentTypes.cs" />
     <Compile Include="Models\GeometricTypes\Coordinate.cs" />
     <Compile Include="Models\GeometricTypes\DirectionVector.cs" />
     <Compile Include="Models\Spaces\Space.cs" />
@@ -123,6 +122,9 @@
     <EmbeddedResource Include="Helpers\PromptTokenForm.resx">
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Enums\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

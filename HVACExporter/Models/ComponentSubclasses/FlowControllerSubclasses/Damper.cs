@@ -1,5 +1,4 @@
-﻿using HVACExporter.Models.Enums;
-
+﻿
 namespace HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses
 {
     class Damper : FlowController

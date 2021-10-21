@@ -3,7 +3,6 @@ using Autodesk.Revit.DB.Plumbing;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using HVACExporter.Helpers;
-using HVACExporter.Models.Enums;
 using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Connectors;
@@ -16,7 +15,6 @@ namespace HVACExporter.Models
     {
         public string Id { get; set; }
         public string Tag { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
         public string ComponentType { get; set; }
         public string SystemName { get; set; }
         public string SystemType { get; set; }
