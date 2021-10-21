@@ -37,13 +37,15 @@ namespace HVACExporter.Helpers
 
             foreach (Element element in allElements)
             {
+                Component component = new Component(null, null, null, null);
+
                 string elementCategory = element.Category.Name;
 
                 if (elementCategory == "Pipes")
                 {
                     Pipe pipe = (Pipe)element;
 
-                    Segment component = SegmentMapper.MapPipeToSegment(pipe);
+                    component = SegmentMapper.MapPipeToSegment(pipe);
 
                     system.AddComponent(component);
                 }
@@ -51,7 +53,7 @@ namespace HVACExporter.Helpers
                 {
                     Duct duct = (Duct)element;
 
-                    Segment component = SegmentMapper.MapDuctToSegment(duct);
+                    component = SegmentMapper.MapDuctToSegment(duct);
 
                     system.AddComponent(component);
                 }
@@ -63,25 +65,25 @@ namespace HVACExporter.Helpers
 
                     if (fittingType == "Tee")
                     {
-                        Tee component = FittingMapper.MapFittingTee(fitting);
+                        component = FittingMapper.MapFittingTee(fitting);
 
                         system.AddComponent(component);
                     }
                     else if (fittingType == "Cross")
                     {
-                        Cross component = FittingMapper.MapFittingCross(fitting);
+                        component = FittingMapper.MapFittingCross(fitting);
 
                         system.AddComponent(component);
                     }
                     else if (fittingType == "Elbow")
                     {
-                        Bend component = FittingMapper.MapFittingBend(fitting);
+                        component = FittingMapper.MapFittingBend(fitting);
 
                         system.AddComponent(component);
                     }
                     else if (fittingType == "Transition")
                     {
-                        Reduction component = FittingMapper.MapFittingReduction(fitting);
+                        component = FittingMapper.MapFittingReduction(fitting);
 
                         system.AddComponent(component);
                     }
@@ -97,82 +99,54 @@ namespace HVACExporter.Helpers
                     {
                         if (fscType == "BalancingDamper")
                         {
-                            BalancingDamper component = FlowControllerMapper.MapToBalancingDamper(accessory);
+                            component = FlowControllerMapper.MapToBalancingDamper(accessory);
                             system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else if (fscType == "MotorizedDamper")
                         {
-                            MotorizedDamper component = FlowControllerMapper.MapToMotorizedDamper(accessory);
+                            component = FlowControllerMapper.MapToMotorizedDamper(accessory);
                             system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else if (fscType == "FireDamper")
                         {
-                            FireDamper component = FlowControllerMapper.MapToFireDamper(accessory);
+                            component = FlowControllerMapper.MapToFireDamper(accessory);
                             system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else
                         {
-                            Damper component = FlowControllerMapper.MapToDamper(accessory);
+                            component = FlowControllerMapper.MapToDamper(accessory);
                             system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                     }
                     else if (accessoryType.ToLower().Contains("valve"))
                     {
                         if (fscType == "BalancingValve")
                         {
-                            BalancingValve component = FlowControllerMapper.MapToBalancingValve(accessory);
+                            component = FlowControllerMapper.MapToBalancingValve(accessory);
                             system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else if (fscType == "MotorizedValve")
                         {
-                            MotorizedValve component = FlowControllerMapper.MapToMotorizedValve(accessory);
+                            component = FlowControllerMapper.MapToMotorizedValve(accessory);
                             system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                         else
                         {
-                            Valve component = FlowControllerMapper.MapToValve(accessory);
+                            component = FlowControllerMapper.MapToValve(accessory);
                             system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
                         }
                     }
                     else
                     {
                         if (fscType == "Fan")
                         {
-                            Fan component = MechanicalEquipmentMapper.MapToFan(accessory);
+                            component = MechanicalEquipmentMapper.MapToFan(accessory);
 
                             system.AddComponent(component);
                         }
                         else if (fscType == "Pump")
                         {
-                            Pump component = MechanicalEquipmentMapper.MapToPump(accessory);
+                            component = MechanicalEquipmentMapper.MapToPump(accessory);
 
                             system.AddComponent(component);
                         }
@@ -180,13 +154,14 @@ namespace HVACExporter.Helpers
                         {
                             List<HeatExchanger> components = EnergyConversionDeviceMapper.MapToHeatExchanger(accessory);
 
-                            foreach (HeatExchanger component in components)
+                            foreach (HeatExchanger comp in components)
                             {
-                                system.AddComponent(component);
+                                system.AddComponent(comp);
 
                                 if (((FamilyInstance)element).Space == null) continue;
-                                
+
                                 component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
+                                continue;
                             }
                         }
 
@@ -200,29 +175,25 @@ namespace HVACExporter.Helpers
 
                     if (fscType == "Radiator")
                     {
-                        Radiator component = MechanicalEquipmentMapper.MapToRadiator(mechanicalEquipment);
-
-                        if (((FamilyInstance)element).Space == null) continue;
-                        
-                        component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
+                        component = MechanicalEquipmentMapper.MapToRadiator(mechanicalEquipment);
 
                         system.AddComponent(component);
                     }
                     else if (fscType == "Fan")
                     {
-                        Fan component = MechanicalEquipmentMapper.MapToFan(mechanicalEquipment);
+                        component = MechanicalEquipmentMapper.MapToFan(mechanicalEquipment);
 
                         system.AddComponent(component);
                     }
                     else if (fscType == "Pump")
                     {
-                        Pump component = MechanicalEquipmentMapper.MapToPump(mechanicalEquipment);
+                        component = MechanicalEquipmentMapper.MapToPump(mechanicalEquipment);
 
                         system.AddComponent(component);
                     }
                     else if (fscType == "Shunt")
                     {
-                        ShuntValve component = MechanicalEquipmentMapper.MapToShunt(mechanicalEquipment);
+                        component = MechanicalEquipmentMapper.MapToShunt(mechanicalEquipment);
 
                         system.AddComponent(component);
                     }
@@ -230,13 +201,9 @@ namespace HVACExporter.Helpers
                     {
                         List<HeatExchanger> components = EnergyConversionDeviceMapper.MapToHeatExchanger(mechanicalEquipment);
                         
-                        foreach (HeatExchanger component in components)
+                        foreach (HeatExchanger comp in components)
                         {
-                            system.AddComponent(component);
-
-                            if (((FamilyInstance)element).Space == null) continue;
-                            
-                            component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
+                            system.AddComponent(comp);
                         }
                     }
                 }
@@ -248,17 +215,24 @@ namespace HVACExporter.Helpers
 
                     if (fscType == "AirTerminal")
                     {
-                        AirTerminal component = TerminalMapper.MapToAirTerminal(terminal);
-
-                        if (((FamilyInstance)element).Space == null) continue;
-                        
-                        component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
+                        component = TerminalMapper.MapToAirTerminal(terminal);
 
                         system.AddComponent(component);
                     }
-
-
                 }
+
+                try
+                {
+                    if (((FamilyInstance)element).Space == null) continue;
+
+                    component.ContainedInSpaces.Add(((FamilyInstance)element).Space.Id.ToString());
+                }
+                catch
+                {
+
+                    continue;
+                }
+
             }
 
             return system;
