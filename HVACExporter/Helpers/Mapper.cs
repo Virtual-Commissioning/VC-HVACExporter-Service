@@ -170,12 +170,14 @@ namespace HVACExporter.Helpers
 
                             system.AddComponent(component);
                         }
+                        
                         else if (fscType == "Pump")
                         {
                             Pump component = MechanicalEquipmentMapper.MapToPump(accessory);
 
                             system.AddComponent(component);
                         }
+                        
                         else if (fscType == "HeatExchanger")
                         {
                             List<HeatExchanger> components = EnergyConversionDeviceMapper.MapToHeatExchanger(accessory);
@@ -190,6 +192,12 @@ namespace HVACExporter.Helpers
                             }
                         }
 
+                        else if (fscType.ToLower().Contains("sensor"))
+                        {
+                            Reduction component = FittingMapper.MapFittingReduction(accessory);
+
+                            system.AddComponent(component);
+                        }
                     }
                 }
                 else if (elementCategory == "Mechanical Equipment")
