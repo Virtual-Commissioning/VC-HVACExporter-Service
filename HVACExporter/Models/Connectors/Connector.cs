@@ -1,11 +1,12 @@
 ﻿using HVACExporter.Models.GeometricTypes;
+using System.Collections.Generic;
 
 namespace HVACExporter.Models.Connectors
 {
     public class Connector
     {
         public string Tag { get; set; }
-        public double Dimension { get; set; }
+        public List<double> Dimension { get; set; }
         public string Shape { get; set; }
         public double DesignFlow { get; set; }
         public Coordinate Coordinate { get; set; }
@@ -13,7 +14,7 @@ namespace HVACExporter.Models.Connectors
         public ConnectorType ConnectorType { get; set; }
 
 
-        public Connector(string tag, double dimension, string shape, double designFlow, Coordinate coordinate,
+        public Connector(string tag, List<double> dimension, string shape, double designFlow, Coordinate coordinate,
                          DirectionVector directionVector, ConnectorType connectorType)
         {
             Tag = tag;

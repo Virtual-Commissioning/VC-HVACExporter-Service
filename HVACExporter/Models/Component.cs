@@ -81,8 +81,24 @@ namespace HVACExporter.Models
                 {
 
                     string connectedToId = "Not connected";
-                    double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(connector.Radius);
                     string shape = connector.Shape.ToString();
+
+                    List<double> dimension = new List<double>();
+
+                    if (shape.ToLower() == "round")
+                    {
+                        double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
+                        dimension.Add(diameter);
+                    }
+                    else if (shape.ToLower() == "rectangular")
+                    {
+                        double height = UnitUtils.ConvertFromInternalUnits(revitConnector.Height, UnitTypeId.Millimeters);
+                        double width = UnitUtils.ConvertFromInternalUnits(revitConnector.Width, UnitTypeId.Millimeters);
+
+                        dimension.Add(height);
+                        dimension.Add(width);
+                    }
+
                     double designFlow = UnitUtils.ConvertFromInternalUnits(connector.Flow, UnitTypeId.LitersPerSecond);
                     var connectorType = GetDirectionOfConnector(connector);
 
@@ -93,13 +109,29 @@ namespace HVACExporter.Models
 
                     Coordinate coordinate = new Coordinate(x, y, z);
 
-                    return new Connectors.Connector(connectedToId, diameter, shape, designFlow, coordinate, directionVector, connectorType);
+                    return new Connectors.Connector(connectedToId, dimension, shape, designFlow, coordinate, directionVector, connectorType);
                 }
                 else
                 {
                     string connectedToId = revitConnector.Owner.Id.ToString();
-                    double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
                     string shape = revitConnector.Shape.ToString();
+
+                    List<double> dimension = new List<double>();
+
+                    if (shape.ToLower() == "round")
+                    {
+                        double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
+                        dimension.Add(diameter);
+                    }
+                    else if (shape.ToLower() == "rectangular")
+                    {
+                        double height = UnitUtils.ConvertFromInternalUnits(revitConnector.Height, UnitTypeId.Millimeters);
+                        double width = UnitUtils.ConvertFromInternalUnits(revitConnector.Width, UnitTypeId.Millimeters);
+
+                        dimension.Add(height);
+                        dimension.Add(width);
+                    }
+
                     double designFlow = UnitUtils.ConvertFromInternalUnits(connector.Flow, UnitTypeId.LitersPerSecond);
                     var connectorType = GetDirectionOfConnector(connector);
 
@@ -110,7 +142,7 @@ namespace HVACExporter.Models
 
                     Coordinate coordinate = new Coordinate(x, y, z);
 
-                    return new Connectors.Connector(connectedToId, diameter, shape, designFlow, coordinate, directionVector, connectorType);
+                    return new Connectors.Connector(connectedToId, dimension, shape, designFlow, coordinate, directionVector, connectorType);
                 }
 
             }
