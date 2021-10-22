@@ -33,6 +33,8 @@ namespace HVACExporter
 
             string serializedJson = JsonParser.ParseToJson(system, spaces);
 
+            HttpClientHelper.POSTData(serializedJson, url);
+
             return Result.Succeeded;
         }
     }
