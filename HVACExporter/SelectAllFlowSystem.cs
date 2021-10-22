@@ -31,7 +31,9 @@ namespace HVACExporter
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
 
-            string serializedJson = JsonParser.ParseToJson(system, spaces);
+            (string userId, string projectId, string url) = HelperFunctions.PromptToken();
+
+            string serializedJson = JsonParser.ParseToJson(system, spaces, userId, projectId);
 
             HttpClientHelper.POSTData(serializedJson, url);
 
