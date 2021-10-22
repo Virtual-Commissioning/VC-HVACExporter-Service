@@ -81,8 +81,12 @@ namespace HVACExporter.Models
                 {
 
                     string connectedToId = "Not connected";
-                    double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(connector.Radius);
                     string shape = connector.Shape.ToString();
+                    double diameter = default;
+                    if (shape.ToLower() == "round")
+                    {
+                        diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
+                    }
                     double designFlow = UnitUtils.ConvertFromInternalUnits(connector.Flow, UnitTypeId.LitersPerSecond);
                     var connectorType = GetDirectionOfConnector(connector);
 
@@ -98,8 +102,12 @@ namespace HVACExporter.Models
                 else
                 {
                     string connectedToId = revitConnector.Owner.Id.ToString();
-                    double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
                     string shape = revitConnector.Shape.ToString();
+                    double diameter = default;
+                    if (shape.ToLower() == "round")
+                    {
+                        diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
+                    }
                     double designFlow = UnitUtils.ConvertFromInternalUnits(connector.Flow, UnitTypeId.LitersPerSecond);
                     var connectorType = GetDirectionOfConnector(connector);
 
