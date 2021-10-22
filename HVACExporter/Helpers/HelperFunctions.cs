@@ -269,5 +269,16 @@ namespace HVACExporter.Helpers
             }
             return controller;
         }
+        public static (string userId, string projectId, string url) PromptToken()
+        {
+            PromptTokenForm prompt = new PromptTokenForm();
+
+            prompt.ShowDialog();
+            string userId = prompt.userId;
+            string projectId = prompt.projectId;
+            string url = prompt.url;
+
+            return (userId, projectId, url);
+        }
     }
 }
