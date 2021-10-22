@@ -15,6 +15,7 @@ namespace HVACExporter.Helpers
     {
         public string userId;
         public string projectId;
+        public string url;
         public PromptTokenForm()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace HVACExporter.Helpers
         {
             userId = userIdTextBox.Text;
             projectId = projectIdTextBox.Text;
+            url = urlTextBox.Text;
 
             okButton.DialogResult = DialogResult.OK;
 
