@@ -35,6 +35,7 @@ namespace HVACExporter.Helpers
             this.cancelButton = new System.Windows.Forms.Button();
             this.projectIdTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.urlTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +59,7 @@ namespace HVACExporter.Helpers
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(237, 124);
+            this.okButton.Location = new System.Drawing.Point(237, 170);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 2;
@@ -68,7 +69,8 @@ namespace HVACExporter.Helpers
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(156, 124);
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(156, 170);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 3;
@@ -87,17 +89,28 @@ namespace HVACExporter.Helpers
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 130);
+            this.label2.Location = new System.Drawing.Point(12, 176);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Cancel will set IDs to null";
             // 
+            // urlTextBox
+            // 
+            this.urlTextBox.Location = new System.Drawing.Point(12, 94);
+            this.urlTextBox.Name = "urlTextBox";
+            this.urlTextBox.Size = new System.Drawing.Size(249, 20);
+            this.urlTextBox.TabIndex = 6;
+            this.urlTextBox.Text = "URL";
+            // 
             // PromptTokenForm
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 159);
+            this.CancelButton = this.cancelButton;
+            this.ClientSize = new System.Drawing.Size(324, 205);
+            this.Controls.Add(this.urlTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.projectIdTextBox);
             this.Controls.Add(this.cancelButton);
@@ -120,5 +133,6 @@ namespace HVACExporter.Helpers
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox projectIdTextBox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox urlTextBox;
     }
 }

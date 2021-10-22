@@ -7,17 +7,13 @@ namespace HVACExporter.Helpers
 {
     public class JsonParser
     {
-        public static string ParseToJson(Systems systemToParse, Spaces spacesToParse)
+        public static string ParseToJson(Systems systemToParse, Spaces spacesToParse, string userId, string projectId)
         {
             string system = ParseSystemToJson(systemToParse);
             string spaces = ParseSpacesToJson(spacesToParse);
 
-            (string userId, string projectId) = PromptToken();
-
             string userIdTag = "\"userID\": ";
-            //string userId = "\"6048a6546223802bb0797796\"";
             string projectIdTag = "\"projectID\": ";
-            //string projectId = "\"607942d005423f1fb4703b48\"";
 
             string jsonToWebApp = String.Concat("{",
                 userIdTag,
@@ -46,15 +42,6 @@ namespace HVACExporter.Helpers
             return JsonConvert.SerializeObject(spacesToParse);
         }
 
-        public static (string userId, string projectId) PromptToken()
-        {
-            PromptTokenForm prompt = new PromptTokenForm();
-
-            prompt.ShowDialog();
-            string userId = prompt.userId;
-            string projectId = prompt.projectId;
-
-            return (userId, projectId);
-        }
+        
     }
 }

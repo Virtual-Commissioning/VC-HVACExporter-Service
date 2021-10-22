@@ -169,7 +169,7 @@ namespace HVACExporter.Helpers
 
                         else if (fscType.ToLower().Contains("sensor"))
                         {
-                            Reduction component = FittingMapper.MapFittingReduction(accessory);
+                            component = FittingMapper.MapFittingReduction(accessory);
 
                             system.AddComponent(component);
                         }
