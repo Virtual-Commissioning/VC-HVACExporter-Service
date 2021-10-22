@@ -12,9 +12,9 @@ namespace HVACExporter.Helpers
     {
         private static HttpClient _httpClient = new HttpClient();
 
-        public bool POSTData(object json, string url)
+        public static bool POSTData(string json, string url)
         {
-            using (var content = new StringContent(JsonConvert.SerializeObject(json), System.Text.Encoding.UTF8))
+            using (var content = new StringContent(json, System.Text.Encoding.UTF8))
             {
 
                 HttpResponseMessage result = _httpClient.PutAsync(url, content).Result;
