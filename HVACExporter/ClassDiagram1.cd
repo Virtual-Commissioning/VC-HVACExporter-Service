@@ -316,11 +316,11 @@
       <FileName>Helpers\SpaceMappers\IndoorClimateMapper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HVACExporter.Models.ComponentSubclasses.Terminal">
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowTerminal">
     <Position X="27.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\ComponentSubclasses\Terminal.cs</FileName>
+      <FileName>Models\ComponentSubclasses\FlowTerminal.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.ShuntValve" Collapsed="true">
