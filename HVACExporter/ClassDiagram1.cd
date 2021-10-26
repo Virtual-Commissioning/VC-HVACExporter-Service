@@ -10,22 +10,8 @@
   <Class Name="HVACExporter.Models.Component">
     <Position X="18.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ABACBAAAEAAwAAAAAAAAAAAAAAAgBAAAAiQEAAAgAAA=</HashCode>
+      <HashCode>ABACBAAAEAAwAAAAAAAAAAAAAAAAAAAAAiQEAAIgAAA=</HashCode>
       <FileName>Models\Component.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HVACExporter.Models.System">
-    <Position X="4.5" Y="17" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>IAAQAAAAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
-      <FileName>Models\System\System.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HVACExporter.Models.SubSystem">
-    <Position X="2.25" Y="17" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIIKAAAAAAgAQAAAAAAAAAAQACAAIQAAA=</HashCode>
-      <FileName>Models\System\System.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HVACExporter.Models.ComponentSubclasses.EnergyConversionDevice">
@@ -136,7 +122,7 @@
   <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSubclasses.MotorizedDamper">
     <Position X="22.25" Y="10" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\DamperSubclasses\MotorizedDamper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -164,7 +150,7 @@
   <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.MotorizedValve">
     <Position X="28.5" Y="10" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\MotorizedValve.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -199,7 +185,7 @@
   <Class Name="HVACExporter.Models.Controls.Controller">
     <Position X="4" Y="12" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAgAQAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAgAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Models\Controls\Controller.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -218,24 +204,10 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HVACExporter.Models.Spaces.Space">
-    <Position X="6.5" Y="17" Width="2.5" />
+    <Position X="2.25" Y="16.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AQACAAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAgAAAACAAAAAAQAACAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Spaces\Space.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HVACExporter.Models.Spaces.SpaceBoundingBox">
-    <Position X="7.25" Y="15" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAABAAAAAAA=</HashCode>
-      <FileName>Models\Spaces\SpaceBoundingBox.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HVACExporter.Models.Spaces.SpacesInModel">
-    <Position X="9.25" Y="17" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
-      <FileName>Models\Spaces\Spaces.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HVACExporter.SelectAllFlowSystem" BaseTypeListCollapsed="true">
@@ -246,8 +218,288 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="HVACExporter.Helpers.ComponentMappers.EnergyConversionDeviceMapper" Collapsed="true">
+    <Position X="39.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ComponentMappers\EnergyConversionDeviceMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.ComponentMappers.FittingMapper" Collapsed="true">
+    <Position X="45" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIQAAAAAAAAAAAAAAAAAAAAAAgAAAAAAABAAA=</HashCode>
+      <FileName>Helpers\ComponentMappers\FittingMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.ComponentMappers.FlowControllerMapper" Collapsed="true">
+    <Position X="36.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAEAAAAAAAAAgAAAAAAABAAAAAIEAAAAABAAAA=</HashCode>
+      <FileName>Helpers\ComponentMappers\FlowControllerMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.ComponentMappers.MechanicalEquipmentMapper" Collapsed="true">
+    <Position X="36.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAA=</HashCode>
+      <FileName>Helpers\ComponentMappers\MechanicalEquipmentMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.ComponentMappers.SegmentMapper" Collapsed="true">
+    <Position X="45" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Helpers\ComponentMappers\SegmentMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.ComponentMappers.TerminalMapper" Collapsed="true">
+    <Position X="45" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ComponentMappers\TerminalMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.HelperFunctions" Collapsed="true">
+    <Position X="43.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAEAAAAAAUBAAAAAAAAgCAAAAAAAAQ=</HashCode>
+      <FileName>Helpers\HelperFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.HttpClientHelper" Collapsed="true">
+    <Position X="45" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\HttpClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.JsonParser" Collapsed="true">
+    <Position X="41.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAQgAAAAAAAAA=</HashCode>
+      <FileName>Helpers\JsonParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.Mapper" Collapsed="true">
+    <Position X="45" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Mapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.PromptTokenForm" Collapsed="true">
+    <Position X="39.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkACAARAACQAABAACAGEAAACAAAIEAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Helpers\PromptTokenForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.SpaceMapper" Collapsed="true">
+    <Position X="38" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\SpaceMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.SpaceMappers.GeometricMapper" Collapsed="true">
+    <Position X="38" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\SpaceMappers\GeometricMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Helpers.SpaceMappers.IndoorClimateMapper" Collapsed="true">
+    <Position X="38" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\SpaceMappers\IndoorClimateMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.Terminal">
+    <Position X="27.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\Terminal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses.ShuntValve" Collapsed="true">
+    <Position X="33.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\FlowControllerSubclasses\ValveSubclasses\ShuntValve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.ComponentSubclasses.TerminalSubclasses.AirTerminal">
+    <Position X="27.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\ComponentSubclasses\TerminalSubclasses\AirTerminal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Controls.PumpController" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Controls\PumpController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Controls.PumpControllerSubclasses.ConstantPressureControl" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Controls\PumpControllerSubclasses\ConstantPressureControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Controls.PumpControllerSubclasses.ConstantSpeedControl" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Controls\PumpControllerSubclasses\ConstantSpeedControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Controls.PumpControllerSubclasses.ExternalControl" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Controls\PumpControllerSubclasses\ExternalControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Controls.PumpControllerSubclasses.ProportionalPressureControl" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Controls\PumpControllerSubclasses\ProportionalPressureControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.Geometry.Edge" Collapsed="true">
+    <Position X="38" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\Geometry\Edge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.Geometry.SpaceGeometry" Collapsed="true">
+    <Position X="36.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAQAAAAAI=</HashCode>
+      <FileName>Models\Spaces\Geometry\SpaceGeometry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IES.IESParams" Collapsed="true">
+    <Position X="36.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAIAAAAgAAQiQgAAAAAAAQgAgAAgAABIAACABAAAQAQ=</HashCode>
+      <FileName>Models\Spaces\IES\IESParams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.Cooling" Collapsed="true">
+    <Position X="36.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAEAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\Cooling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.EquipmentLoad" Collapsed="true">
+    <Position X="41.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAACAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\EquipmentLoad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.ExternalLoad" Collapsed="true">
+    <Position X="43.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\ExternalLoad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.HeatGain" Collapsed="true">
+    <Position X="39.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAgAAAAAAAAABAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\HeatGain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.Heating" Collapsed="true">
+    <Position X="41.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAgAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\Heating.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.IndoorClimateZone" Collapsed="true">
+    <Position X="39.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAEAABAAAEAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\IndoorClimateZone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.LightingLoad" Collapsed="true">
+    <Position X="43.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\LightingLoad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.PeopleLoad" Collapsed="true">
+    <Position X="38" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\PeopleLoad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.Schedule" Collapsed="true">
+    <Position X="41.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\Schedule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.Schedules" Collapsed="true">
+    <Position X="43.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAGAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\Schedules.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.IndoorClimate.Ventilation" Collapsed="true">
+    <Position X="38" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\IndoorClimate\Ventilation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.Spaces" Collapsed="true">
+    <Position X="39.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\Spaces.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.Spaces.ValueMatrix" Collapsed="true">
+    <Position X="36.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Spaces\ValueMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.System.Systems" Collapsed="true">
+    <Position X="43.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAQAAAAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Models\System\Systems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HVACExporter.Models.System.SubSystem" Collapsed="true">
+    <Position X="41.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\System\Systems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="HVACExporter.Models.Connectors.ConnectorType">
-    <Position X="11.25" Y="15" Width="1.5" />
+    <Position X="8" Y="15" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAACAAAAIAACAA=</HashCode>
       <FileName>Models\Connectors\ConnectorType.cs</FileName>
@@ -261,7 +513,7 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="HVACExporter.Models.Enums.ComponentTypes">
-    <Position X="13" Y="17" Width="1.5" />
+    <Position X="13" Y="17" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAgAAAAAEAAAAAASAAAAAQAABAAAAAAAA=</HashCode>
       <FileName>Models\Enums\ComponentTypes.cs</FileName>
