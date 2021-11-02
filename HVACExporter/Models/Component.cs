@@ -28,10 +28,9 @@ namespace HVACExporter.Models
             SystemName = systemName;
             SystemType = systemType;
         }
-
-        public void FillConnectedComponents(MEPCurve segment)
+        public void FillConnectedComponents(MEPCurve component)
         {
-            ConnectorSet connectorSet = segment.ConnectorManager.Connectors;
+            ConnectorSet connectorSet = component.ConnectorManager.Connectors;
 
             foreach (Autodesk.Revit.DB.Connector connector in connectorSet)
             {
@@ -41,7 +40,6 @@ namespace HVACExporter.Models
                     var connectorId = revitConnector.Owner.Id.ToString();
 
                     if (connectorId == Tag) continue;
-                    //if (revitConnector.Owner.Category.Name.ToLower().Equals("piping systems")) continue;
 
                     var connectedWith = MapFromRevitConnector(revitConnector, connector);
 
@@ -49,9 +47,9 @@ namespace HVACExporter.Models
                 }
             }
         }
-        public void FillConnectedComponents(MEPModel segment)
+        public void FillConnectedComponents(MEPModel component)
         {
-            ConnectorSet connectorSet = segment.ConnectorManager.Connectors;
+            ConnectorSet connectorSet = component.ConnectorManager.Connectors;
 
             foreach (Autodesk.Revit.DB.Connector connector in connectorSet)
             {
@@ -61,7 +59,8 @@ namespace HVACExporter.Models
                     var connectorId = revitConnector.Owner.Id.ToString();
 
                     if (connectorId == Tag) continue;
-                    //if (revitConnector.Owner.Category.Name.ToLower().Equals("piping systems")) continue;
+                    if (revitConnector.Owner.Category.Name.ToLower().Equals("piping systems")) continue;
+                    if (revitConnector.Owner.Category.Name.ToLower().Equals("duct systems")) continue;
 
                     var connectedWith = MapFromRevitConnector(revitConnector, connector);
 
@@ -87,7 +86,7 @@ namespace HVACExporter.Models
 
                     if (shape.ToLower() == "round")
                     {
-                        double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(revitConnector.Radius);
+                        double diameter = 2 * ImperialToMetricConverter.ConvertFromFeetToMeters(connector.Radius);
                         dimension.Add(diameter);
                     }
                     else if (shape.ToLower() == "rectangular")
@@ -181,25 +180,6 @@ namespace HVACExporter.Models
             double zVec = dirVector.Z;
 
             return new DirectionVector(xVec, yVec, zVec);
-        }
-
-        public void FillConnectedMechEquipment(MEPModel fitting)
-        {
-            ConnectorSet connectorSet = fitting.ConnectorManager.Connectors;
-
-            foreach (Autodesk.Revit.DB.Connector connector in connectorSet)
-            {
-                ConnectorSet connectorInfo = connector.AllRefs;
-                foreach (Autodesk.Revit.DB.Connector revitConnector in connectorInfo)
-                {
-                    var connectorId = revitConnector.Owner.Id.ToString();
-
-                    if (connectorId == Tag) continue;
-
-                    var connectedWith = MapFromRevitConnector(revitConnector, connector);
-                    ConnectedWith.Add(connectedWith);
-                }
-            }
         }
 
     }
