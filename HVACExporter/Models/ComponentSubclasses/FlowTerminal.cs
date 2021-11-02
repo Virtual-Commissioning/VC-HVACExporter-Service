@@ -1,8 +1,8 @@
 ﻿namespace HVACExporter.Models.ComponentSubclasses
 {
-    public class Terminal : Component
+    public class FlowTerminal : Component
     {
-        public Terminal(string id, string tag, string systemName, string systemType)
+        public FlowTerminal(string id, string tag, string systemName, string systemType)
            : base(id, tag, systemName, systemType)
         {
 

@@ -1,6 +1,6 @@
 ﻿namespace HVACExporter.Models.ComponentSubclasses.TerminalSubclasses
 {
-    public class AirTerminal : Terminal
+    public class AirTerminal : FlowTerminal
     {
         public double Kv { get; set; }
         public AirTerminal(string id, string tag, string systemName, string systemType, double kv)
