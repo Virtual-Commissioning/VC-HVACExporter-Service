@@ -31,7 +31,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             Radiator component = new Radiator(id, tag, systemIdentifiers, systemType, nomPower, nomSupplyTemperature, nomReturnTemperature, nomRoomTemperature, nomDp);
 
-            component.FillConnectedMechEquipment(mechanicalEquipment);
+            component.FillConnectedComponents(mechanicalEquipment);
 
             return component;
         }
@@ -74,7 +74,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             component.PowerCurve = powerCurve;
             component.PressureCurve = pressureCurve;
             
-            component.FillConnectedMechEquipment(mechanicalEquipment);
+            component.FillConnectedComponents(mechanicalEquipment);
 
 
             return component;
@@ -119,7 +119,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             component.PowerCurve = powerCurve;
             component.PressureCurve = pressureCurve;
 
-            component.FillConnectedMechEquipment(mechanicalEquipment);
+            component.FillConnectedComponents(mechanicalEquipment);
 
             return component;
         }
