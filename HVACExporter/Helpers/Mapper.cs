@@ -17,7 +17,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI;
-using Segment = HVACExporter.Models.ComponentSubclasses.Segment;
+using Segment = HVACExporter.Models.ComponentSubclasses.FlowSegment;
 using HVACExporter.Helpers.ComponentMappers;
 using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.DamperSubclasses;
 using HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.ValveSubclasses;
@@ -45,7 +45,7 @@ namespace HVACExporter.Helpers
                 {
                     Pipe pipe = (Pipe)element;
 
-                    component = SegmentMapper.MapPipeToSegment(pipe);
+                    component = FlowSegmentMapper.MapPipeToSegment(pipe);
 
                     system.AddComponent(component);
                 }
@@ -53,7 +53,7 @@ namespace HVACExporter.Helpers
                 {
                     Duct duct = (Duct)element;
 
-                    component = SegmentMapper.MapDuctToSegment(duct);
+                    component = FlowSegmentMapper.MapDuctToSegment(duct);
 
                     system.AddComponent(component);
                 }

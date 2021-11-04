@@ -9,13 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Segment = HVACExporter.Models.ComponentSubclasses.Segment;
+using FlowSegment = HVACExporter.Models.ComponentSubclasses.FlowSegment;
 
 namespace HVACExporter.Helpers.ComponentMappers
 {
-    public class SegmentMapper
+    public class FlowSegmentMapper
     {
-        public static Segment MapPipeToSegment(Pipe segment)
+        public static FlowSegment MapPipeToSegment(Pipe segment)
         {
             string id = segment.UniqueId;
             string tag = segment.Id.IntegerValue.ToString();
@@ -30,7 +30,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             }
 
 
-            Segment component = new Segment(id
+            FlowSegment component = new FlowSegment(id
                 , tag
                 , systemIdentifiers
                 , systemType
@@ -42,7 +42,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             return component;
         }
 
-        public static Segment MapDuctToSegment(Duct segment)
+        public static FlowSegment MapDuctToSegment(Duct segment)
         {
             string id = segment.UniqueId;
             string tag = segment.Id.IntegerValue.ToString();
@@ -56,7 +56,7 @@ namespace HVACExporter.Helpers.ComponentMappers
                 insulationThermalConductivity = HelperFunctions.GetSegmentInsulationConductivity(segment);
             }
 
-            Segment component = new Segment(id
+            FlowSegment component = new FlowSegment(id
                 , tag
                 , systemIdentifiers
                 , systemType
