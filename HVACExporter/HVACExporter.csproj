@@ -61,7 +61,7 @@
     <Compile Include="Helpers\HttpClient.cs" />
     <Compile Include="Helpers\ImperialToMetricConverter.cs" />
     <Compile Include="Helpers\Mapper.cs" />
-    <Compile Include="Helpers\ComponentMappers\SegmentMapper.cs" />
+    <Compile Include="Helpers\ComponentMappers\FlowSegmentMapper.cs" />
     <Compile Include="Helpers\JsonParser.cs" />
     <Compile Include="Helpers\SpaceMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\GeometricMapper.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="Models\ComponentSubclasses\FlowMovingDevice.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Fan.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Pump.cs" />
-    <Compile Include="Models\ComponentSubclasses\Segment.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowSegment.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowTerminal.cs" />
     <Compile Include="Models\ComponentSubclasses\TerminalSubclasses\AirTerminal.cs" />
     <Compile Include="Models\Connectors\Connector.cs" />
