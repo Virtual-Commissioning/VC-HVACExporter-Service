@@ -13,6 +13,7 @@ namespace HVACExporter.Models.Controls.PumpControllerSubclasses
         public ConstantSpeedControl(double speed)
             : base()
         {
+            PumpControlType = this.GetType().Name;
             Speed = CheckSpeed(speed);
         }
         public double CheckSpeed(double speed)

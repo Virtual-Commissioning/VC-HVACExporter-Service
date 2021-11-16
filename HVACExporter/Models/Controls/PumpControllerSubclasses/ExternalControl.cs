@@ -12,6 +12,7 @@ namespace HVACExporter.Models.Controls.PumpControllerSubclasses
         public ExternalControl(Controller controller)
             : base()
         {
+            PumpControlType = this.GetType().Name;
             Control = controller;
         }
     }

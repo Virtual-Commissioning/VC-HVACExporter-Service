@@ -11,6 +11,7 @@ namespace HVACExporter.Models.Controls.PumpControllerSubclasses
         public ProportionalPressureControl()
             : base()
         {
+            PumpControlType = this.GetType().Name;
             throw new NotImplementedException("This class is not yet supported.");
         }
     }

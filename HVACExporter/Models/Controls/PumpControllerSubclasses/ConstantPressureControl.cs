@@ -12,6 +12,7 @@ namespace HVACExporter.Models.Controls.PumpControllerSubclasses
         public ConstantPressureControl(double pressure)
             : base()
         {
+            PumpControlType = this.GetType().Name;
             Pressure = pressure;
         }
     }
