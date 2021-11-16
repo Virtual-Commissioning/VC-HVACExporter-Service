@@ -8,12 +8,13 @@ namespace HVACExporter.Models.Controls.PumpControllerSubclasses
 {
     class ConstantSpeedControl : PumpController
     {
+        public string ControlType { get; set; }
         public double Speed { get; set; }
 
         public ConstantSpeedControl(double speed)
             : base()
         {
-            PumpControlType = this.GetType().Name;
+            ControlType = this.GetType().Name;
             Speed = CheckSpeed(speed);
         }
         public double CheckSpeed(double speed)
