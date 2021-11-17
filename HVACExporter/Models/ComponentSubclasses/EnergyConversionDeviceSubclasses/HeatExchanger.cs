@@ -28,8 +28,8 @@ namespace HVACExporter.Models.ComponentSubclasses.EnergyConversionDeviceSubclass
         {
             NomPower = nomPower;
             NomSupplyTemperaturePrimary = nomSupplyTemperaturePrimary;
-            NomReturnTemperaturePrimary = nomSupplyTemperatureSecondary;
-            NomSupplyTemperatureSecondary = nomReturnTemperaturePrimary;
+            NomReturnTemperaturePrimary = nomReturnTemperaturePrimary;
+            NomSupplyTemperatureSecondary = nomSupplyTemperatureSecondary;
             NomReturnTemperatureSecondary = nomReturnTemperatureSecondary;
             NomFlowPrimary = nomFlowPrimary;
             NomFlowSecondary = nomFlowSecondary;
