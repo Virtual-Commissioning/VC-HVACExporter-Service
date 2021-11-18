@@ -158,12 +158,12 @@ namespace HVACExporter.Models
 
             if (direction == "In")
             {
-                return Connectors.ConnectorType.suppliesFluidTo;
+                return Connectors.ConnectorType.suppliesFluidFrom;
             }
 
             else if (direction == "Out")
             {
-                return Connectors.ConnectorType.suppliesFluidFrom;
+                return Connectors.ConnectorType.suppliesFluidTo;
             }
 
             else
