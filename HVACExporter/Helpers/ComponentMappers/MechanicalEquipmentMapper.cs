@@ -135,7 +135,7 @@ namespace HVACExporter.Helpers.ComponentMappers
             double shuntDiameter = UnitUtils.ConvertFromInternalUnits(mechanicalEquipment.ConnectorManager.Owner.LookupParameter("FSC_shuntDiameter").AsDouble(),UnitTypeId.Millimeters);
 
             ShuntValve component = new ShuntValve(id, tag, systemIdentifiers, systemType, shuntDiameter, hasCheckValve);
-            component.FillConnectedPipeAccessories(mechanicalEquipment);
+            component.FillConnectedComponents(mechanicalEquipment);
 
             return component;
         }
