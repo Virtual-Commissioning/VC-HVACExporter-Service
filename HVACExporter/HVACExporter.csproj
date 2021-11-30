@@ -97,6 +97,9 @@
     <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Fan.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowMovingDeviceSubclasses\Pump.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowSegment.cs" />
+    <Compile Include="Models\ComponentSubclasses\Sensor.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowSensorSubclasses\PressureSensor.cs" />
+    <Compile Include="Models\ComponentSubclasses\FlowSensorSubclasses\TemperatureSensor.cs" />
     <Compile Include="Models\ComponentSubclasses\FlowTerminal.cs" />
     <Compile Include="Models\ComponentSubclasses\TerminalSubclasses\AirTerminal.cs" />
     <Compile Include="Models\Connectors\Connector.cs" />
