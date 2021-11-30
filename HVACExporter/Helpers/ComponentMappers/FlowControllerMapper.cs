@@ -26,7 +26,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             BalancingDamper component = new BalancingDamper(id, tag, systemIdentifiers, systemType, kv, kvs);
             
-            component.FillConnectedPipeAccessories(accessory);
+            component.FillConnectedComponents(accessory);
             
             return component;
         }
@@ -45,7 +45,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             MotorizedDamper component = new MotorizedDamper(id, tag, systemIdentifiers, systemType, kv, kvs, control);
             
-            component.FillConnectedPipeAccessories(accessory);
+            component.FillConnectedComponents(accessory);
 
             return component;
         }
@@ -63,7 +63,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             FireDamper component = new FireDamper(id, tag, systemIdentifiers, systemType, kv, kvs,fireDamperType);
             
-            component.FillConnectedPipeAccessories(accessory);
+            component.FillConnectedComponents(accessory);
 
             return component;
         }
@@ -77,7 +77,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             Damper component = new Damper(id, tag, systemIdentifiers, systemType);
             
-            component.FillConnectedPipeAccessories(accessory);
+            component.FillConnectedComponents(accessory);
 
             return component;
         }
@@ -94,7 +94,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             BalancingValve component = new BalancingValve(id, tag, systemIdentifiers, systemType, kv, kvs);
             
-            component.FillConnectedPipeAccessories(accessory);
+            component.FillConnectedComponents(accessory);
 
             return component;
         }
@@ -113,7 +113,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             MotorizedValve component = new MotorizedValve(id, tag, systemIdentifiers, systemType, kv, kvs, control);
             
-            component.FillConnectedPipeAccessories(accessory);
+            component.FillConnectedComponents(accessory);
 
             return component;
         }
@@ -127,7 +127,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             Valve component = new Valve(id, tag, systemIdentifiers, systemType);
             
-            component.FillConnectedPipeAccessories(accessory);
+            component.FillConnectedComponents(accessory);
 
             return component;
         }
