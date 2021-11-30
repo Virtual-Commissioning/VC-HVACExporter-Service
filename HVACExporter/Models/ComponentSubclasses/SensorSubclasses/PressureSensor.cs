@@ -1,4 +1,4 @@
-﻿namespace HVACExporter.Models.ComponentSubclasses.FlowSensorSubclasses
+﻿namespace HVACExporter.Models.ComponentSubclasses.SensorSubclasses
 {
     class PressureSensor : Sensor
     {
