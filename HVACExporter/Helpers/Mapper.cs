@@ -167,9 +167,16 @@ namespace HVACExporter.Helpers
                             }
                         }
 
-                        else if (fscType.ToLower().Contains("sensor"))
+                        else if (fscType == "TemperatureSensor")
                         {
-                            component = FittingMapper.MapFittingReduction(accessory);
+                            component = SensorMapper.MapToTemperatureSensor(accessory);
+
+                            system.AddComponent(component);
+                        }
+
+                        else if (fscType == "PressureSensor")
+                        {
+                            component = SensorMapper.MapToPressureSensor(accessory);
 
                             system.AddComponent(component);
                         }
