@@ -21,7 +21,7 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             Tee component = new Tee(id, tag, systemIdentifiers, systemType);
             component.FillConnectedFittings(fitting);
-            component.RemoveRedundantUnusedConnectors(component);
+            //component.RemoveRedundantUnusedConnectors(component);
 
             return component;
         }
@@ -69,6 +69,19 @@ namespace HVACExporter.Helpers.ComponentMappers
             string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
 
             Reduction component = new Reduction(id, tag, systemIdentifiers, systemType);
+            component.FillConnectedFittings(fitting);
+
+            return component;
+        }
+        public static Cap MapFittingCap(MEPModel fitting)
+        {
+            string id = fitting.ConnectorManager.Owner.UniqueId;
+            string tag = fitting.ConnectorManager.Owner.Id.ToString();
+            string systemIdentifiers = fitting.ConnectorManager.Owner.LookupParameter("System Type").AsValueString().ToLower();
+            // Add parameter to add a system name that has heat and supply/return
+            string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
+
+            Cap component = new Cap(id, tag, systemIdentifiers, systemType);
             component.FillConnectedFittings(fitting);
 
             return component;

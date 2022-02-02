@@ -16,7 +16,7 @@ namespace HVACExporter.Models.ComponentSubclasses.FittingSubclasses
             {
                 for (int i = 0; i < tee.ConnectedWith.Count(); i++)
                 {
-                    if (ConnectedWith.ElementAt(i).Tag.ToLower() == "not connected")
+                    if (ConnectedWith.ElementAt(i).Tag.ToLower() == "not connected" || ConnectedWith.ElementAt(i) == null)
                     {
                         tee.ConnectedWith.RemoveAt(i);
                     }

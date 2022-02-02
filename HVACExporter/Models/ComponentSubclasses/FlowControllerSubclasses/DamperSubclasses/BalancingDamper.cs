@@ -4,10 +4,10 @@ namespace HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.Dampe
 {
     class BalancingDamper : Damper
     {
-        public double Kv { get; set; }
-        public double Kvs { get; set; }
+        public double? Kv { get; set; }
+        public double? Kvs { get; set; }
 
-        public BalancingDamper(string id, string tag, string systemName, string systemType, double kv, double kvs)
+        public BalancingDamper(string id, string tag, string systemName, string systemType, double? kv, double? kvs)
             : base(id, tag, systemName, systemType)
         {
             Kv = kv;

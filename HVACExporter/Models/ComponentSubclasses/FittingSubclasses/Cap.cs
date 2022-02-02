@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace HVACExporter.Models.ComponentSubclasses.FittingSubclasses
 {
-    class Cap
+    class Cap : Fitting
     {
-        class Cap : Fitting
+        public Cap(string id, string tag, string systemName, string systemType)
+            : base(id, tag, systemName, systemType)
         {
-            public Cap(string id, string tag, string systemName, string systemType)
-                : base(id, tag, systemName, systemType)
-            {
-                ComponentType = this.GetType().Name;
-            }
+            ComponentType = this.GetType().Name;
         }
+
     }
 }
