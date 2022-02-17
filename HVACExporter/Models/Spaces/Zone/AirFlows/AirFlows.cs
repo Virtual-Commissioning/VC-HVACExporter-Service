@@ -20,7 +20,7 @@ namespace HVACExporter.Models.AirFlows
         public string SourceZoneId { get; set; }
         public double DeltaTemperature { get; set; }
 
-        public AirFlows(string id, string tag, string zoneId, string airflow, string calculationMethod, double designFlowRate, double flowRatePrArea, double flowRatePrPerson, double airChangesPrHour, string sourceZoneId, double deltaTemperature)
+        public AirFlows(string id, string tag, string zoneId, double airflow, string calculationMethod, double designFlowRate, double flowRatePrArea, double flowRatePrPerson, double airChangesPrHour, string sourceZoneId, double deltaTemperature)
         {
             Id = id;
             Tag = tag;

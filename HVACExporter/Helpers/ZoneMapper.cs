@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using HVACExporter.Helpers.SpaceMappers;
-using HVACExporter.Helpers.ZoneMappers;
+//using HVACExporter.Helpers.ZoneMappers;
 using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Spaces.Geometry;

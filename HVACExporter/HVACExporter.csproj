@@ -64,6 +64,8 @@
     <Compile Include="Helpers\Mapper.cs" />
     <Compile Include="Helpers\ComponentMappers\FlowSegmentMapper.cs" />
     <Compile Include="Helpers\JsonParser.cs" />
+    <Compile Include="Helpers\MaterialMappers\WallMaterialMapper.cs" />
+    <Compile Include="Helpers\MaterialMappers\MaterialMapper.cs" />
     <Compile Include="Helpers\SpaceMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\GeometricMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\IndoorClimateMapper.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="Models\Spaces\Space.cs" />
     <Compile Include="Models\Spaces\Spaces.cs" />
     <Compile Include="Models\Spaces\ValueMatrix.cs" />
+    <Compile Include="Models\Spaces\Zones.cs" />
     <Compile Include="Models\Spaces\Zone\AirFlows\Airflows.cs" />
     <Compile Include="Models\Spaces\Zone\Building\Building.cs" />
     <Compile Include="Models\Spaces\Zone\Construction\Construction.cs" />
@@ -147,6 +150,9 @@
     <Compile Include="Models\Spaces\Zone\InternalGains\People.cs" />
     <Compile Include="Models\Spaces\Zone\Material\AirGapMat.cs" />
     <Compile Include="Models\Spaces\Zone\Material\DoorMat.cs" />
+    <Compile Include="Models\Spaces\Zone\Material\LayerMaterials.cs" />
+    <Compile Include="Models\Spaces\Zone\Material\Walls.cs" />
+    <Compile Include="Models\Spaces\Zone\Material\Materials.cs" />
     <Compile Include="Models\Spaces\Zone\Material\SurfaceMat.cs" />
     <Compile Include="Models\Spaces\Zone\Material\WindowMat.cs" />
     <Compile Include="Models\Spaces\Zone\Shading\ShadingBuilding.cs" />

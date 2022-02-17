@@ -10,6 +10,7 @@ using HVACExporter.Models.Controls;
 using HVACExporter.Models;
 using HVACExporter.Models.System;
 using HVACExporter.Models.Spaces;
+using HVACExporter.Models.Zone;
 
 namespace HVACExporter
 {
@@ -24,12 +25,18 @@ namespace HVACExporter
 
             Systems system = new Systems();
             Spaces spaces = new Spaces();
+            Materials materials = new Materials();
+            LayerMaterials layerMaterials = new LayerMaterials();
 
             var allElements = HelperFunctions.GetConnectorElements(doc);
             var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));
+            var allMaterials = new FilteredElementCollector(doc).OfClass(typeof(Material));
+            var allWalls = new FilteredElementCollector(doc).OfClass(typeof(Wall));
 
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
+            materials = MaterialMapper.MapAllMaterials(allMaterials);
+            layerMaterials = WallMaterialMapper.MapAllWalls(allWalls);
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 

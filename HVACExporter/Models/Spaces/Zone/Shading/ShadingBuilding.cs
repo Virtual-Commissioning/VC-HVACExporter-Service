@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.ShadingSite
+namespace HVACExporter.Models.Zone
 {
     public class ShadingSite
     {

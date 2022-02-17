@@ -8,11 +8,15 @@ namespace HVACExporter.Models.Spaces
     {
         public string Id { get; set; }
         public string Tag { get; set; }
+        public IndoorClimateZone IndoorClimateZone { get; set; }
+        public SpaceGeometry SpaceGeometry { get; set; }
         
-        public Space(string id, string tag)
+        public Space(string id, string tag, IndoorClimateZone indoorClimateZone, SpaceGeometry spaceGeometry)
         {
             Id = id;
             Tag = tag;
+            IndoorClimateZone = indoorClimateZone;
+            SpaceGeometry = spaceGeometry;
         }
     }
 }
