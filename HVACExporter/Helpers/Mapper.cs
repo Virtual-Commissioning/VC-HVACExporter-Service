@@ -87,6 +87,24 @@ namespace HVACExporter.Helpers
 
                         system.AddComponent(component);
                     }
+                    else
+                    {
+                        string fscType = HelperFunctions.GetFSCType(element);
+
+                        if (fscType == "Cap")
+                        {
+                            component = FittingMapper.MapFittingCap(fitting);
+
+                            system.AddComponent(component);
+                        }
+
+                        else if (fscType == "Transition")
+                        {
+                            component = FittingMapper.MapFittingReduction(fitting);
+
+                            system.AddComponent(component);
+                        }
+                    }
                 }
                 else if (elementCategory == "Pipe Accessories" || elementCategory == "Duct Accessories")
                 {
@@ -95,7 +113,7 @@ namespace HVACExporter.Helpers
                     string accessoryType = ((FamilyInstance)element).Symbol.Family.get_Parameter(BuiltInParameter.FAMILY_CONTENT_PART_TYPE).AsValueString();
                     string fscType = HelperFunctions.GetFSCType(element);
 
-                    if (accessoryType == "Damper")
+                    if (accessoryType == "Damper" || fscType.Contains("Damper"))
                     {
                         if (fscType == "BalancingDamper")
                         {
@@ -118,7 +136,7 @@ namespace HVACExporter.Helpers
                             system.AddComponent(component);
                         }
                     }
-                    else if (accessoryType.ToLower().Contains("valve"))
+                    else if (accessoryType.ToLower().Contains("valve") || fscType.Contains("Valve"))
                     {
                         if (fscType == "BalancingValve")
                         {
@@ -135,6 +153,12 @@ namespace HVACExporter.Helpers
                             component = FlowControllerMapper.MapToValve(accessory);
                             system.AddComponent(component);
                         }
+                    }
+                    else if (fscType == "Transition")
+                    {
+                        component = FittingMapper.MapFittingReduction(accessory);
+
+                        system.AddComponent(component);
                     }
                     else
                     {
@@ -182,7 +206,7 @@ namespace HVACExporter.Helpers
                         }
                     }
                 }
-                else if (elementCategory == "Mechanical Equipment")
+                else if (elementCategory == "Mechanical Equipment" || elementCategory == "Duct Accessories")
                 {
                     MEPModel mechanicalEquipment = ((FamilyInstance)element).MEPModel;
 

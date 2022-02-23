@@ -4,12 +4,12 @@ namespace HVACExporter.Models.ComponentSubclasses.FlowControllerSubclasses.Valve
 {
     class MotorizedValve : Valve
     {
-        public double Kv { get; set; }
-        public double Kvs { get; set; }
+        public double? Kv { get; set; }
+        public double? Kvs { get; set; }
         public Controller Control { get; set; }
 
         public MotorizedValve(string id, string tag, string systemName, string systemType,
-                              double kv, double kvs, Controller control)
+                              double? kv, double? kvs, Controller control)
             : base(id, tag, systemName, systemType)
         {
             Kv = kv;
