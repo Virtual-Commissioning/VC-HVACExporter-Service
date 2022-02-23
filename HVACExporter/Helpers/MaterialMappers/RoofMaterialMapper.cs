@@ -10,50 +10,49 @@ using System.Collections.Generic;
 
 namespace HVACExporter.Helpers
 {
-    class WallMaterialMapper
+    class RoofMaterialMapper
     {
-        public static List<SurfaceMat> MapAllWalls(FilteredElementCollector allWalls, Autodesk.Revit.DB.Document doc)   //(Autodesk.Revit.DB.Document doc, Wall walls)    
+        public static List<SurfaceMat> MapAllRoofs(FilteredElementCollector allRoofs, Autodesk.Revit.DB.Document doc)   
         {
-            //var layerWallMaterials = new MaterialsOfLayers();
-            var layerWallMaterials = new List<SurfaceMat>();
-
-            foreach (Wall wall in allWalls)
+            var layerRoofMaterials = new List<SurfaceMat>();
+            
+            foreach (RoofBase roof in allRoofs)
             {
-                CompoundStructure structure = wall.WallType.GetCompoundStructure();
+                CompoundStructure structure = roof.RoofType.GetCompoundStructure();
                 IList<CompoundStructureLayer> layers = structure.GetLayers();
 
                 foreach (CompoundStructureLayer layer in layers)
                 {
                     //Easy to access
-                    
                     string tag = layer.MaterialId.ToString();
                     double thickness = layer.Width;
 
 
                     //Finding Id
-                    Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
-                    string id = layerWallMaterial.UniqueId;
-                    string name = layerWallMaterial.Name;
+                    Material layerRoofMaterial = doc.GetElement(layer.MaterialId) as Material;
+                    string id = layerRoofMaterial.UniqueId.ToString();
+                    string name = layerRoofMaterial.Name;
                     //Roughness can only be found for the whole construction - default = 0
                     int roughness = 0;
 
                     //Function for thermal assets
-                    Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerWallMaterial, doc);
+                    Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerRoofMaterial, doc);
 
                     //Default values
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
                     double visibleAbsorbtance = 0; 
 
-                    var layerWallMaterialToAdd = new SurfaceMat(name, id, tag, roughness, thickness,
+                    var layerRoofMaterialToAdd = new SurfaceMat(name, id, tag, roughness, thickness,
                         thermalProperties, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 
-                    layerWallMaterials.Add(layerWallMaterialToAdd);
+                    //layerRoofMaterials.AddLayerRoofMaterial(layerRoofMaterialToAdd);
+                    layerRoofMaterials.Add(layerRoofMaterialToAdd);
                 }
             }
 
-            return layerWallMaterials;
+            return layerRoofMaterials;
 
         }
     }

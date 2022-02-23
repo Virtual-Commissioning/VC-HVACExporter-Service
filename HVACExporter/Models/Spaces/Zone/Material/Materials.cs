@@ -1,30 +1,25 @@
-﻿using System.Collections.Generic;
-using HVACExporter.Models.Spaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HVACExporter.Models.Zone
 {
     public class Materials
     {
-        public List<SurfaceMat> MaterialsInModel { get; set; } = new List<SurfaceMat>();
+        public MaterialsOfLayers SurfaceMaterials { get; set; }
+        public MaterialsOfLayers AirGapMaterials { get; set; }
+        public List<DoorMat> DoorMaterials { get; set; }
+        public List<WindowMat> WindowMaterials { get; set; }
 
-        public void AddMaterial(SurfaceMat mat)
+        public Materials(MaterialsOfLayers surfaceMaterials, MaterialsOfLayers airGapMaterials, 
+            List<DoorMat> doorMaterials, List<WindowMat> windowMaterials)
         {
-            if (!IsMaterialInList(mat))
-            {
-                MaterialsInModel.Add(mat);
-            }
-        }
-
-        public bool IsMaterialInList(SurfaceMat mat)
-        {
-            if (MaterialsInModel.Contains(mat))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            SurfaceMaterials = surfaceMaterials;
+            AirGapMaterials = airGapMaterials;
+            DoorMaterials = doorMaterials;
+            WindowMaterials = windowMaterials;
         }
     }
 }
