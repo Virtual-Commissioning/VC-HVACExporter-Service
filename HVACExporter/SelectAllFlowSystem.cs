@@ -11,6 +11,9 @@ using HVACExporter.Models;
 using HVACExporter.Models.System;
 using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Zone;
+using HVACExporter.Helpers.MaterialMappers;
+using HVACExporter.Models.Spaces.Zone;
+using System.Collections.Generic;
 
 namespace HVACExporter
 {
@@ -25,18 +28,20 @@ namespace HVACExporter
 
             Systems system = new Systems();
             Spaces spaces = new Spaces();
-            Materials materials = new Materials();
-            LayerMaterials layerMaterials = new LayerMaterials();
+            List<Materials> allMaterials = new List<Materials>();
 
             var allElements = HelperFunctions.GetConnectorElements(doc);
             var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));
-            var allMaterials = new FilteredElementCollector(doc).OfClass(typeof(Material));
             var allWalls = new FilteredElementCollector(doc).OfClass(typeof(Wall));
-
+            var allRoofs = new FilteredElementCollector(doc).OfClass(typeof(RoofBase));
+            var allFloors = new FilteredElementCollector(doc).OfClass(typeof(Floor));
+            var allDoors = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Doors);
+            var allWindows = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Windows);
+            
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
-            materials = MaterialMapper.MapAllMaterials(allMaterials);
-            layerMaterials = WallMaterialMapper.MapAllWalls(allWalls);
+            allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
+
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 
