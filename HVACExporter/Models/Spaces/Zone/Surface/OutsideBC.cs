@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.OutsideBC
+namespace HVACExporter.Models.Zone
 {
     public class OutsideBC // This class is needed to determine what type of surface it is
     {

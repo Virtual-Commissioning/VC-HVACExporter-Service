@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.People
+namespace HVACExporter.Models.Zone
 {
     public class People
     {
@@ -24,7 +24,10 @@ namespace HVACExporter.Models.People
         public string AirVelocitySchedule { get; set; }
         public string ThermalComfortType { get; set; }
 
-        public People(string id, string tag, string peopleSchedule, CalculationMethod calculationMethod, int numberOfPeople, double fractionRadiant, double sensibleHeatFraction, string activitySchedule, double co2GenerationRate, MRTCalculationType mRTCalculationType, string surfaceId, string workEfficiencySchedule, string clothingInsulationSchedule, string airVelocitySchedule, string thermalComfortType)
+        public People(string id, string tag, string peopleSchedule, string calculationMethod, int numberOfPeople, 
+            double fractionRadiant, double sensibleHeatFraction, string activitySchedule, double co2GenerationRate, 
+            string mRTCalculationType, string surfaceId, string workEfficiencySchedule, string clothingInsulationSchedule, 
+            string airVelocitySchedule, string thermalComfortType)
         {
             Id = id;
             Tag = tag;

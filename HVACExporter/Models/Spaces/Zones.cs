@@ -31,10 +31,6 @@ namespace HVACExporter.Models.Spaces
         }
 
         
-        internal void AddRoom(Zone.Zone zoneToAdd)
-        {
-            throw new NotImplementedException();
-        }
         
     }
 }

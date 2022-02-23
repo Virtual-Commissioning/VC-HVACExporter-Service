@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.Lighting
+namespace HVACExporter.Models.Zone
 {
     public class Lighting
     {
@@ -20,7 +20,7 @@ namespace HVACExporter.Models.Lighting
         public double FractionReplaceable { get; set; }
         public string EndUseSubCategory { get; set; }
 
-        public Lighting(string id, string tag, string lightingSchedule, CalculationMethod calculationMethod, double lightingLevel, double wattM2, double returnAirFraction, double fractionRadiant, double fractionVisible, double fractionReplaceable, string endUseSubCategory)
+        public Lighting(string id, string tag, string lightingSchedule, string calculationMethod, double lightingLevel, double wattM2, double returnAirFraction, double fractionRadiant, double fractionVisible, double fractionReplaceable, string endUseSubCategory)
         {
             Id = id;
             Tag = tag;

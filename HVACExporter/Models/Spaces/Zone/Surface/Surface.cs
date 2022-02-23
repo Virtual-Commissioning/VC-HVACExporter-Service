@@ -34,7 +34,7 @@ namespace HVACExporter.Models.Zone
             Id = id;
             Tag = tag;
             SurfType = surfType;
-            ConstructionTag = constructionTag;
+            ConstructionId = constructionId;
             ZoneTag = zoneTag;
             OutsideBC = outsideBC;
             SunExposure = sunExposure;
