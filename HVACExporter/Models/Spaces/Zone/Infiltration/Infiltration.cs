@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.InfiltrZoneation
+namespace HVACExporter.Models.Zone
 {
     public class Infiltration
     {

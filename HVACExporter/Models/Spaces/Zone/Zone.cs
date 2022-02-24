@@ -24,7 +24,7 @@ namespace HVACExporter.Models.Zone
         {
             Id = id;
             Tag = tag;
-            this.Point = point;
+            Point = point;
             ZoneType = zoneType;
             CeilingHeight = ceilingHeight;
             FloorArea = floorArea;

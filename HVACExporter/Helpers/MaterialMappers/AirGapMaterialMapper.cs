@@ -14,7 +14,7 @@ using System.Collections.Generic;
 
 namespace HVACExporter.Helpers
 {
-    class AirGapMaterialMapper
+    public class AirGapMaterialMapper
     {
         public static MaterialsOfLayers MapAllMaterials(FilteredElementCollector allWalls, 
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, Document doc)

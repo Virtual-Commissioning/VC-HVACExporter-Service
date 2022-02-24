@@ -7,7 +7,7 @@ using HVACExporter.Helpers;
 
 namespace HVACExporter.Helpers
 {
-    class MaterialMapper
+    public class MaterialMapper
     {
         public static List<Materials> MapAllMaterials(FilteredElementCollector allWalls,
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, 

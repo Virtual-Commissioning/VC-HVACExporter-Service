@@ -4,7 +4,7 @@ using Autodesk.Revit.DB.Architecture;
 using System.Linq;
 using System;
 
-namespace HVACExporter.Models.Spaces
+namespace HVACExporter.Models.Zones
 {
     public class Zones
     {
