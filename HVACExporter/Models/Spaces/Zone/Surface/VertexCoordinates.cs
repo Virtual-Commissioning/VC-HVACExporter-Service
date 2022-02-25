@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autodesk.Revit.DB;
+using HVACExporter.Models.Spaces.Geometry;
 
-namespace HVACExporter.Models.VertexCoordinates
+
+namespace HVACExporter.Models.Zone
 {
     public class VertexCoordinates
     {
-        public List<Coordinate> Points { get; set; } // Figure out correct element types in list 
+        public List<Spaces.Geometry.Edge> Footprint { get; set; } // Figure out correct element types in list 
 
 
-        public VertexCoordinates(List<T> points)
+        public VertexCoordinates(List<Spaces.Geometry.Edge> footprint)
         {
-            Points = points;
+            Footprint = footprint;
         }
 
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.Surface
+namespace HVACExporter.Models.Zone
 {
     public class Surface
     {
@@ -13,19 +13,28 @@ namespace HVACExporter.Models.Surface
         public string SurfType { get; set; } // If bool is needed, use the SurfType class
         public string ConstructionId { get; set; }
         public string ZoneTag { get; set; }
-        public OutsideBC OutsideBC { get; set; }
+        public string OutsideBC { get; set; }    //Class changed from OutsideBC for testing
         public string OutsideBCObject { get; set; }
         public bool SunExposure { get; set; }
         public bool WindExposure { get; set; }
         public string ViewFactorToGround { get; set; } // Not sure how to define this
         public VertexCoordinates VertexCoordinates { get; set; }
 
-        public Surface(string id, string tag, SurfType surfType, string constructionTag, string zoneTag, OutsideBC outsideBC, bool sunExposure, bool windExposure, string viewFactorToGround, VertexCoordinates vertexCoordinates)
+        public Surface(string id, 
+            string tag, 
+            string surfType, 
+            string constructionId, 
+            string zoneTag, 
+            string outsideBC, //Class changed from OutsideBC for testing
+            bool sunExposure, 
+            bool windExposure, 
+            string viewFactorToGround, 
+            VertexCoordinates vertexCoordinates)
         {
             Id = id;
             Tag = tag;
             SurfType = surfType;
-            ConstructionTag = constructionTag;
+            ConstructionId = constructionId;
             ZoneTag = zoneTag;
             OutsideBC = outsideBC;
             SunExposure = sunExposure;

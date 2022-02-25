@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.Thermostat
+namespace HVACExporter.Models.Zone
 {
-    public class Thermostat
+    public class AirLoadSystem
     {
         public string ZoneId { get; set; }
         public string ThermostatId { get; set;}
@@ -39,7 +39,7 @@ namespace HVACExporter.Models.Thermostat
         public double LatentHeatRecoveryEfficiency { get; set; }
 
 
-        public Thermostat(string zoneId, string thermostatId, string avaliabilitySchedule, double maxHeatingSupplyAirTemp, double minCoolingSupplyAirTemp, double maxHeatingSupplyAirHumidity, double minCoolingSupplyAirHumidity,
+        public AirLoadSystem(string zoneId, string thermostatId, string avaliabilitySchedule, double maxHeatingSupplyAirTemp, double minCoolingSupplyAirTemp, double maxHeatingSupplyAirHumidity, double minCoolingSupplyAirHumidity,
             double heatingLimit, double maxHeatingAFR, double maxSensibleHeatingCapacity, double coolingLimit, double maxCoolingAFR, double maxSensibleCoolingCapacity, string heatingAvaliabilitySchedule, string coolingAvaliabilitySchedule,
             string dehumidityControlType, double coolingSensibleHeatingRatio, string humidityControlType, double humiditySetpoint, string outdoorAirMethod, double outAFRPrPerson, double outAFRPrArea, double outAFRPrZone,
             string outdoorAirObject, string demandControlledVentilationType, string outdoorAirEconomizerType, string heatRecoveryType, double sensibleHeatRecoveryEfficiency, double latentHeatRecoveryEfficiency)

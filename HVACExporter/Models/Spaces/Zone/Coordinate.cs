@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.XYZOrigin
+namespace HVACExporter.Models.Zone
 {
-    public class XYZOrigin
+    public class Coordinate
     {
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
 
-        public XYZOrigin(double x, double y, double z)
+        public Coordinate(double x, double y, double z)
         {
             X = x;
             Y = y;

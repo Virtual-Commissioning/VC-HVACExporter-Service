@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HVACExporter.Models.Building
+namespace HVACExporter.Models.Zone
 {
     public class Building
     {
@@ -17,7 +17,7 @@ namespace HVACExporter.Models.Building
         public int MaxWarmupDays { get; set; }
         public int MinWarmupDays { get; set; }
 
-        public Building(string id, string tag, double northAxis, string terrain, double loadConvTol, double tempConvTol, int maxWarmupDays, int minWarmupDays
+        public Building(string id, string tag, double northAxis, string terrain, double loadConvTol, double tempConvTol, int maxWarmupDays, int minWarmupDays)
         {
             Id = id;
             Tag = tag;
