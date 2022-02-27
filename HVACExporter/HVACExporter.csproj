@@ -58,6 +58,14 @@
     <Compile Include="Helpers\ComponentMappers\EnergyConversionDeviceMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\SensorMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\TerminalMapper.cs" />
+    <Compile Include="Helpers\ConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\DoorConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\OpeningConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\WindowConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\SurfaceConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\RoofConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\FloorConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\WallConstructionMapper.cs" />
     <Compile Include="Helpers\HelperFunctions.cs" />
     <Compile Include="Helpers\HttpClient.cs" />
     <Compile Include="Helpers\ImperialToMetricConverter.cs" />
@@ -146,7 +154,10 @@
     <Compile Include="Models\Spaces\Zones.cs" />
     <Compile Include="Models\Spaces\Zone\AirFlows\Airflows.cs" />
     <Compile Include="Models\Spaces\Zone\Building\Building.cs" />
-    <Compile Include="Models\Spaces\Zone\Construction\Construction.cs" />
+    <Compile Include="Models\Spaces\Zone\Construction\Constructions.cs" />
+    <Compile Include="Models\Spaces\Zone\Construction\SurfaceConstruction.cs" />
+    <Compile Include="Models\Spaces\Zone\Construction\ConstructionLayer.cs" />
+    <Compile Include="Models\Spaces\Zone\Construction\OpeningConstructionParameters.cs" />
     <Compile Include="Models\Spaces\Zone\Construction\OpeningConstruction.cs" />
     <Compile Include="Models\Spaces\Zone\Coordinate.cs" />
     <Compile Include="Models\Spaces\Zone\HVAC\AirLoadSystem.cs" />
@@ -182,7 +193,7 @@
     <Compile Include="Models\System\Systems.cs" />
     <Compile Include="SelectAllFlowSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup> 
+  </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
