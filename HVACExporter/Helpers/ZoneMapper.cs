@@ -1,5 +1,4 @@
-﻿/*
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using HVACExporter.Helpers.SpaceMappers;
 //using HVACExporter.Helpers.ZoneMappers;
@@ -8,6 +7,7 @@ using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Spaces.Geometry;
 using HVACExporter.Models.Spaces.IndoorClimate;
 using HVACExporter.Models.Zone;
+using HVACExporter.Models.Zones;
 using System.Collections.Generic;
 using Surface = HVACExporter.Models.Zone.Surface;
 
@@ -17,32 +17,40 @@ namespace HVACExporter.Helpers
     {
         //private static Zone zoneToAdd;
 
-        public static Zones MapAllZones(IList<Room> allRooms)
+        public static Zones MapAllZones(FilteredElementCollector allSpaces, Document doc, FilteredElementCollector allAnalyticalSurfaces)
         {
-            var zones = new Zones();
+            var allZones = new Zones();
 
-            foreach (Room room in allRooms)
+            foreach (SpatialElement zone in allSpaces)
             {
+                if (zone.Category.Name != "Spaces") continue;
+
+                var associatedSpace = (Autodesk.Revit.DB.Mechanical.Space)zone;
+                
+                if (associatedSpace.Location == null) continue;
+
+
                 //We start of by giving the room its IDs
-                string id = room.UniqueId;
-                string tag = room.Id.ToString();
+                string id = associatedSpace.UniqueId;
 
                 //Finding the coordinates of origin point
-                double x = ((LocationPoint)room.Location).Point.X;
-                double y = ((LocationPoint)room.Location).Point.Y;
-                double z = ((LocationPoint)room.Location).Point.Z;
+                double x = ((LocationPoint)associatedSpace.Location).Point.X;
+                double y = ((LocationPoint)associatedSpace.Location).Point.Y;
+                double z = ((LocationPoint)associatedSpace.Location).Point.Z;
                 Models.GeometricTypes.Coordinate point = new Models.GeometricTypes.Coordinate(x, y, z);
 
+                //if (zone.SpaceType != null) continue;
                 string zoneType = "NA";
-                double ceilingHeight = room.UnboundedHeight; //- room.Level.Elevation;
-                double floorArea = room.Area;
-                double zoneVolume = (room.UnboundedHeight - room.Level.Elevation) * floorArea;  //room.Volume;
-                string intConvAlg = "NA";
-                string outConvAlg = "NA";
-                string includedInTotArea = "NA";
+
+                double ceilingHeight = associatedSpace.UnboundedHeight; //- room.Level.Elevation;
+                double floorArea = associatedSpace.Area;
+                double zoneVolume = (associatedSpace.UnboundedHeight - associatedSpace.Level.Elevation) * floorArea;  //room.Volume;
+                string intConvAlg = "0";
+                string outConvAlg = "0";
+                string includedInTotArea = "0";
 
                 
-                //Surface surface = SurfaceMapper.MapSurface(room);
+                List<Surface> surface = SurfaceMapper.MapSurfaces(zone, doc, allAnalyticalSurfaces);
                 
                 //Surface surface = RoomGeometryMapper.MapRoomGeometry(room);
                 //SubSurface subSurface = SubSurfaceMapper.MapSubSurface(room);
@@ -61,7 +69,6 @@ namespace HVACExporter.Helpers
 
 
                 var zoneToAdd = new Zone(id,
-                                     tag,
                                      point,
                                      zoneType,
                                      ceilingHeight,
@@ -71,11 +78,10 @@ namespace HVACExporter.Helpers
                                      outConvAlg,
                                      includedInTotArea);
 
-                zones.AddRoom(zoneToAdd);
+                allZones.AddZone(zoneToAdd);
             }
 
-            return zones;
+            return allZones;
         }
     }
 }
-*/

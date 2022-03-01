@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using HVACExporter.Models.Spaces;
-using Autodesk.Revit.DB.Architecture;
+using Autodesk.Revit.DB;
 using System.Linq;
 using System;
 
@@ -8,19 +8,19 @@ namespace HVACExporter.Models.Zones
 {
     public class Zones
     {
-        public List<Room> ZonesInModel { get; set; } = new List<Room>();
+        public List<HVACExporter.Models.Zone.Zone> ZonesInModel { get; set; } = new List<HVACExporter.Models.Zone.Zone>();
 
-        public void AddRoom(Room room)
+        public void AddZone(HVACExporter.Models.Zone.Zone space)
         {
-            if (!IsRoomInList(room))
+            if (!IsZoneInList(space))
             {
-                ZonesInModel.Add(room);
+                ZonesInModel.Add(space);
             }
         }
 
-        public bool IsRoomInList(Room room)
+        public bool IsZoneInList(HVACExporter.Models.Zone.Zone space)
         {
-            if (ZonesInModel.Contains(room))
+            if (ZonesInModel.Contains(space))
             {
                 return true;
             }

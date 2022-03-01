@@ -1,41 +1,92 @@
-﻿using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Analysis;
 using Autodesk.Revit.DB.Architecture;
+using Autodesk.Revit.DB.DirectContext3D;
+using Autodesk.Revit.DB.Structure;
 using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Spaces.Geometry;
 using HVACExporter.Models.Zone;
 using System.Collections.Generic;
 using Surface = HVACExporter.Models.Zone.Surface;
+using System;
 
 namespace HVACExporter.Helpers.ZoneMappers
 {
-    public class WallGeometryMapper
+    public class SurfaceGeometryMapper
     {
-        public static VertexCoordinates MapWallGeometry(BoundarySegment boundarySegment)
+        public static List<VertexCoordinates> MapSurfaceGeometry(BoundarySegment boundarySegment, FilteredElementCollector allAnalyticalSurfaces, Document doc)
         {
-            //Get the spaceBoundingBox
-            //Get the boundingBox height
-            //var spaceBottomElevation = ImperialToMetricConverter.ConvertFromFeetToMeters(room.Level.Elevation);
-            //var spaceHeight = ImperialToMetricConverter.ConvertFromFeetToMeters(room.UnboundedHeight);
-
-            //Instantiating classes
-            var footprint = new List<Models.Spaces.Geometry.Edge>();
-
+            List<VertexCoordinates> allVertices = new List<VertexCoordinates>();
             
-                Curve curve = boundarySegment.GetCurve();
-                Models.GeometricTypes.Coordinate point1 = new Models.GeometricTypes.Coordinate(
-                    ImperialToMetricConverter.ConvertFromFeetToMeters(curve.GetEndPoint(0).X),
-                    ImperialToMetricConverter.ConvertFromFeetToMeters(curve.GetEndPoint(0).Y),
-                    ImperialToMetricConverter.ConvertFromFeetToMeters(curve.GetEndPoint(0).Z));
-                Models.GeometricTypes.Coordinate point2 = new Models.GeometricTypes.Coordinate(
-                    ImperialToMetricConverter.ConvertFromFeetToMeters(curve.GetEndPoint(1).X),
-                    ImperialToMetricConverter.ConvertFromFeetToMeters(curve.GetEndPoint(1).Y),
-                    ImperialToMetricConverter.ConvertFromFeetToMeters(curve.GetEndPoint(1).Z));
-
-                Models.Spaces.Geometry.Edge edge = new Models.Spaces.Geometry.Edge(point1, point2);
-                footprint.Add(edge);
+            Wall wall = doc.GetElement(boundarySegment.ElementId) as Wall;
 
 
-            return new VertexCoordinates(footprint);
+            //Figure out how to take the center line of interior walls
+            if (wall.WallType.Function.ToString() != "Interior")
+            {
+                // Get the side faces
+
+                IList<Reference> sideFaces =
+
+                    HostObjectUtils.GetSideFaces(wall, ShellLayerType.Exterior);
+
+                // access the side face
+
+                Face face = doc.GetElement(sideFaces[0]).GetGeometryObjectFromReference(sideFaces[0]) as Face;
+
+                EdgeArray loop = face.EdgeLoops.get_Item(0);
+
+                foreach (Autodesk.Revit.DB.Edge vertex in loop)
+                {
+                    IList<XYZ> edgePts = vertex.Tessellate();
+
+                    List<Coordinate> coordinates = new List<Coordinate>();
+
+                    foreach (XYZ curve in edgePts)
+                    {
+                        Coordinate point = new Coordinate(curve.X, curve.Y, curve.Z);
+
+                        coordinates.Add(point);
+                    }
+                    var vertexCoordinatesToAdd = new VertexCoordinates(coordinates);
+
+                    allVertices.Add(vertexCoordinatesToAdd);
+                }
+            }
+            else
+            {
+                // Get the side faces
+
+                IList<Reference> sideFaces =
+
+                    HostObjectUtils.GetSideFaces(wall, ShellLayerType.Exterior);
+
+                // access the side face
+
+                Face face = doc.GetElement(sideFaces[0]).GetGeometryObjectFromReference(sideFaces[0]) as Face;
+
+                EdgeArray loop = face.EdgeLoops.get_Item(0);
+
+                foreach (Autodesk.Revit.DB.Edge vertex in loop)
+                {
+                    IList<XYZ> edgePts = vertex.Tessellate();
+
+                    List<Coordinate> coordinates = new List<Coordinate>();
+
+                    foreach (XYZ curve in edgePts)
+                    {
+                        Coordinate point = new Coordinate(curve.X, curve.Y, curve.Z);
+
+                        coordinates.Add(point);
+                    }
+                    var vertexCoordinatesToAdd = new VertexCoordinates(coordinates);
+
+                    allVertices.Add(vertexCoordinatesToAdd);
+                }
+            }
+
+            return allVertices;
         }
     }
 

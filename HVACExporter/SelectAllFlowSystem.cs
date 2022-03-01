@@ -14,6 +14,8 @@ using HVACExporter.Models.Zone;
 using HVACExporter.Helpers.MaterialMappers;
 using HVACExporter.Models.Spaces.Zone;
 using System.Collections.Generic;
+using HVACExporter.Models.Zones;
+using Autodesk.Revit.DB.Analysis;
 
 namespace HVACExporter
 {
@@ -29,6 +31,7 @@ namespace HVACExporter
             Systems system = new Systems();
             Spaces spaces = new Spaces();
             List<Materials> allMaterials = new List<Materials>();
+            Zones zones = new Zones();
 
             var allElements = HelperFunctions.GetConnectorElements(doc);
             var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));
@@ -37,10 +40,13 @@ namespace HVACExporter
             var allFloors = new FilteredElementCollector(doc).OfClass(typeof(Floor));
             var allDoors = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Doors);
             var allWindows = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Windows);
+            //var allAnalyticalSurfaces = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_AnalyticSurfaces);
+            var allAnalyticalSurfaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisSurface));
             
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
+            zones = ZoneMapper.MapAllZones(allSpaces, doc, allAnalyticalSurfaces);
 
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
