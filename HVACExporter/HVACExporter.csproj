@@ -91,7 +91,8 @@
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WallGeometryMapper.cs" />
-    <Compile Include="Helpers\SurfaceMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\WallSurfaceMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\SurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMapper.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDevice.cs" />
@@ -159,7 +160,6 @@
     <Compile Include="Models\Spaces\Zone\Construction\ConstructionLayer.cs" />
     <Compile Include="Models\Spaces\Zone\Construction\OpeningConstructionParameters.cs" />
     <Compile Include="Models\Spaces\Zone\Construction\OpeningConstruction.cs" />
-    <Compile Include="Models\Spaces\Zone\Coordinate.cs" />
     <Compile Include="Models\Spaces\Zone\HVAC\AirLoadSystem.cs" />
     <Compile Include="Models\Spaces\Zone\HVAC\Thermostat.cs" />
     <Compile Include="Models\Spaces\Zone\Infiltration\Infiltration.cs" />
@@ -187,6 +187,7 @@
     <Compile Include="Models\Spaces\Zone\SubSurface\SubSurfWindow.cs" />
     <Compile Include="Models\Spaces\Zone\Surface\OutsideBC.cs" />
     <Compile Include="Models\Spaces\Zone\Surface\Surface.cs" />
+    <Compile Include="Models\Spaces\Zone\Surface\SurfaceType.cs" />
     <Compile Include="Models\Spaces\Zone\Surface\SurfType.cs" />
     <Compile Include="Models\Spaces\Zone\Surface\VertexCoordinates.cs" />
     <Compile Include="Models\Spaces\Zone\Zone.cs" />
