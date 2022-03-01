@@ -18,11 +18,10 @@ namespace HVACExporter.Helpers
                 string constructionId = window.UniqueId;
                 string analyticalConstructionId = window.GetAnalyticalModelId().ToString();
                 string name = window.Name;
-
                 string materialId = window.UniqueId;
                 string layerId = "0";
 
-                var constructionLayers = new List<ConstructionLayer>();
+                List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
                 var constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
                 constructionLayers.Add(constructionLayerToAdd);
 

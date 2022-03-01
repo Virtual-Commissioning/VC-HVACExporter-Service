@@ -23,12 +23,12 @@ namespace HVACExporter.Models.Zone
         public bool IsMaterialInList(SurfaceMat mat)
         {
             
-            string id = mat.Tag;
+            string id = mat.Id;
             double thickness = mat.Thickness;
 
             foreach (SurfaceMat mat2 in MaterialsOfLayersInModel)
             {
-                string id2 = mat2.Tag;
+                string id2 = mat2.Id;
                 double thickness2 = mat2.Thickness;
 
                 double difference = Math.Abs(thickness2 - thickness);

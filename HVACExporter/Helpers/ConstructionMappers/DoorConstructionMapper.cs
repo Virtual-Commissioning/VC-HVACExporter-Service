@@ -20,7 +20,7 @@ namespace HVACExporter.Helpers
                 string materialId = door.UniqueId;
                 string layerId = "0";
 
-                var constructionLayers = new List<ConstructionLayer>();
+                List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
                 var constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
                 constructionLayers.Add(constructionLayerToAdd);
 

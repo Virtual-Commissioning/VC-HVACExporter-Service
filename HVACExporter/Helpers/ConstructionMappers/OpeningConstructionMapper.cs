@@ -18,13 +18,12 @@ namespace HVACExporter.Helpers
             {
                 string openingConstructionId = opening.UniqueId.ToString();
                 string analyticalOpeningConstructionId = opening.GetAnalyticalModelId().ToString();
-
                 string airExchangeMethod = "0";
                 string airMixingChangesPerHour = "0";
                 string simpleMixingPerHour = "0";
 
-                OpeningConstructionParameters openingConstructionParameters = new OpeningConstructionParameters(airExchangeMethod, 
-                    airMixingChangesPerHour, simpleMixingPerHour);
+                OpeningConstructionParameters openingConstructionParameters 
+                    = new OpeningConstructionParameters(airExchangeMethod, airMixingChangesPerHour, simpleMixingPerHour);
 
                 var openingConstructionToAdd = new OpeningConstruction(openingConstructionId, analyticalOpeningConstructionId, openingConstructionParameters);
                 allOpeningConstructions.Add(openingConstructionToAdd);

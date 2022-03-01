@@ -24,13 +24,12 @@ namespace HVACExporter.Helpers
                 foreach (CompoundStructureLayer layer in layers)
                 {
                     //Easy to access
-                    string tag = layer.MaterialId.ToString();
+                    string id = layer.MaterialId.ToString();
                     double thickness = layer.Width;
 
 
                     //Finding Id
                     Material layerFloorMaterial = doc.GetElement(layer.MaterialId) as Material;
-                    string id = layerFloorMaterial.UniqueId.ToString();
                     string name = layerFloorMaterial.Name;
                     //Roughness can only be found for the whole construction - default = 0
                     int roughness = 0;
@@ -43,7 +42,7 @@ namespace HVACExporter.Helpers
                     double solarAbsorbtance = 0; 
                     double visibleAbsorbtance = 0; 
 
-                    var layerFloorMaterialToAdd = new SurfaceMat(name, id, tag, roughness, thickness,
+                    var layerFloorMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
                         thermalProperties, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 

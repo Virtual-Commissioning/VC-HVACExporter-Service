@@ -7,7 +7,7 @@ namespace HVACExporter.Helpers
 {
     class RoofConstructionMapper
     {
-        public static List<SurfaceConstruction> MapAllRoofs(FilteredElementCollector allRoofs, Autodesk.Revit.DB.Document doc)   //(Autodesk.Revit.DB.Document doc, Wall walls)    
+        public static List<SurfaceConstruction> MapAllRoofs(FilteredElementCollector allRoofs, Autodesk.Revit.DB.Document doc)
         {
             var surfaceConstructions = new List<SurfaceConstruction>();
 
@@ -25,11 +25,7 @@ namespace HVACExporter.Helpers
                 foreach (CompoundStructureLayer layer in layers)
                 {
                     string layerId = layer.LayerId.ToString();
-
-                    Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
-                    string materialId = layerWallMaterial.UniqueId;
-
-
+                    string materialId = layer.MaterialId.ToString();
                     var constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
                     constructionLayers.Add(constructionLayerToAdd);
 

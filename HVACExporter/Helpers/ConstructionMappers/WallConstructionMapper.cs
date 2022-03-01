@@ -13,9 +13,9 @@ namespace HVACExporter.Helpers
 {
     class WallConstructionMapper
     {
-        public static List<SurfaceConstruction> MapAllWalls(FilteredElementCollector allSpaces, Autodesk.Revit.DB.Document doc)   //(Autodesk.Revit.DB.Document doc, Wall walls)    
+        public static List<SurfaceConstruction> MapAllWalls(FilteredElementCollector allSpaces, Autodesk.Revit.DB.Document doc)
         {
-            var surfaceConstructions = new List<SurfaceConstruction>();
+            List<SurfaceConstruction> surfaceConstructions = new List<SurfaceConstruction>();
 
             foreach (SpatialElement space in allSpaces)
             {
@@ -34,26 +34,25 @@ namespace HVACExporter.Helpers
                             string constructionId = wall.WallType.UniqueId.ToString();
                             string analyticalConstructionId = wall.WallType.GetAnalyticalModelId().ToString();
                             string name = wall.WallType.Name;
-
                             CompoundStructure structure = wall.WallType.GetCompoundStructure();
                             IList<CompoundStructureLayer> layers = structure.GetLayers();
 
+                            List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
 
-                            var constructionLayers = new List<ConstructionLayer>();
                             foreach (CompoundStructureLayer layer in layers)
                             {
                                 string layerId = layer.LayerId.ToString();
-
-                                Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
-                                string materialId = layerWallMaterial.UniqueId;
-
+                                string materialId = layer.MaterialId.ToString();
                                 var constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
-
                                 constructionLayers.Add(constructionLayerToAdd);
                             }
-                            var surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
 
+                            var surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
                             surfaceConstructions.Add(surfaceConstructionToAdd);
+                        }
+                        else
+                        {
+                            return surfaceConstructions = null;
                         }
 
                     }

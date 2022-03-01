@@ -14,37 +14,18 @@ namespace HVACExporter.Helpers
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, FilteredElementCollector allWindows, 
             FilteredElementCollector allDoors, Document doc)
         {
-            var allSurfaceConstructions = new List<SurfaceConstruction>();
-
+            List<SurfaceConstruction> allSurfaceConstructions = new List<SurfaceConstruction>();
             var wallConstructions = WallConstructionMapper.MapAllWalls(allSpaces, doc);
-            foreach (SurfaceConstruction surfaceConstruction in wallConstructions)
-            {
-                allSurfaceConstructions.Add(surfaceConstruction);
-            }
-
             var roofConstructions = RoofConstructionMapper.MapAllRoofs(allRoofs, doc);
-            foreach (SurfaceConstruction surfaceConstruction in roofConstructions)
-            {
-                allSurfaceConstructions.Add(surfaceConstruction);
-            }
-
             var floorConstructions = FloorConstructionMapper.MapAllFloors(allFloors, doc);
-            foreach (SurfaceConstruction surfaceConstruction in floorConstructions)
-            {
-                allSurfaceConstructions.Add(surfaceConstruction);
-            }
-
             var windowConstructions = WindowConstructionMapper.MapAllWindows(allWindows, doc);
-            foreach (SurfaceConstruction surfaceConstruction in windowConstructions)
-            {
-                allSurfaceConstructions.Add(surfaceConstruction);
-            }
-
             var doorConstructions = DoorConstructionMapper.MapAllDoors(allDoors, doc);
-            foreach (SurfaceConstruction surfaceConstruction in doorConstructions)
-            {
-                allSurfaceConstructions.Add(surfaceConstruction);
-            }
+
+            allSurfaceConstructions.AddRange(wallConstructions);
+            allSurfaceConstructions.AddRange(roofConstructions);
+            allSurfaceConstructions.AddRange(floorConstructions);
+            allSurfaceConstructions.AddRange(windowConstructions);
+            allSurfaceConstructions.AddRange(doorConstructions);
 
             return allSurfaceConstructions;
          }
