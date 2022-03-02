@@ -15,7 +15,7 @@ namespace HVACExporter.Helpers
     {
         public static List<SurfaceConstruction> MapAllFloors(FilteredElementCollector allFloors, Autodesk.Revit.DB.Document doc)
         {
-            var surfaceConstructions = new List<SurfaceConstruction>();
+            List<SurfaceConstruction> surfaceConstructions = new List<SurfaceConstruction>();
 
             foreach (Floor floor in allFloors)
             {
@@ -26,7 +26,6 @@ namespace HVACExporter.Helpers
                 CompoundStructure structure = floor.FloorType.GetCompoundStructure();
                 IList<CompoundStructureLayer> layers = structure.GetLayers();
 
-
                 List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
                 foreach (CompoundStructureLayer layer in layers)
                 {
@@ -35,7 +34,7 @@ namespace HVACExporter.Helpers
                     var constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
                     constructionLayers.Add(constructionLayerToAdd);
 
-                    var surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
+                    SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
                     surfaceConstructions.Add(surfaceConstructionToAdd);
                 }
             }

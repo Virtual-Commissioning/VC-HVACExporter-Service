@@ -15,11 +15,11 @@ namespace HVACExporter.Helpers
             FilteredElementCollector allDoors, Document doc)
         {
             List<SurfaceConstruction> allSurfaceConstructions = new List<SurfaceConstruction>();
-            var wallConstructions = WallConstructionMapper.MapAllWalls(allSpaces, doc);
-            var roofConstructions = RoofConstructionMapper.MapAllRoofs(allRoofs, doc);
-            var floorConstructions = FloorConstructionMapper.MapAllFloors(allFloors, doc);
-            var windowConstructions = WindowConstructionMapper.MapAllWindows(allWindows, doc);
-            var doorConstructions = DoorConstructionMapper.MapAllDoors(allDoors, doc);
+            List<SurfaceConstruction> wallConstructions = WallConstructionMapper.MapAllWalls(allSpaces, doc);
+            List<SurfaceConstruction> roofConstructions = RoofConstructionMapper.MapAllRoofs(allRoofs, doc);
+            List<SurfaceConstruction> floorConstructions = FloorConstructionMapper.MapAllFloors(allFloors, doc);
+            List<SurfaceConstruction> windowConstructions = WindowConstructionMapper.MapAllWindows(allWindows, doc);
+            List<SurfaceConstruction> doorConstructions = DoorConstructionMapper.MapAllDoors(allDoors, doc);
 
             allSurfaceConstructions.AddRange(wallConstructions);
             allSurfaceConstructions.AddRange(roofConstructions);

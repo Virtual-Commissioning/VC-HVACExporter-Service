@@ -12,7 +12,7 @@ namespace HVACExporter.Helpers
     {
         public static List<OpeningConstruction> MapAllOpeningConstructions(FilteredElementCollector allOpenings)
         {
-            var allOpeningConstructions = new List<OpeningConstruction>();
+            List<OpeningConstruction> allOpeningConstructions = new List<OpeningConstruction>();
 
             foreach (Opening opening in allOpenings)
             {
@@ -25,9 +25,8 @@ namespace HVACExporter.Helpers
                 OpeningConstructionParameters openingConstructionParameters 
                     = new OpeningConstructionParameters(airExchangeMethod, airMixingChangesPerHour, simpleMixingPerHour);
 
-                var openingConstructionToAdd = new OpeningConstruction(openingConstructionId, analyticalOpeningConstructionId, openingConstructionParameters);
+                OpeningConstruction openingConstructionToAdd = new OpeningConstruction(openingConstructionId, analyticalOpeningConstructionId, openingConstructionParameters);
                 allOpeningConstructions.Add(openingConstructionToAdd);
-
             }
 
             return allOpeningConstructions;

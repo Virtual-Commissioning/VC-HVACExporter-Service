@@ -43,11 +43,11 @@ namespace HVACExporter.Helpers
                             {
                                 string layerId = layer.LayerId.ToString();
                                 string materialId = layer.MaterialId.ToString();
-                                var constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
+                                ConstructionLayer constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
                                 constructionLayers.Add(constructionLayerToAdd);
                             }
 
-                            var surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
+                            SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
                             surfaceConstructions.Add(surfaceConstructionToAdd);
                         }
                         else

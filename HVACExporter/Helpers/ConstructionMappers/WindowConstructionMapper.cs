@@ -9,7 +9,7 @@ namespace HVACExporter.Helpers
     {
         public static List<SurfaceConstruction> MapAllWindows(FilteredElementCollector allWindows, Autodesk.Revit.DB.Document doc)   //(Autodesk.Revit.DB.Document doc, Wall walls)    
         {
-            var surfaceConstructions = new List<SurfaceConstruction>();
+            List<SurfaceConstruction> surfaceConstructions = new List<SurfaceConstruction>();
 
             foreach (FamilyInstance window in allWindows)
             {
@@ -22,10 +22,10 @@ namespace HVACExporter.Helpers
                 string layerId = "0";
 
                 List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
-                var constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
+                ConstructionLayer constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
                 constructionLayers.Add(constructionLayerToAdd);
 
-                var surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
+                SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
                 surfaceConstructions.Add(surfaceConstructionToAdd);
 
             }
