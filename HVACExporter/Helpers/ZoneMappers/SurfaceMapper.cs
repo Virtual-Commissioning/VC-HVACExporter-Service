@@ -9,22 +9,60 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB.Mechanical;
+using Autodesk.Revit.DB.Analysis;
 
 namespace HVACExporter.Helpers
 {
     public class SurfaceMapper
     {
-        //Can find boundary walls to a room
-        public static List<Models.Zone.Surface> MapSurfaces(SpatialElement zone, Document doc, FilteredElementCollector allAnalyticalSurfaces)
+        public static List<Models.Zone.Surface> MapSurfaces
+            (string analyticalZoneId, Document doc, FilteredElementCollector allAnalyticalSurfaces, FilteredElementCollector allAnalyticalSubSurfaces)
         {
-            var allSurfaces = new List<Models.Zone.Surface>();
+            List<Models.Zone.Surface> allSurfaces = new List<Models.Zone.Surface>();
 
-            var allWallSurfaces = WallSurfaceMapper.MapAllWallSurfaces(zone, doc, allAnalyticalSurfaces);
-            foreach (Models.Zone.Surface wallSurface in allWallSurfaces)
+            foreach (EnergyAnalysisSurface energyAnalysisSurface in allAnalyticalSurfaces)
             {
-                allSurfaces.Add(wallSurface);
-            }
+                string surfaceAnalyticalSpaceId = energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
+                string surfaceAdjacentAnalyticalSpaceId;
+                if (energyAnalysisSurface.GetAdjacentAnalyticalSpace() != null)
+                {
+                    surfaceAdjacentAnalyticalSpaceId = energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                }
+                else { surfaceAdjacentAnalyticalSpaceId = "0"; }
 
+                if (surfaceAnalyticalSpaceId == analyticalZoneId || surfaceAdjacentAnalyticalSpaceId == analyticalZoneId)
+                {
+                    string id = energyAnalysisSurface.Id.ToString();
+                    string constructionName = energyAnalysisSurface.Id.ToString(); //Figure out how to associate later
+                    string surfType = energyAnalysisSurface.SurfaceType.ToString();
+                    string zoneTag = analyticalZoneId;
+                    string outsideBC = "NA";
+                    string OutsideBCObj = "NA";
+                    bool sunExposure;
+                    bool windExposure;
+                    if ((energyAnalysisSurface.SurfaceType.ToString() == "ExteriorWall") || (energyAnalysisSurface.SurfaceType.ToString() == "Roof"))
+                    {
+                        sunExposure = true;
+                        windExposure = true;
+                    }
+                    else
+                    {
+                        sunExposure = false;
+                        windExposure = false;
+                    }
+                    string viewFactorToGround = "NA";
+                    List<VertexCoordinates> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc);
+
+                    SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces(energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
+
+                    Models.Zone.Surface surface = new Models.Zone.Surface(id, constructionName,
+                        surfType, zoneTag, outsideBC, OutsideBCObj, sunExposure, windExposure,
+                        viewFactorToGround, vertexCoordinates, subSurfType);
+
+                    allSurfaces.Add(surface);
+                }
+                else continue;
+            }
             return allSurfaces;
         }
 

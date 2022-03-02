@@ -83,6 +83,11 @@
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WallGeometryMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\OpeningSubSurfaceMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\SubSurfaceGeometryMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\SurfaceGeometryMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\SubSurfaceMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\DoorAndWindowSubSurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\WallSurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\SurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMapper.cs" />
@@ -170,7 +175,7 @@
     <Compile Include="Models\Spaces\Zone\Site\Site.cs" />
     <Compile Include="Models\Spaces\Zone\SubSurface\FrameAndDivider.cs" />
     <Compile Include="Models\Spaces\Zone\SubSurface\OutsideBSObject.cs" />
-    <Compile Include="Models\Spaces\Zone\SubSurface\SubSurfDoor.cs" />
+    <Compile Include="Models\Spaces\Zone\SubSurface\SubSurfDoorAndWindow.cs" />
     <Compile Include="Models\Spaces\Zone\SubSurface\SubSurfOpening.cs" />
     <Compile Include="Models\Spaces\Zone\SubSurface\SubSurfType.cs" />
     <Compile Include="Models\Spaces\Zone\SubSurface\SubSurfWindow.cs" />

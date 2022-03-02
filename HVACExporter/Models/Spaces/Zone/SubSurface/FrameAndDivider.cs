@@ -8,14 +8,14 @@ namespace HVACExporter.Models.Zone
 {
     public class FrameAndDivider
     {
-        public string WindowId{ get; set; }
+        public string Id { get; set; }
         public double FrameWidth { get; set; }
         public string FrameMaterial { get; set; }
         public double SillDepth { get; set; }
 
-        public FrameAndDivider(string windowId, double frameWidth, string frameMaterial, double sillDepth)
+        public FrameAndDivider(string id, double frameWidth, string frameMaterial, double sillDepth)
         {
-            WindowId = windowId;
+            Id = id;
             FrameWidth = frameWidth;
             FrameMaterial = frameMaterial;
             SillDepth = sillDepth;

@@ -42,11 +42,13 @@ namespace HVACExporter
             var allWindows = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Windows);
             //var allAnalyticalSurfaces = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_AnalyticSurfaces);
             var allAnalyticalSurfaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisSurface));
-            
+            var allAnalyticalSpaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisSpace));
+            var allAnalyticalSubSurfaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisOpening));
+
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
-            zones = ZoneMapper.MapAllZones(allSpaces, doc, allAnalyticalSurfaces);
+            zones = ZoneMapper.MapAllZones(allSpaces, doc, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces);
 
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();

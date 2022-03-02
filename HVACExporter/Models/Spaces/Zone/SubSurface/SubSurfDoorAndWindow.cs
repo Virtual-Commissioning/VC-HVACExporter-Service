@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace HVACExporter.Models.Zone
 {
-    public class SubSurfDoor
+    public class SubSurfDoorAndWindow
     {
         public string Id { get; set; }
-        public string Tag { get; set; }
         public string SubSurfType { get; set; } // If bool is needed, define types and use the SubSurfType class
         public string ConstructionId { get; set; }
         public string HostSurfId { get; set; }
@@ -17,12 +16,13 @@ namespace HVACExporter.Models.Zone
         public string ViewFactorToGround { get; set; }
         public FrameAndDivider FrameAndDivider { get; set; } 
         public int Multiplier { get; set; }
-        public VertexCoordinates VertexCoordinates { get; set; }
+        public List<VertexCoordinates> VertexCoordinates { get; set; }
 
-        public SubSurfDoor(string id, string tag, string subSurfType, string constructionId, string hostSurfId, string outsideBCObj, string viewFactorToGround, FrameAndDivider frameAndDivider, int multiplier, VertexCoordinates vertexCoordinates)
+        public SubSurfDoorAndWindow(string id, string subSurfType, string constructionId, 
+            string hostSurfId, string outsideBCObj, string viewFactorToGround, 
+            FrameAndDivider frameAndDivider, int multiplier, List<VertexCoordinates> vertexCoordinates)
         {
             Id = id;
-            Tag = tag;
             SubSurfType = subSurfType;
             ConstructionId = constructionId;
             HostSurfId = hostSurfId;

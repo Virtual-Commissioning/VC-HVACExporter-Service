@@ -18,17 +18,19 @@ namespace HVACExporter.Models.Zone
         public bool WindExposure { get; set; }
         public string ViewFactorToGround { get; set; } // Not sure how to define this
         public List<VertexCoordinates> VertexCoordinates { get; set; }
+        public SubSurfType SubSurfaceType { get; set; }
 
-        public Surface(string id, 
-            string surfType, 
-            string constructionId, 
-            string zoneTag, 
+        public Surface(string id,
+            string surfType,
+            string constructionId,
+            string zoneTag,
             string outsideBC, //Class changed from OutsideBC for testing
             string outsideBCObject,
-            bool sunExposure, 
-            bool windExposure, 
+            bool sunExposure,
+            bool windExposure,
             string viewFactorToGround,
-            List<VertexCoordinates> vertexCoordinates)
+            List<VertexCoordinates> vertexCoordinates, 
+            SubSurfType subSurfaceType)
         {
             Id = id;
             SurfType = surfType;
@@ -40,6 +42,7 @@ namespace HVACExporter.Models.Zone
             WindExposure = windExposure;
             ViewFactorToGround = viewFactorToGround;
             VertexCoordinates = vertexCoordinates;
+            SubSurfaceType = subSurfaceType;
         }
     }
 }
