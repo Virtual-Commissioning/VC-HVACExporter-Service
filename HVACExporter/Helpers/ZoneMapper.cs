@@ -67,16 +67,10 @@ namespace HVACExporter.Helpers
                 string intConvAlg = "0";
                 string outConvAlg = "0";
                 string includedInTotArea = "0";
-
-                //Finding corresponding analytical zone
                 string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
 
                 List<Surface> surfaces = SurfaceMapper.MapSurfaces(analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
                 
-                
-                //Surface surface = RoomGeometryMapper.MapRoomGeometry(room);
-                //SubSurface subSurface = SubSurfaceMapper.MapSubSurface(room);
-
                 //Internal Gains:
                 //Equiptment equiptment = EquiptmentMapper.MapEquiptment(room);
                 //Lighting lighting = LightingMapper.MapLighting(room);
