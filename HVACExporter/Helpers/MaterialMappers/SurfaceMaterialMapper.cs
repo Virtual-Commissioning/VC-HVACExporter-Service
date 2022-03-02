@@ -20,7 +20,6 @@ namespace HVACExporter.Helpers
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, Document doc)
         {
             var allSurfaceMaterials = new MaterialsOfLayers();
-            //var airGapMaterials = new MaterialsOfLayers();
 
             var layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
             foreach (SurfaceMat surfaceMat in layerWallMaterials)

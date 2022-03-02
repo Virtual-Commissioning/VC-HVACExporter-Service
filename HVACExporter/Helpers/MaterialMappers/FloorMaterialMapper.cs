@@ -14,7 +14,7 @@ namespace HVACExporter.Helpers
     {
         public static List<SurfaceMat> MapAllFloors(FilteredElementCollector allFloors, Autodesk.Revit.DB.Document doc)   
         {
-            var layerFloorMaterials = new List<SurfaceMat>();
+            List<SurfaceMat> layerFloorMaterials = new List<SurfaceMat>();
             
             foreach (Floor floor in allFloors)
             {
@@ -23,27 +23,19 @@ namespace HVACExporter.Helpers
 
                 foreach (CompoundStructureLayer layer in layers)
                 {
-                    //Easy to access
-                    string tag = layer.MaterialId.ToString();
+                    string id = layer.MaterialId.ToString();
                     double thickness = layer.Width;
 
-
-                    //Finding Id
                     Material layerFloorMaterial = doc.GetElement(layer.MaterialId) as Material;
-                    string id = layerFloorMaterial.UniqueId.ToString();
                     string name = layerFloorMaterial.Name;
-                    //Roughness can only be found for the whole construction - default = 0
                     int roughness = 0;
-
-                    //Function for thermal assets
                     Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerFloorMaterial, doc);
 
-                    //Default values
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
-                    double visibleAbsorbtance = 0; 
+                    double visibleAbsorbtance = 0;
 
-                    var layerFloorMaterialToAdd = new SurfaceMat(name, id, tag, roughness, thickness,
+                    SurfaceMat layerFloorMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
                         thermalProperties, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 

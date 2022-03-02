@@ -24,28 +24,17 @@ namespace HVACExporter.Helpers
 
                 foreach (CompoundStructureLayer layer in layers)
                 {
-                    //Easy to access
-                    
-                    string tag = layer.MaterialId.ToString();
+                    string id = layer.MaterialId.ToString();
                     double thickness = layer.Width;
-
-
-                    //Finding Id
                     Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
-                    string id = layerWallMaterial.UniqueId;
                     string name = layerWallMaterial.Name;
-                    //Roughness can only be found for the whole construction - default = 0
                     int roughness = 0;
-
-                    //Function for thermal assets
                     Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerWallMaterial, doc);
-
-                    //Default values
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
                     double visibleAbsorbtance = 0; 
 
-                    var layerWallMaterialToAdd = new SurfaceMat(name, id, tag, roughness, thickness,
+                    var layerWallMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
                         thermalProperties, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 

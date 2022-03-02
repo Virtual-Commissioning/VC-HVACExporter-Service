@@ -29,6 +29,7 @@ namespace HVACExporter
             Systems system = new Systems();
             Spaces spaces = new Spaces();
             List<Materials> allMaterials = new List<Materials>();
+            List<Constructions> allConstructions = new List<Constructions>();
 
             var allElements = HelperFunctions.GetConnectorElements(doc);
             var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));
@@ -37,11 +38,12 @@ namespace HVACExporter
             var allFloors = new FilteredElementCollector(doc).OfClass(typeof(Floor));
             var allDoors = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Doors);
             var allWindows = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Windows);
-            
+            var allOpenings = new FilteredElementCollector(doc).OfClass(typeof(Opening));
+
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
-
+            allConstructions = ConstructionMapper.MapAllConstructions(allWalls, allFloors, allRoofs, allSpaces, allDoors, allWindows, allOpenings, doc);
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 
