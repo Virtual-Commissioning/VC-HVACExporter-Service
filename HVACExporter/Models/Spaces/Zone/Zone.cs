@@ -18,8 +18,12 @@ namespace HVACExporter.Models.Zone
         public string IntConvAlg { get; set; }
         public string OutConvAlg { get; set; }
         public bool IncludedInTotArea { get; set; }
+        public string AnalyticalZoneId { get; set; }
+        public List<Surface> Surfaces { get; set; }
         
-        public Zone(string id, GeometricTypes.Coordinate point, string zoneType, double ceilingHeight, double floorArea, double zoneVolume, string intConvAlg, string outConvAlg, string includedInTotArea)
+        public Zone(string id, GeometricTypes.Coordinate point, string zoneType, double ceilingHeight, 
+            double floorArea, double zoneVolume, string intConvAlg, string outConvAlg, string includedInTotArea,
+            string analyticalZoneId, List<Surface> surfaces)
         {
             Id = id;
             Point = point;
@@ -29,6 +33,8 @@ namespace HVACExporter.Models.Zone
             ZoneVolume = zoneVolume;
             IntConvAlg = intConvAlg;
             OutConvAlg = outConvAlg;
+            AnalyticalZoneId = analyticalZoneId;
+            Surfaces = surfaces;
         }
     }
 }

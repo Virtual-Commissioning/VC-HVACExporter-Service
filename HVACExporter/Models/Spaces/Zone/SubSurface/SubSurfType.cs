@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace HVACExporter.Models.Zone
 {
-    public class SubSurfType // NB! Need editing
+    public class SubSurfType
     {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }
+        public List<SubSurfDoorAndWindow> SubSurfDoor { get; set; }
+        public List<SubSurfDoorAndWindow> SubSurfWindow { get; set; }
+        public List<SubSurfOpening> SubSurfOpening { get; set; }
 
-        public SubSurfType(double x, double y, double z)
+        public SubSurfType(List<SubSurfDoorAndWindow> subSurfDoor, List<SubSurfDoorAndWindow> subSurfWindow, List<SubSurfOpening> subSurfOpening)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            SubSurfDoor = subSurfDoor;
+            SubSurfWindow = subSurfWindow;
+            SubSurfOpening = subSurfOpening;
         }
     }
 }

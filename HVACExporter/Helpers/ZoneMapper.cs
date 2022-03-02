@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Analysis;
 using Autodesk.Revit.DB.Architecture;
 using HVACExporter.Helpers.SpaceMappers;
 //using HVACExporter.Helpers.ZoneMappers;
@@ -17,40 +18,61 @@ namespace HVACExporter.Helpers
     {
         //private static Zone zoneToAdd;
 
-        public static Zones MapAllZones(FilteredElementCollector allSpaces, Document doc, FilteredElementCollector allAnalyticalSurfaces)
+        public static Zones MapAllZones
+            (FilteredElementCollector allSpaces, Document doc, FilteredElementCollector allAnalyticalSurfaces, 
+            FilteredElementCollector allAnalyticalSpaces, FilteredElementCollector allAnalyticalSubSurfaces)
         {
             var allZones = new Zones();
+
+            int n = 0;
+            List<EnergyAnalysisSpace> energyAnalysisSpaces = new List<EnergyAnalysisSpace>();
+            foreach (EnergyAnalysisSpace space in allAnalyticalSpaces)
+            {
+                energyAnalysisSpaces.Add(space);
+            }
 
             foreach (SpatialElement zone in allSpaces)
             {
                 if (zone.Category.Name != "Spaces") continue;
 
                 var associatedSpace = (Autodesk.Revit.DB.Mechanical.Space)zone;
-                
-                if (associatedSpace.Location == null) continue;
 
+                Coordinate point;
+                if (associatedSpace.Location == null)
+                {
+                    point = null;
+                }
+                else
+                {
+                    double x = ((LocationPoint)associatedSpace.Location).Point.X;
+                    double y = ((LocationPoint)associatedSpace.Location).Point.Y;
+                    double z = ((LocationPoint)associatedSpace.Location).Point.Z;
+                    point = new Coordinate(x, y, z);
+                }
 
-                //We start of by giving the room its IDs
+                string zoneType;
+                if (associatedSpace.SpaceType.ToString() == string.Empty)
+                {
+                    zoneType = "NA";
+                }
+                else
+                {
+                    zoneType = associatedSpace.SpaceType.ToString();
+                }
+
                 string id = associatedSpace.UniqueId;
-
-                //Finding the coordinates of origin point
-                double x = ((LocationPoint)associatedSpace.Location).Point.X;
-                double y = ((LocationPoint)associatedSpace.Location).Point.Y;
-                double z = ((LocationPoint)associatedSpace.Location).Point.Z;
-                Models.GeometricTypes.Coordinate point = new Models.GeometricTypes.Coordinate(x, y, z);
-
-                //if (zone.SpaceType != null) continue;
-                string zoneType = "NA";
-
-                double ceilingHeight = associatedSpace.UnboundedHeight; //- room.Level.Elevation;
+                double ceilingHeight = associatedSpace.UnboundedHeight;
                 double floorArea = associatedSpace.Area;
-                double zoneVolume = (associatedSpace.UnboundedHeight - associatedSpace.Level.Elevation) * floorArea;  //room.Volume;
+                double zoneVolume = (associatedSpace.UnboundedHeight - associatedSpace.Level.Elevation) * floorArea;
                 string intConvAlg = "0";
                 string outConvAlg = "0";
                 string includedInTotArea = "0";
 
+                //Finding corresponding analytical zone
+                string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
+
+                List<Surface> surfaces = SurfaceMapper.MapSurfaces(analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
                 
-                List<Surface> surface = SurfaceMapper.MapSurfaces(zone, doc, allAnalyticalSurfaces);
                 
                 //Surface surface = RoomGeometryMapper.MapRoomGeometry(room);
                 //SubSurface subSurface = SubSurfaceMapper.MapSubSurface(room);
@@ -68,7 +90,7 @@ namespace HVACExporter.Helpers
                 //ShadingBuilding shadingBuilding = ShadingBuildingMapper.MapShadingBuilding(room);
 
 
-                var zoneToAdd = new Zone(id,
+                var zoneToAdd = new Zone(id, 
                                      point,
                                      zoneType,
                                      ceilingHeight,
@@ -76,9 +98,13 @@ namespace HVACExporter.Helpers
                                      zoneVolume,
                                      intConvAlg,
                                      outConvAlg,
-                                     includedInTotArea);
+                                     includedInTotArea, 
+                                     analyticalZoneId,
+                                     surfaces);
 
                 allZones.AddZone(zoneToAdd);
+
+                n++;
             }
 
             return allZones;

@@ -1,4 +1,5 @@
-﻿using Autodesk.Revit.DB;
+﻿/*
+using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using HVACExporter.Helpers.ZoneMappers;
 using HVACExporter.Models.GeometricTypes;
@@ -18,12 +19,6 @@ namespace HVACExporter.Helpers
         public static List<Models.Zone.Surface> MapAllWallSurfaces(SpatialElement zone, Document doc, FilteredElementCollector allAnalyticalSurfaces)
         {
             var allSpaceWalls = new List<Models.Zone.Surface>();
-            /*
-            foreach (SpatialElement space in zones)
-            {
-            
-                if (zone.Category.Name != "Spaces") continue;
-            */
 
             IList<IList<Autodesk.Revit.DB.BoundarySegment>> spaceWalls = zone.GetBoundarySegments(new SpatialElementBoundaryOptions());
 
@@ -59,7 +54,7 @@ namespace HVACExporter.Helpers
                     }
                     string viewFactorToGround = "NA";
 
-                    List<VertexCoordinates> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(boundarySegment, allAnalyticalSurfaces, doc);
+                    List<VertexCoordinates> vertexCoordinates = WallSurfaceGeometryMapper.MapWallSurfaceGeometry(boundarySegment, doc);
 
                     Models.Zone.Surface surface = new Models.Zone.Surface(id, constructionName,
                         surfType, zoneTag, outsideBC, OutsideBCObj, sunExposure, windExposure,
@@ -74,5 +69,5 @@ namespace HVACExporter.Helpers
         }
 
     }
-}
+}*/
 
