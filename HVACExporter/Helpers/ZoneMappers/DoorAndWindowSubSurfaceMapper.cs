@@ -29,7 +29,16 @@ namespace HVACExporter.Helpers
                 string id = opening.Id.ToString();
                 string subSurfType = opening.OpeningType.ToString();
                 string constructionId = opening.Type.ToString();
-                string hostSurfId = energyAnalysisSurface.Id.ToString();
+                string hostSurfId;
+                if (energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" ||
+                    energyAnalysisSurface.SurfaceType.ToString() == "InteriorFloor")
+                {
+                    hostSurfId = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().ToString();
+                }
+                else
+                {
+                    hostSurfId = energyAnalysisSurface.Id.ToString();
+                }
                 string outsideBCObj = "NA";
                 string viewFactorToGround = "NA";
                 int multiplier = 1;
@@ -41,7 +50,6 @@ namespace HVACExporter.Helpers
                 allSubSurfaces.Add(subSurfaceToAdd);
             }
 
-            
             return allSubSurfaces;
         }
 

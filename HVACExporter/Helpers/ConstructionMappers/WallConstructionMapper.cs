@@ -50,10 +50,7 @@ namespace HVACExporter.Helpers
                             SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
                             surfaceConstructions.Add(surfaceConstructionToAdd);
                         }
-                        else
-                        {
-                            return surfaceConstructions = null;
-                        }
+                        else continue;
 
                     }
                 }

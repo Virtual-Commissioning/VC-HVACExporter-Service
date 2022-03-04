@@ -14,10 +14,8 @@ using Surface = HVACExporter.Models.Zone.Surface;
 
 namespace HVACExporter.Helpers
 {
-    class ZoneMapper
+    public class ZoneMapper
     {
-        //private static Zone zoneToAdd;
-
         public static Zones MapAllZones
             (FilteredElementCollector allSpaces, Document doc, FilteredElementCollector allAnalyticalSurfaces, 
             FilteredElementCollector allAnalyticalSpaces, FilteredElementCollector allAnalyticalSubSurfaces)

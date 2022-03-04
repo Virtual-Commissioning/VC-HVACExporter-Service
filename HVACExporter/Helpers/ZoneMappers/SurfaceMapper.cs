@@ -32,12 +32,22 @@ namespace HVACExporter.Helpers
 
                 if (surfaceAnalyticalSpaceId == analyticalZoneId || surfaceAdjacentAnalyticalSpaceId == analyticalZoneId)
                 {
-                    string id = energyAnalysisSurface.Id.ToString();
-                    string constructionName = energyAnalysisSurface.Id.ToString(); //Figure out how to associate later
+                    string id;
+                    if (energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" ||
+                        energyAnalysisSurface.SurfaceType.ToString() == "InteriorFloor")
+                    {
+                        id = energyAnalysisSurface.Id.ToString() + "_" + analyticalZoneId;
+                    }
+                    else
+                    {
+                        id = energyAnalysisSurface.Id.ToString();
+                    }
+                    
+                    string constructionId = energyAnalysisSurface.Id.ToString(); //Figure out how to associate later
                     string surfType = energyAnalysisSurface.SurfaceType.ToString();
                     string zoneTag = analyticalZoneId;
-                    string outsideBC = "NA";
-                    string OutsideBCObj = "NA";
+                    OutsideBC outsideBC = OutsideBCMapper.MapOutsideBC(energyAnalysisSurface); //
+                    OutsideBCObj outsideBCObj = OutsideBCObjMapper.MapOutsideBCObj(energyAnalysisSurface, outsideBC); //
                     bool sunExposure;
                     bool windExposure;
                     if ((energyAnalysisSurface.SurfaceType.ToString() == "ExteriorWall") || (energyAnalysisSurface.SurfaceType.ToString() == "Roof"))
@@ -53,8 +63,8 @@ namespace HVACExporter.Helpers
                     string viewFactorToGround = "NA";
                     List<VertexCoordinates> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc);
                     SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces(energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
-                    Models.Zone.Surface surface = new Models.Zone.Surface(id, constructionName,
-                        surfType, zoneTag, outsideBC, OutsideBCObj, sunExposure, windExposure,
+                    Models.Zone.Surface surface = new Models.Zone.Surface(id, surfType,
+                        constructionId, zoneTag, outsideBC, outsideBCObj, sunExposure, windExposure,
                         viewFactorToGround, vertexCoordinates, subSurfType);
 
                     allSurfaces.Add(surface);

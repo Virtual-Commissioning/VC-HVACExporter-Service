@@ -12,8 +12,8 @@ namespace HVACExporter.Models.Zone
         public string SurfType { get; set; } // If bool is needed, use the SurfType class
         public string ConstructionId { get; set; }
         public string ZoneTag { get; set; }
-        public string OutsideBC { get; set; }    //Class changed from OutsideBC for testing
-        public string OutsideBCObject { get; set; }
+        public OutsideBC OutsideBC { get; set; }    //Class changed from OutsideBC for testing
+        public OutsideBCObj OutsideBCObject { get; set; }
         public bool SunExposure { get; set; }
         public bool WindExposure { get; set; }
         public string ViewFactorToGround { get; set; } // Not sure how to define this
@@ -24,8 +24,8 @@ namespace HVACExporter.Models.Zone
             string surfType,
             string constructionId,
             string zoneTag,
-            string outsideBC, //Class changed from OutsideBC for testing
-            string outsideBCObject,
+            OutsideBC outsideBC, //Class changed from OutsideBC for testing
+            OutsideBCObj outsideBCObject,
             bool sunExposure,
             bool windExposure,
             string viewFactorToGround,
