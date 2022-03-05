@@ -11,15 +11,13 @@ namespace HVACExporter.Models.Zone
         public string Id { get; set; }
         public string BaseSurfId { get; set; }
         public string TransmSchedule { get; set; }
-        public int NoVertices { get; set; }
         public VertexCoordinates VertexCoordinates { get; set; }
 
-        public ShadingZone(string id, string baseSurfId, string transmSchedule, int noVertices, VertexCoordinates vertexCoordinates)
+        public ShadingZone(string id, string baseSurfId, string transmSchedule, VertexCoordinates vertexCoordinates)
         {
             Id = id;
             BaseSurfId = baseSurfId;
             TransmSchedule = transmSchedule;
-            NoVertices = noVertices;
             VertexCoordinates = vertexCoordinates;
         }
     }

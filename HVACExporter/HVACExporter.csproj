@@ -81,6 +81,7 @@
     <Compile Include="Helpers\MaterialMappers\WallMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMappers\SurfaceMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMapper.cs" />
+    <Compile Include="Helpers\BuildingShadingMapper.cs" />
     <Compile Include="Helpers\SpaceMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\GeometricMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\IndoorClimateMapper.cs" />
@@ -91,6 +92,7 @@
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WallGeometryMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\ZoneShadingMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\InfiltrationMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\HVACMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\InternalGainsMapper.cs" />
