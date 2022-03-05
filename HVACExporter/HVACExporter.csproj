@@ -91,6 +91,10 @@
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WallGeometryMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\InternalGainsMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\InternalGainsMappers\EquipmentMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\InternalGainsMappers\LightingMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\InternalGainsMappers\PeopleMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\OpeningSubSurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\OutsideBCObjMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\OutsideBCMapper.cs" />
@@ -170,7 +174,8 @@
     <Compile Include="Models\Spaces\Zone\HVAC\AirLoadSystem.cs" />
     <Compile Include="Models\Spaces\Zone\HVAC\Thermostat.cs" />
     <Compile Include="Models\Spaces\Zone\Infiltration\Infiltration.cs" />
-    <Compile Include="Models\Spaces\Zone\InternalGains\Equiptment.cs" />
+    <Compile Include="Models\Spaces\Zone\InternalGains\InternalGains.cs" />
+    <Compile Include="Models\Spaces\Zone\InternalGains\Equipment.cs" />
     <Compile Include="Models\Spaces\Zone\InternalGains\Lighting.cs" />
     <Compile Include="Models\Spaces\Zone\InternalGains\People.cs" />
     <Compile Include="Models\Spaces\Zone\Material\Materials.cs" />

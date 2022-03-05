@@ -32,7 +32,7 @@ namespace HVACExporter.Helpers
             foreach (SpatialElement zone in allSpaces)
             {
                 if (zone.Category.Name != "Spaces") continue;
-                string tag = zone.Id.ToString();
+                //string tag = zone.Id.ToString();
                 Autodesk.Revit.DB.Mechanical.Space associatedSpace = (Autodesk.Revit.DB.Mechanical.Space)zone;
                 Coordinate point;   //Location point for parent space, not analytical space.
                 if (associatedSpace.Location == null)
@@ -65,11 +65,8 @@ namespace HVACExporter.Helpers
                 string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
 
                 List<Surface> surfaces = SurfaceMapper.MapSurfaces(analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
-                
-                //Internal Gains:
-                //Equiptment equiptment = EquiptmentMapper.MapEquiptment(room);
-                //Lighting lighting = LightingMapper.MapLighting(room);
-                //People people = PeopleMapper.MapPeople(room);
+
+                InternalGains internalGains = InternalGainsMapper.MapInternalGains(associatedSpace);
 
                 //HVAC:
                 //AirLoadSystem airLoadSystem = AirLoadSystemMapper.MapAirLoadSystem(room);
@@ -89,7 +86,7 @@ namespace HVACExporter.Helpers
                                      outConvAlg,
                                      includedInTotArea, 
                                      analyticalZoneId,
-                                     surfaces);
+                                     surfaces, internalGains);
 
                 allZones.AddZone(zoneToAdd);
 

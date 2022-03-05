@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HVACExporter.Models.Zone
 {
-    public class Equiptment
+    public class Equipment
     {
         public string Id { get; set; }
-        public string Tag { get; set; }
+        public string ZoneId { get; set; }
         public string EquipmentSchedule { get; set; }
         public string CalculationMethod { get; set; }
         public double DesignLevel { get; set; }
@@ -19,13 +19,13 @@ namespace HVACExporter.Models.Zone
         public double FractionLost { get; set; }
         public string EndUseSubCategory { get; set; }
 
-        public Equiptment(string id, string tag, string equipmentSchedule,
+        public Equipment(string id, string zoneId, string equipmentSchedule,
             string calculationMethod, double designLevel, double wattM2,
             double fractionLatent, double fractionRadiant, double fractionLost,
             string endUseSubCategory)
         {
             Id = id;
-            Tag = tag;
+            ZoneId = zoneId;
             EquipmentSchedule = equipmentSchedule;
             CalculationMethod = calculationMethod;
             DesignLevel = designLevel;
