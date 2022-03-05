@@ -32,9 +32,9 @@ namespace HVACExporter.Helpers
             foreach (SpatialElement zone in allSpaces)
             {
                 if (zone.Category.Name != "Spaces") continue;
-
+                string tag = room.Id.ToString();
                 var associatedSpace = (Autodesk.Revit.DB.Mechanical.Space)zone;
-
+                double y = ((LocationPoint)room.Location).Point.Y;
                 Coordinate point;
                 if (associatedSpace.Location == null)
                 {
@@ -47,6 +47,9 @@ namespace HVACExporter.Helpers
                     double z = ((LocationPoint)associatedSpace.Location).Point.Z;
                     point = new Coordinate(x, y, z);
                 }
+                string intConvAlg = "NA";
+                string outConvAlg = "NA";
+                string includedInTotArea = "NA";
 
                 string zoneType;
                 if (associatedSpace.SpaceType.ToString() == string.Empty)
