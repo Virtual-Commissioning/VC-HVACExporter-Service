@@ -2,7 +2,7 @@
 using Autodesk.Revit.DB.Analysis;
 using Autodesk.Revit.DB.Architecture;
 using HVACExporter.Helpers.SpaceMappers;
-//using HVACExporter.Helpers.ZoneMappers;
+using HVACExporter.Helpers.ZoneMappers.InternalGainsMappers;
 using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Spaces;
 using HVACExporter.Models.Spaces.Geometry;
@@ -67,8 +67,7 @@ namespace HVACExporter.Helpers
                 List<Surface> surfaces = SurfaceMapper.MapSurfaces(analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
                 InternalGains internalGains = InternalGainsMapper.MapInternalGains(associatedSpace);
                 HVAC hvac = HVACMapper.MapHVAC(associatedSpace);
-
-                //Infiltration infiltration = InfiltrationMapper.MapInfiltration(room);
+                Infiltration infiltration = InfiltrationMapper.MapInfiltration(associatedSpace);
                 //ShadingBuilding shadingBuilding = ShadingBuildingMapper.MapShadingBuilding(room);
 
 
@@ -84,7 +83,8 @@ namespace HVACExporter.Helpers
                                      analyticalZoneId,
                                      surfaces, 
                                      internalGains,
-                                     hvac);
+                                     hvac,
+                                     infiltration);
 
                 allZones.AddZone(zoneToAdd);
 

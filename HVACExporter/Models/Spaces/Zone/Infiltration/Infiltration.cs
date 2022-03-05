@@ -9,7 +9,6 @@ namespace HVACExporter.Models.Zone
     public class Infiltration
     {
         public string Id { get; set; }
-        public string Tag { get; set; }
         public string ZoneId { get; set; }
         public string InfiltrationSchedule { get; set; }
         public string CalculationMethod { get; set; }
@@ -20,10 +19,11 @@ namespace HVACExporter.Models.Zone
         public double VelocityTermSqCoefficient { get; set; }
 
 
-        public Infiltration(string id, string tag, string zoneId, string infiltrationSchedule, string calculationMethod, double flowPrExhaustSurfaceArea, double constantTermCoefficient, double tempTermCoefficient, double velocityTermCoefficient, double velocityTermSqCoefficient)
+        public Infiltration(string id, string zoneId, string infiltrationSchedule, string calculationMethod, 
+            double flowPrExhaustSurfaceArea, double constantTermCoefficient, double tempTermCoefficient, 
+            double velocityTermCoefficient, double velocityTermSqCoefficient)
         {
             Id = id;
-            Tag = tag;
             ZoneId = zoneId;
             InfiltrationSchedule = infiltrationSchedule;
             CalculationMethod = calculationMethod;

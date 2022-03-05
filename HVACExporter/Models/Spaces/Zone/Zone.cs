@@ -22,10 +22,12 @@ namespace HVACExporter.Models.Zone
         public List<Surface> Surfaces { get; set; }
         public InternalGains InternalGains { get; set; }
         public HVAC HVAC { get; set; }
+        public Infiltration Infiltration { get; set; }
         
         public Zone(string id, GeometricTypes.Coordinate point, string zoneType, double ceilingHeight, 
             double floorArea, double zoneVolume, string intConvAlg, string outConvAlg, string includedInTotArea,
-            string analyticalZoneId, List<Surface> surfaces, InternalGains internalGains, HVAC hvac)
+            string analyticalZoneId, List<Surface> surfaces, InternalGains internalGains, HVAC hvac,
+            Infiltration infiltration)
         {
             Id = id;
             Point = point;
@@ -39,6 +41,7 @@ namespace HVACExporter.Models.Zone
             Surfaces = surfaces;
             InternalGains = internalGains;
             HVAC = hvac;
+            Infiltration = infiltration;
         }
     }
 }
