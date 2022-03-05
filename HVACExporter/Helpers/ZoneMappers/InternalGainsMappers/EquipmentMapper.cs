@@ -11,8 +11,8 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
     {
         public static Equipment MapEquipment(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
-            string id = "NA";
-            string zoneName = associatedSpace.Id.ToString();
+            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Equipment";
+            string zoneId = associatedSpace.Id.ToString();
             string equipmentSchedule = "NA";
             string calculationMethod = "NA";
             double designLevel = 1;
@@ -22,7 +22,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             double fractionLost = 0;
             string endUseSubCategory = "NA";
 
-            Equipment equipmentGains = new Equipment(id, zoneName, equipmentSchedule, calculationMethod,
+            Equipment equipmentGains = new Equipment(id, zoneId, equipmentSchedule, calculationMethod,
                 designLevel, wattM2, fractionLatent, fractionRadiant,
                 fractionLost, endUseSubCategory);
             return equipmentGains;

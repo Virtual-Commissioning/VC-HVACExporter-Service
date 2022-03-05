@@ -11,8 +11,8 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
     {
         public static People MapPeople(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
-            string id = "NA";
-            string zoneName = associatedSpace.Id.ToString();
+            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "People";
+            string zoneId = associatedSpace.Id.ToString();
             string peopleSchedule = "NA";
             string calculationMethod = "NA";
             int numberOfPeople = 1;
@@ -27,7 +27,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string airVelocitySchedule = "NA";
             string thermalComfortType = "NA";
 
-            People peopleGains = new People(id, zoneName, peopleSchedule, calculationMethod,
+            People peopleGains = new People(id, zoneId, peopleSchedule, calculationMethod,
                 numberOfPeople, fractionRadiant, sensibleHeatFraction, activitySchedule,
                 co2GenerationRate, mrtCalculationType, surfaceId, workEfficiencySchedule,
                 clothingInsulationSchedule, airVelocitySchedule, thermalComfortType);

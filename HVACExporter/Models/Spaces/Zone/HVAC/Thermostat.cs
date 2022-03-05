@@ -9,14 +9,14 @@ namespace HVACExporter.Models.Zone
     public class Thermostat
     {
         public string Id { get; set; }
-        public string Tag { get; set; }
+        public string ZoneId { get; set; }
         public string HeatingSetpointSchedule { get; set; }
         public string CoolingSetpointSchedule { get; set; }
 
-        public Thermostat(string id, string tag, string heatingSetpointSchedule, string coolingSetpointSchedule)
+        public Thermostat(string id, string zoneId, string heatingSetpointSchedule, string coolingSetpointSchedule)
         {
             Id = id;
-            Tag = tag;
+            ZoneId = zoneId;
             HeatingSetpointSchedule = heatingSetpointSchedule;
             CoolingSetpointSchedule = coolingSetpointSchedule;
         }
