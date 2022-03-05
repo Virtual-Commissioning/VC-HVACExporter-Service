@@ -7,7 +7,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
         public static ShadingZone MapZoneShading(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
             string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Shading";
-            string baseSurfId = associatedSpace.Id.ToString();
+            string baseSurfId = "NA";
             string transmSchedule = "NA";
             VertexCoordinates vertexCoordinates = null;
 

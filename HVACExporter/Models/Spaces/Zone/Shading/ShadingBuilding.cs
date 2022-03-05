@@ -10,14 +10,12 @@ namespace HVACExporter.Models.Zone
     {
         public string Id { get; set; }
         public string TransmSchedule { get; set; }
-        public int NoVertices { get; set; }
         public VertexCoordinates VertexCoordinates { get; set; }
 
-        public ShadingSite(string id, string transmSchedule, int noVertices, VertexCoordinates vertexCoordinates)
+        public ShadingSite(string id, string transmSchedule, VertexCoordinates vertexCoordinates)
         {
             Id = id;
             TransmSchedule = transmSchedule;
-            NoVertices = noVertices;
             VertexCoordinates = vertexCoordinates;
         }
     }

@@ -68,6 +68,7 @@ namespace HVACExporter.Helpers
                 InternalGains internalGains = InternalGainsMapper.MapInternalGains(associatedSpace);
                 HVAC hvac = HVACMapper.MapHVAC(associatedSpace);
                 Infiltration infiltration = InfiltrationMapper.MapInfiltration(associatedSpace);
+                ShadingZone shadingZone = ZoneShadingMapper.MapZoneShading(associatedSpace);
                 //ShadingBuilding shadingBuilding = ShadingBuildingMapper.MapShadingBuilding(room);
 
 
@@ -84,7 +85,8 @@ namespace HVACExporter.Helpers
                                      surfaces, 
                                      internalGains,
                                      hvac,
-                                     infiltration);
+                                     infiltration,
+                                     shadingZone);
 
                 allZones.AddZone(zoneToAdd);
 
