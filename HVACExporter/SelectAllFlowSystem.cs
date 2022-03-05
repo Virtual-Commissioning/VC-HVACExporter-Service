@@ -14,6 +14,8 @@ using HVACExporter.Models.Zone;
 using HVACExporter.Helpers.MaterialMappers;
 using HVACExporter.Models.Spaces.Zone;
 using System.Collections.Generic;
+using HVACExporter.Models.Zones;
+using Autodesk.Revit.DB.Analysis;
 
 namespace HVACExporter
 {
@@ -30,20 +32,26 @@ namespace HVACExporter
             Spaces spaces = new Spaces();
             List<Materials> allMaterials = new List<Materials>();
             List<Constructions> allConstructions = new List<Constructions>();
+            Zones zones = new Zones();
 
             var allElements = HelperFunctions.GetConnectorElements(doc);
-            var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));
+            var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));  //WherePasses(new ElementClassFilter) instead of OfClass
+            //var allSpaces = new FilteredElementCollector(doc).WherePasses(new ElementClassFilter(typeof(SpatialElement))); //New way to filter classes
             var allWalls = new FilteredElementCollector(doc).OfClass(typeof(Wall));
             var allRoofs = new FilteredElementCollector(doc).OfClass(typeof(RoofBase));
             var allFloors = new FilteredElementCollector(doc).OfClass(typeof(Floor));
             var allDoors = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Doors);
             var allWindows = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Windows);
             var allOpenings = new FilteredElementCollector(doc).OfClass(typeof(Opening));
+            var allAnalyticalSurfaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisSurface));
+            var allAnalyticalSpaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisSpace));
+            var allAnalyticalSubSurfaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisOpening));
 
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
             allConstructions = ConstructionMapper.MapAllConstructions(allWalls, allFloors, allRoofs, allSpaces, allDoors, allWindows, allOpenings, doc);
+            zones = ZoneMapper.MapAllZones(allSpaces, doc, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces);
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 
