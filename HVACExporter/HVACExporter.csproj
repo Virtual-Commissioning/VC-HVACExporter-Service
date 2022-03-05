@@ -91,6 +91,7 @@
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WallGeometryMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\InfiltrationMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\HVACMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\InternalGainsMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\HVACMappers\ThermostatMapper.cs" />
