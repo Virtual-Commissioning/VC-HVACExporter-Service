@@ -9,7 +9,7 @@ namespace HVACExporter.Models.Zone
     public class Lighting
     {
         public string Id { get; set; }
-        public string Tag { get; set; }
+        public string ZoneId { get; set; }
         public string LightingSchedule { get; set; }
         public string CalculationMethod { get; set; }
         public double LightingLevel { get; set; }
@@ -20,10 +20,10 @@ namespace HVACExporter.Models.Zone
         public double FractionReplaceable { get; set; }
         public string EndUseSubCategory { get; set; }
 
-        public Lighting(string id, string tag, string lightingSchedule, string calculationMethod, double lightingLevel, double wattM2, double returnAirFraction, double fractionRadiant, double fractionVisible, double fractionReplaceable, string endUseSubCategory)
+        public Lighting(string id, string zoneId, string lightingSchedule, string calculationMethod, double lightingLevel, double wattM2, double returnAirFraction, double fractionRadiant, double fractionVisible, double fractionReplaceable, string endUseSubCategory)
         {
             Id = id;
-            Tag = tag;
+            ZoneId = zoneId;
             LightingSchedule = lightingSchedule;
             CalculationMethod = calculationMethod;
             LightingLevel = lightingLevel;

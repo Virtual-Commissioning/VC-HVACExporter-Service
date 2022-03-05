@@ -9,7 +9,7 @@ namespace HVACExporter.Models.Zone
     public class People
     {
         public string Id { get; set; }
-        public string Tag { get; set; }
+        public string ZoneName { get; set; }
         public string PeopleSchedule { get; set; }
         public string CalculatinMethod { get; set; }
         public int NumberOfPeople { get; set; }
@@ -24,13 +24,13 @@ namespace HVACExporter.Models.Zone
         public string AirVelocitySchedule { get; set; }
         public string ThermalComfortType { get; set; }
 
-        public People(string id, string tag, string peopleSchedule, string calculationMethod, int numberOfPeople, 
+        public People(string id, string zoneName, string peopleSchedule, string calculationMethod, int numberOfPeople, 
             double fractionRadiant, double sensibleHeatFraction, string activitySchedule, double co2GenerationRate, 
             string mRTCalculationType, string surfaceId, string workEfficiencySchedule, string clothingInsulationSchedule, 
             string airVelocitySchedule, string thermalComfortType)
         {
             Id = id;
-            Tag = tag;
+            ZoneName = zoneName;
             PeopleSchedule = peopleSchedule;
             CalculatinMethod = calculationMethod;
             NumberOfPeople = numberOfPeople;
