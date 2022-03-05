@@ -11,8 +11,8 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
     {
         public static Lighting MapLighting(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
-            string id = "NA";
-            string zoneName = associatedSpace.Id.ToString();
+            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Lighting";
+            string zoneId = associatedSpace.Id.ToString();
             string lightingSchedule = "NA";
             string calculationMethod = "NA";
             double lightingLevel = 1;
@@ -23,7 +23,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             double fractionReplaceable = 0;
             string endUseSubCategory = "NA";
 
-            Lighting lightingGains = new Lighting(id, zoneName, lightingSchedule, calculationMethod,
+            Lighting lightingGains = new Lighting(id, zoneId, lightingSchedule, calculationMethod,
                 lightingLevel, wattM2, returnAirFraction, fractionRadiant,
                 fractionVisible, fractionReplaceable, endUseSubCategory);
             return lightingGains;

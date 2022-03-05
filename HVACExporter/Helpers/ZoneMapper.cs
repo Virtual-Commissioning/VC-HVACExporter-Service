@@ -55,7 +55,7 @@ namespace HVACExporter.Helpers
                 {
                     zoneType = associatedSpace.SpaceType.ToString();
                 }
-                string id = associatedSpace.UniqueId;
+                string id = associatedSpace.Id.ToString();
                 double ceilingHeight = associatedSpace.UnboundedHeight;
                 double floorArea = associatedSpace.Area;
                 double zoneVolume = (associatedSpace.UnboundedHeight - associatedSpace.Level.Elevation) * floorArea;
@@ -65,12 +65,8 @@ namespace HVACExporter.Helpers
                 string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
 
                 List<Surface> surfaces = SurfaceMapper.MapSurfaces(analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
-
                 InternalGains internalGains = InternalGainsMapper.MapInternalGains(associatedSpace);
-
-                //HVAC:
-                //AirLoadSystem airLoadSystem = AirLoadSystemMapper.MapAirLoadSystem(room);
-                //Thermostat thermostat = ThermostatMapper.MapThermostat(room);
+                HVAC hvac = HVACMapper.MapHVAC(associatedSpace);
 
                 //Infiltration infiltration = InfiltrationMapper.MapInfiltration(room);
                 //ShadingBuilding shadingBuilding = ShadingBuildingMapper.MapShadingBuilding(room);
@@ -86,7 +82,9 @@ namespace HVACExporter.Helpers
                                      outConvAlg,
                                      includedInTotArea, 
                                      analyticalZoneId,
-                                     surfaces, internalGains);
+                                     surfaces, 
+                                     internalGains,
+                                     hvac);
 
                 allZones.AddZone(zoneToAdd);
 
