@@ -35,10 +35,9 @@ namespace HVACExporter
             Zones zones = new Zones();
 
             var allElements = HelperFunctions.GetConnectorElements(doc);
-            var allSpaces = new FilteredElementCollector(doc).OfClass(typeof(SpatialElement));  //WherePasses(new ElementClassFilter) instead of OfClass
-            //var allSpaces = new FilteredElementCollector(doc).WherePasses(new ElementClassFilter(typeof(SpatialElement))); //New way to filter classes
+            var allSpaces = new FilteredElementCollector(doc).WherePasses(new ElementClassFilter(typeof(SpatialElement))); //New way to filter classes
             var allWalls = new FilteredElementCollector(doc).OfClass(typeof(Wall));
-            var allRoofs = new FilteredElementCollector(doc).OfClass(typeof(RoofBase));
+            var allRoofs = new FilteredElementCollector(doc).WherePasses(new ElementClassFilter(typeof(RoofBase)));
             var allFloors = new FilteredElementCollector(doc).OfClass(typeof(Floor));
             var allDoors = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Doors);
             var allWindows = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_Windows);
