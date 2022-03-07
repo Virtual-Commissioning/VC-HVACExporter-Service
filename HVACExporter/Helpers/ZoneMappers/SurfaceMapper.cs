@@ -16,7 +16,8 @@ namespace HVACExporter.Helpers
     public class SurfaceMapper
     {
         public static List<Models.Zone.Surface> MapSurfaces
-            (string analyticalZoneId, Document doc, FilteredElementCollector allAnalyticalSurfaces, FilteredElementCollector allAnalyticalSubSurfaces)
+            (string analyticalZoneId, Document doc, FilteredElementCollector allAnalyticalSurfaces, 
+            FilteredElementCollector allAnalyticalSubSurfaces)
         {
             List<Models.Zone.Surface> allSurfaces = new List<Models.Zone.Surface>();
 
@@ -42,8 +43,9 @@ namespace HVACExporter.Helpers
                     {
                         id = energyAnalysisSurface.Id.ToString();
                     }
-                    
-                    string constructionId = energyAnalysisSurface.Id.ToString(); //Figure out how to associate later
+
+                    Coordinate planeCenter = PlaneCenterMapper.MapPlaneCenter(energyAnalysisSurface, doc);
+                    string constructionId = GetAssociatedConstruction.MapAssociatedConstruction(planeCenter, doc, energyAnalysisSurface);
                     string surfType = energyAnalysisSurface.SurfaceType.ToString();
                     string zoneTag = analyticalZoneId;
                     OutsideBC outsideBC = OutsideBCMapper.MapOutsideBC(energyAnalysisSurface); //

@@ -91,7 +91,8 @@
     <Compile Include="Helpers\PromptTokenForm.Designer.cs">
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\WallGeometryMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\GetAssociatedConstruction.cs" />
+    <Compile Include="Helpers\ZoneMappers\PlaneCenterMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\ZoneShadingMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\InfiltrationMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\HVACMapper.cs" />
@@ -108,7 +109,6 @@
     <Compile Include="Helpers\ZoneMappers\SurfaceGeometryMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\SubSurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\DoorAndWindowSubSurfaceMapper.cs" />
-    <Compile Include="Helpers\ZoneMappers\WallSurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\SurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMapper.cs" />
     <Compile Include="Models\Component.cs" />
@@ -207,7 +207,6 @@
     <Compile Include="Models\Spaces\Zone\Surface\OutsideBC.cs" />
     <Compile Include="Models\Spaces\Zone\Surface\Surface.cs" />
     <Compile Include="Models\Spaces\Zone\Surface\SurfaceType.cs" />
-    <Compile Include="Models\Spaces\Zone\Surface\SurfType - Copy.cs" />
     <Compile Include="Models\Spaces\Zone\Surface\VertexCoordinates.cs" />
     <Compile Include="Models\Spaces\Zone\Zone.cs" />
     <Compile Include="Models\System\Systems.cs" />
