@@ -1,16 +1,21 @@
-﻿using HVACExporter.Models.Spaces;
-using HVACExporter.Models.System;
+﻿using HVACExporter.Models.System;
+using HVACExporter.Models.Zone;
+using HVACExporter.Models.Zones;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace HVACExporter.Helpers
 {
     public class JsonParser
     {
-        public static string ParseToJson(Systems systemToParse, Spaces spacesToParse, string userId, string projectId)
+        public static string ParseToJson(Systems systemToParse, List<Materials> materialsToParse, 
+            List<Constructions> constructionsToParse, Zones zonesToParse, string userId, string projectId)
         {
             string system = ParseSystemToJson(systemToParse);
-            string spaces = ParseSpacesToJson(spacesToParse);
+            string materials = ParseMaterialsToJson(materialsToParse);
+            string constructions = ParseConstructionsToJson(constructionsToParse);
+            string zones = ParseZonesToJson(zonesToParse);
 
             string userIdTag = "\"userID\": ";
             string projectIdTag = "\"projectID\": ";
@@ -25,9 +30,14 @@ namespace HVACExporter.Helpers
                 "\"system\":",
                 system,
                 ",",
-                "\"spaces\":",
-                spaces,
-                "}");
+                "\"materials\":",
+                materials,
+                ",",
+                "\"constructions\":",
+                constructions,
+                ",",
+                "\"zones\":",
+                zones);
 
             return jsonToWebApp;
         }
@@ -37,11 +47,21 @@ namespace HVACExporter.Helpers
             return JsonConvert.SerializeObject(systemToParse);
         }
 
-        public static string ParseSpacesToJson(Spaces spacesToParse)
+        public static string ParseMaterialsToJson(List<Materials> materialsToParse)
         {
-            return JsonConvert.SerializeObject(spacesToParse);
+            return JsonConvert.SerializeObject(materialsToParse);
         }
 
-        
+        public static string ParseConstructionsToJson(List<Constructions> constructionsToParse)
+        {
+            return JsonConvert.SerializeObject(constructionsToParse);
+        }
+
+        public static string ParseZonesToJson(Zones zonesToParse)
+        {
+            return JsonConvert.SerializeObject(zonesToParse);
+        }
+
+
     }
 }

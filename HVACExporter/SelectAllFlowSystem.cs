@@ -16,6 +16,8 @@ using HVACExporter.Models.Spaces.Zone;
 using System.Collections.Generic;
 using HVACExporter.Models.Zones;
 using Autodesk.Revit.DB.Analysis;
+using System;
+using System.IO;
 
 namespace HVACExporter
 {
@@ -54,7 +56,17 @@ namespace HVACExporter
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 
-            string serializedJson = JsonParser.ParseToJson(system, spaces, userId, projectId);
+            string serializedJson = JsonParser.ParseToJson(system, allMaterials, allConstructions, zones, userId, projectId);
+            
+            /*
+            File.WriteAllText(@"C:\Users\jon-m\Desktop\SelectAllFlowSystems.json", JsonConvert.SerializeObject(serializedJson));
+            Console.WriteLine(serializedJson);
+            using (StreamWriter file = File.CreateText(@"C:\Users\jon-m\Desktop\SelectAllFlowSystems.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, serializedJson);
+            }
+            */
 
             HttpClientHelper.POSTData(serializedJson, url);
 
