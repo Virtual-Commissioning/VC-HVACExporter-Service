@@ -14,7 +14,7 @@ namespace HVACExporter.Helpers
     {
         public static List<SurfaceMat> MapAllRoofs(FilteredElementCollector allRoofs, Autodesk.Revit.DB.Document doc)   
         {
-            var layerRoofMaterials = new List<SurfaceMat>();
+            List<SurfaceMat> layerRoofMaterials = new List<SurfaceMat>();
             
             foreach (RoofBase roof in allRoofs)
             {
@@ -29,16 +29,21 @@ namespace HVACExporter.Helpers
                     string name = layerRoofMaterial.Name;
                     //Roughness can only be found for the whole construction - default = 0
                     int roughness = 0;
-
-                    Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerRoofMaterial, doc);
-
-                    //Default values
+                    //Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerRoofMaterial, doc);
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
-                    double visibleAbsorbtance = 0; 
+                    double visibleAbsorbtance = 0;
+                    // Getting thermal assets:
+                    ElementId thermalAssetId = layerRoofMaterial.ThermalAssetId;
+                    PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;
+                    if (pse == null) { return null; }
+                    ThermalAsset asset = pse.GetThermalAsset();
+                    double conductivity = asset.ThermalConductivity;
+                    double density = asset.Density;
+                    double specificHeat = asset.SpecificHeat;
 
-                    var layerRoofMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
-                        thermalProperties, thermalAbsorbtance,
+                    SurfaceMat layerRoofMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
+                        conductivity, density, specificHeat, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 
                     layerRoofMaterials.Add(layerRoofMaterialToAdd);

@@ -16,35 +16,35 @@ namespace HVACExporter.Helpers
 {
     public class AirGapMaterialMapper
     {
-        public static MaterialsOfLayers MapAllMaterials(FilteredElementCollector allWalls, 
+        public static List<SurfaceMat> MapAllMaterials(FilteredElementCollector allWalls, 
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, Document doc)
         {
-            var airGapMaterials = new MaterialsOfLayers();
+            List<SurfaceMat> airGapMaterials = new List<SurfaceMat>();
 
-            var layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
+            List<SurfaceMat> layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
             foreach (SurfaceMat surfaceMat in layerWallMaterials)
             {
                 if (surfaceMat.Name == "Air")
                 {
-                    airGapMaterials.AddMaterial(surfaceMat);
+                    airGapMaterials.Add(surfaceMat);
                 }
             }
-            
-            var layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
+
+            List<SurfaceMat> layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
             foreach (SurfaceMat surfaceMat in layerRoofMaterials)
             {
                 if (surfaceMat.Name == "Air")
                 {
-                    airGapMaterials.AddMaterial(surfaceMat);
+                    airGapMaterials.Add(surfaceMat);
                 }
             }
 
-            var layerFloorMaterials = FloorMaterialMapper.MapAllFloors(allFloors, doc);
+            List<SurfaceMat> layerFloorMaterials = FloorMaterialMapper.MapAllFloors(allFloors, doc);
             foreach (SurfaceMat surfaceMat in layerFloorMaterials)
             {
                 if (surfaceMat.Name == "Air")
                 {
-                    airGapMaterials.AddMaterial(surfaceMat);
+                    airGapMaterials.Add(surfaceMat);
                 }
             }
 

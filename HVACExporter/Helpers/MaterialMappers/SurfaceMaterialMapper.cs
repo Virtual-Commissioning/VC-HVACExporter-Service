@@ -16,37 +16,38 @@ namespace HVACExporter.Helpers
 {
     class SurfaceMaterialMapper
     {
-        public static MaterialsOfLayers MapAllSurfaceMaterials(FilteredElementCollector allWalls, 
+        public static List<SurfaceMat> MapAllSurfaceMaterials(FilteredElementCollector allWalls, 
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, Document doc)
         {
-            var allSurfaceMaterials = new MaterialsOfLayers();
+            List<SurfaceMat> allSurfaceMaterials = new List<SurfaceMat>();
 
-            var layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
+            List<SurfaceMat> layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
             foreach (SurfaceMat surfaceMat in layerWallMaterials)
             {
                 if (surfaceMat.Name != "Air")
                 {
-                    allSurfaceMaterials.AddMaterial(surfaceMat);
+                    allSurfaceMaterials.Add(surfaceMat);
                 }
             }
-            
-            var layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
+
+            List<SurfaceMat> layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
             foreach (SurfaceMat surfaceMat in layerRoofMaterials)
             {
                 if (surfaceMat.Name != "Air")
                 {
-                    allSurfaceMaterials.AddMaterial(surfaceMat);
+                    allSurfaceMaterials.Add(surfaceMat);
                 }
             }
 
-            var layerFloorMaterials = FloorMaterialMapper.MapAllFloors(allFloors, doc);
+            List<SurfaceMat> layerFloorMaterials = FloorMaterialMapper.MapAllFloors(allFloors, doc);
             foreach (SurfaceMat surfaceMat in layerFloorMaterials)
             {
                 if (surfaceMat.Name != "Air")
                 {
-                    allSurfaceMaterials.AddMaterial(surfaceMat);
+                    allSurfaceMaterials.Add(surfaceMat);
                 }
             }
+            
 
             return allSurfaceMaterials;
         }

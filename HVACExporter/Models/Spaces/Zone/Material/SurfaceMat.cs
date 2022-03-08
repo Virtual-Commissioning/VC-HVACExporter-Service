@@ -12,20 +12,25 @@ namespace HVACExporter.Models.Zone
         public string Id { get; set; }
         public int Roughness { get; set; }
         public double Thickness { get; set; }
-        public ThermalProperties ThermalProperties { get; set; }
+        public double Conductivity { get; set; }
+        public double Density { get; set; }
+        public double SpecificHeat { get; set; }
+        //public ThermalProperties ThermalProperties { get; set; }
         public double ThermalAbsorbtance { get; set; }
         public double SolarAbsorbtance { get; set; }
         public double VisibleAbsorbtance { get; set; }
 
         public SurfaceMat(string name, string id, int roughness, double thickness, 
-            ThermalProperties thermalProperties, double thermalAbsorbtance, 
+            double conductivity, double density, double specificHeat, double thermalAbsorbtance, 
             double solarAbsorbtance, double visibleAbsorbtance)
         {
             Name = name;
             Id = id;
             Roughness = roughness;
             Thickness = thickness;
-            ThermalProperties = thermalProperties;
+            Conductivity = conductivity;
+            Density = density;
+            SpecificHeat = specificHeat;
             ThermalAbsorbtance = thermalAbsorbtance;
             SolarAbsorbtance = solarAbsorbtance;
             VisibleAbsorbtance = visibleAbsorbtance;

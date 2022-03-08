@@ -8,12 +8,12 @@ namespace HVACExporter.Models.Zone
 {
     public class Materials
     {
-        public MaterialsOfLayers SurfaceMaterials { get; set; }
-        public MaterialsOfLayers AirGapMaterials { get; set; }
+        public List<SurfaceMat> SurfaceMaterials { get; set; }
+        public List<SurfaceMat> AirGapMaterials { get; set; }
         public List<DoorMat> DoorMaterials { get; set; }
         public List<WindowMat> WindowMaterials { get; set; }
 
-        public Materials(MaterialsOfLayers surfaceMaterials, MaterialsOfLayers airGapMaterials, 
+        public Materials(List<SurfaceMat> surfaceMaterials, List<SurfaceMat> airGapMaterials, 
             List<DoorMat> doorMaterials, List<WindowMat> windowMaterials)
         {
             SurfaceMaterials = surfaceMaterials;

@@ -29,14 +29,21 @@ namespace HVACExporter.Helpers
                     Material layerFloorMaterial = doc.GetElement(layer.MaterialId) as Material;
                     string name = layerFloorMaterial.Name;
                     int roughness = 0;
-                    Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerFloorMaterial, doc);
-
+                    //Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerFloorMaterial, doc);
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
                     double visibleAbsorbtance = 0;
+                    // Getting thermal assets:
+                    ElementId thermalAssetId = layerFloorMaterial.ThermalAssetId;
+                    PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;
+                    if (pse == null) continue;
+                    ThermalAsset asset = pse.GetThermalAsset();
+                    double conductivity = asset.ThermalConductivity;
+                    double density = asset.Density;
+                    double specificHeat = asset.SpecificHeat;
 
                     SurfaceMat layerFloorMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
-                        thermalProperties, thermalAbsorbtance,
+                        conductivity, density, specificHeat, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 
                     layerFloorMaterials.Add(layerFloorMaterialToAdd);

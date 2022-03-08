@@ -15,7 +15,7 @@ namespace HVACExporter.Helpers
         public static List<SurfaceMat> MapAllWalls(FilteredElementCollector allWalls, Autodesk.Revit.DB.Document doc)   //(Autodesk.Revit.DB.Document doc, Wall walls)    
         {
             //var layerWallMaterials = new MaterialsOfLayers();
-            var layerWallMaterials = new List<SurfaceMat>();
+            List<SurfaceMat> layerWallMaterials = new List<SurfaceMat>();
 
             foreach (Wall wall in allWalls)
             {
@@ -29,13 +29,21 @@ namespace HVACExporter.Helpers
                     Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
                     string name = layerWallMaterial.Name;
                     int roughness = 0;
-                    Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerWallMaterial, doc);
+                    //Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerWallMaterial, doc);
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
-                    double visibleAbsorbtance = 0; 
+                    double visibleAbsorbtance = 0;
+                    // Getting thermal assets:
+                    ElementId thermalAssetId = layerWallMaterial.ThermalAssetId;
+                    PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;
+                    if (pse == null) { return null; }
+                    ThermalAsset asset = pse.GetThermalAsset();
+                    double conductivity = asset.ThermalConductivity;
+                    double density = asset.Density;
+                    double specificHeat = asset.SpecificHeat;
 
-                    var layerWallMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
-                        thermalProperties, thermalAbsorbtance,
+                    SurfaceMat layerWallMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
+                        conductivity, density, specificHeat, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 
                     layerWallMaterials.Add(layerWallMaterialToAdd);

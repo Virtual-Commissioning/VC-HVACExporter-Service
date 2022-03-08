@@ -8,7 +8,7 @@ namespace HVACExporter.Helpers.MaterialMappers
     {
         public static List<DoorMat> MapAllDoors(FilteredElementCollector allDoors, Autodesk.Revit.DB.Document doc)
         {
-            var doorMaterials = new List<DoorMat>();
+            List<DoorMat> doorMaterials = new List<DoorMat>();
 
             foreach (FamilyInstance door in allDoors)
             {
@@ -16,14 +16,13 @@ namespace HVACExporter.Helpers.MaterialMappers
                 FamilySymbol doorInfo = doc.GetElement(doorSymbol) as FamilySymbol;
 
                 string id = door.UniqueId;
-                string tag = door.Id.ToString();
                 int roughness = 0;
                 double thermalResistance = doorInfo.GetThermalProperties().ThermalResistance;
                 double thermalAbsorbtance = 0;
                 double solarAbsorbtance = 0;
                 double visibleTransmittance = 0;
 
-                var doorMaterial = new DoorMat(id, tag, roughness, thermalResistance,
+                DoorMat doorMaterial = new DoorMat(id, roughness, thermalResistance,
                     thermalAbsorbtance, solarAbsorbtance, visibleTransmittance);
 
                 doorMaterials.Add(doorMaterial);
