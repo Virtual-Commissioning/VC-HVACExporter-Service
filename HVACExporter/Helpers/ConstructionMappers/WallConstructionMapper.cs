@@ -13,9 +13,9 @@ namespace HVACExporter.Helpers
 {
     class WallConstructionMapper
     {
-        public static List<SurfaceConstruction> MapAllWalls(FilteredElementCollector allSpaces, Autodesk.Revit.DB.Document doc)
+        public static List<Dictionary<string, SurfaceConstruction>> MapAllWalls(FilteredElementCollector allSpaces, Autodesk.Revit.DB.Document doc)
         {
-            List<SurfaceConstruction> surfaceConstructions = new List<SurfaceConstruction>();
+            List<Dictionary<string, SurfaceConstruction>> surfaceConstructions = new List<Dictionary<string, SurfaceConstruction>>();
 
             foreach (SpatialElement space in allSpaces)
             {
@@ -31,24 +31,26 @@ namespace HVACExporter.Helpers
 
                         if (wall != null)
                         {
-                            string constructionId = wall.WallType.UniqueId.ToString();
-                            string analyticalConstructionId = wall.WallType.GetAnalyticalModelId().ToString();
-                            string name = wall.WallType.Name;
+                            string constructionId = wall.Id.ToString();
                             CompoundStructure structure = wall.WallType.GetCompoundStructure();
                             IList<CompoundStructureLayer> layers = structure.GetLayers();
 
-                            List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
+                            List<Dictionary<string, string>> constructionLayers = new List<Dictionary<string, string>>();
 
                             foreach (CompoundStructureLayer layer in layers)
                             {
-                                string layerId = layer.LayerId.ToString();
+                                int layerId = layer.LayerId + 1;
+                                string layerName = "Layer" + layerId.ToString();
                                 string materialId = layer.MaterialId.ToString();
-                                ConstructionLayer constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
-                                constructionLayers.Add(constructionLayerToAdd);
+                                Dictionary<string, string> layerValues = new Dictionary<string, string>();
+                                layerValues.Add(layerName, materialId);
+                                constructionLayers.Add(layerValues);
                             }
 
-                            SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
-                            surfaceConstructions.Add(surfaceConstructionToAdd);
+                            SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, constructionLayers);
+                            Dictionary<string, SurfaceConstruction> linkedSurfaceConstruction = new Dictionary<string, SurfaceConstruction>();
+                            linkedSurfaceConstruction.Add(constructionId, surfaceConstructionToAdd);
+                            surfaceConstructions.Add(linkedSurfaceConstruction);
                         }
                         else continue;
 

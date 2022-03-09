@@ -7,26 +7,25 @@ namespace HVACExporter.Helpers
 {
     class WindowConstructionMapper
     {
-        public static List<SurfaceConstruction> MapAllWindows(FilteredElementCollector allWindows, Autodesk.Revit.DB.Document doc)   //(Autodesk.Revit.DB.Document doc, Wall walls)    
+        public static List<Dictionary<string, SurfaceConstruction>> MapAllWindows(FilteredElementCollector allWindows, Autodesk.Revit.DB.Document doc)   //(Autodesk.Revit.DB.Document doc, Wall walls)    
         {
-            List<SurfaceConstruction> surfaceConstructions = new List<SurfaceConstruction>();
+            List<Dictionary<string, SurfaceConstruction>> surfaceConstructions = new List<Dictionary<string, SurfaceConstruction>>();
 
             foreach (FamilyInstance window in allWindows)
             {
-                ElementId windowSymbol = window.Symbol.Id;
+                string constructionId = window.Id.ToString();
+                string materialId = window.Id.ToString();
+                string layerId = "Layer1";
 
-                string constructionId = window.UniqueId;
-                string analyticalConstructionId = window.GetAnalyticalModelId().ToString();
-                string name = window.Name;
-                string materialId = window.UniqueId;
-                string layerId = "0";
-
-                List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
-                ConstructionLayer constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
+                List<Dictionary<string, string>> constructionLayers = new List<Dictionary<string, string>>();
+                Dictionary<string, string> constructionLayerToAdd = new Dictionary<string, string>();
+                constructionLayerToAdd.Add(layerId, materialId);
                 constructionLayers.Add(constructionLayerToAdd);
+                SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, constructionLayers);
 
-                SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
-                surfaceConstructions.Add(surfaceConstructionToAdd);
+                Dictionary<string, SurfaceConstruction> linkedSurfaceConstruction = new Dictionary<string, SurfaceConstruction>();
+                linkedSurfaceConstruction.Add(constructionId, surfaceConstructionToAdd);
+                surfaceConstructions.Add(linkedSurfaceConstruction);
 
             }
 
