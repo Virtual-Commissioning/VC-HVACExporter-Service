@@ -10,12 +10,12 @@ namespace HVACExporter.Helpers
     public class JsonParser
     {
         public static string ParseToJson(Systems systemToParse, List<Materials> materialsToParse, 
-            List<Constructions> constructionsToParse, Zones zonesToParse, string userId, string projectId)
+            List<Constructions> constructionsToParse, Dictionary<string, Site> siteToParse, string userId, string projectId)
         {
             string system = ParseSystemToJson(systemToParse);
             string materials = ParseMaterialsToJson(materialsToParse);
             string constructions = ParseConstructionsToJson(constructionsToParse);
-            string zones = ParseZonesToJson(zonesToParse);
+            string site = ParseSiteToJson(siteToParse);
 
             string userIdTag = "\"userID\": ";
             string projectIdTag = "\"projectID\": ";
@@ -36,8 +36,8 @@ namespace HVACExporter.Helpers
                 "\"constructions\":",
                 constructions,
                 ",",
-                "\"zones\":",
-                zones);
+                "\"BOT\":",
+                site);
 
             return jsonToWebApp;
         }
@@ -57,9 +57,9 @@ namespace HVACExporter.Helpers
             return JsonConvert.SerializeObject(constructionsToParse);
         }
 
-        public static string ParseZonesToJson(Zones zonesToParse)
+        public static string ParseSiteToJson(Dictionary<string, Site> siteToParse)
         {
-            return JsonConvert.SerializeObject(zonesToParse);
+            return JsonConvert.SerializeObject(siteToParse);
         }
 
 

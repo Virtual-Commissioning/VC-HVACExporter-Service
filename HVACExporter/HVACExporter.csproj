@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\SiteShadingMapper.cs" />
+    <Compile Include="Helpers\SiteMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\FlowControllerMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\FittingMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\MechanicalEquipmentMapper.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Helpers\MaterialMappers\SurfaceMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMapper.cs" />
     <Compile Include="Helpers\BuildingShadingMapper.cs" />
+    <Compile Include="Helpers\BuildingMapper.cs" />
     <Compile Include="Helpers\SpaceMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\GeometricMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\IndoorClimateMapper.cs" />

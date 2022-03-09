@@ -8,8 +8,11 @@ namespace HVACExporter.Models.Zone
 {
     public class Zone
     {
-        public string Id { get; set; }
-        public GeometricTypes.Coordinate Point { get; set; }
+        //public string Id { get; set; }
+        public string ZoneId { get; set; }
+        public double XOrigin { get; set; }
+        public double YOrigin { get; set; }
+        public double ZOrigin { get; set; }
         public string ZoneType { get; set; }
         public double CeilingHeight { get; set; }
         public double FloorArea { get; set; }
@@ -17,27 +20,28 @@ namespace HVACExporter.Models.Zone
         public string IntConvAlg { get; set; }
         public string OutConvAlg { get; set; }
         public bool IncludedInTotArea { get; set; }
-        public string AnalyticalZoneId { get; set; }
         public List<Surface> Surfaces { get; set; }
         public InternalGains InternalGains { get; set; }
         public HVAC HVAC { get; set; }
         public Infiltration Infiltration { get; set; }
         public ShadingZone ShadingZone { get; set; }
         
-        public Zone(string id, GeometricTypes.Coordinate point, string zoneType, double ceilingHeight, 
-            double floorArea, double zoneVolume, string intConvAlg, string outConvAlg, string includedInTotArea,
-            string analyticalZoneId, List<Surface> surfaces, InternalGains internalGains, HVAC hvac,
+        public Zone(string zoneId, double xOrigin, double yOrigin, double zOrigin, string zoneType, 
+            double ceilingHeight, double floorArea, double zoneVolume, string intConvAlg, string outConvAlg, 
+            bool includedInTotArea, List<Surface> surfaces, InternalGains internalGains, HVAC hvac,
             Infiltration infiltration, ShadingZone shadingZone)
         {
-            Id = id;
-            Point = point;
+            ZoneId = zoneId;
+            XOrigin = xOrigin;
+            YOrigin = yOrigin;
+            ZOrigin = zOrigin;
             ZoneType = zoneType;
             CeilingHeight = ceilingHeight;
             FloorArea = floorArea;
             ZoneVolume = zoneVolume;
             IntConvAlg = intConvAlg;
             OutConvAlg = outConvAlg;
-            AnalyticalZoneId = analyticalZoneId;
+            IncludedInTotArea = includedInTotArea;
             Surfaces = surfaces;
             InternalGains = internalGains;
             HVAC = hvac;

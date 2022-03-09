@@ -16,12 +16,11 @@ namespace HVACExporter.Helpers
 {
     public class ZoneMapper
     {
-        public static Zones MapAllZones
+        public static List<Dictionary<string, Zone>> MapAllZones
             (FilteredElementCollector allSpaces, Document doc, FilteredElementCollector allAnalyticalSurfaces, 
             FilteredElementCollector allAnalyticalSpaces, FilteredElementCollector allAnalyticalSubSurfaces)
         {
-            var allZones = new Zones();
-
+            List<Dictionary<string, Zone>> allZones = new List<Dictionary<string, Zone>>();
             int n = 0;
             List<EnergyAnalysisSpace> energyAnalysisSpaces = new List<EnergyAnalysisSpace>();
             foreach (EnergyAnalysisSpace space in allAnalyticalSpaces)
@@ -34,17 +33,18 @@ namespace HVACExporter.Helpers
                 if (zone.Category.Name != "Spaces") continue;
                 //string tag = zone.Id.ToString();
                 Autodesk.Revit.DB.Mechanical.Space associatedSpace = (Autodesk.Revit.DB.Mechanical.Space)zone;
-                Coordinate point;   //Location point for parent space, not analytical space.
+                double x, y, z;
                 if (associatedSpace.Location == null)
                 {
-                    point = null;
+                    x = 0;
+                    y = 0;
+                    z = 0;
                 }
                 else
                 {
-                    double x = ((LocationPoint)associatedSpace.Location).Point.X;
-                    double y = ((LocationPoint)associatedSpace.Location).Point.Y;
-                    double z = ((LocationPoint)associatedSpace.Location).Point.Z;
-                    point = new Coordinate(x, y, z);
+                    x = ((LocationPoint)associatedSpace.Location).Point.X;
+                    y = ((LocationPoint)associatedSpace.Location).Point.Y;
+                    z = ((LocationPoint)associatedSpace.Location).Point.Z;
                 }
                 string zoneType;
                 if (associatedSpace.SpaceType.ToString() == string.Empty)
@@ -55,14 +55,14 @@ namespace HVACExporter.Helpers
                 {
                     zoneType = associatedSpace.SpaceType.ToString();
                 }
-                string id = associatedSpace.Id.ToString();
+                //string id = associatedSpace.Id.ToString();
+                string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
                 double ceilingHeight = associatedSpace.UnboundedHeight;
                 double floorArea = associatedSpace.Area;
                 double zoneVolume = (associatedSpace.UnboundedHeight - associatedSpace.Level.Elevation) * floorArea;
                 string intConvAlg = "0";
                 string outConvAlg = "0";
-                string includedInTotArea = "0";
-                string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
+                bool includedInTotArea = true;
 
                 List<Surface> surfaces = SurfaceMapper.MapSurfaces
                     (analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
@@ -70,26 +70,26 @@ namespace HVACExporter.Helpers
                 HVAC hvac = HVACMapper.MapHVAC(associatedSpace);
                 Infiltration infiltration = InfiltrationMapper.MapInfiltration(associatedSpace);
                 ShadingZone shadingZone = ZoneShadingMapper.MapZoneShading(associatedSpace);
-                //ShadingBuilding shadingBuilding = ShadingBuildingMapper.MapShadingBuilding(room);
-
-
-                var zoneToAdd = new Zone(id, 
-                                     point,
+                var zoneToAdd = new Zone(analyticalZoneId,
+                                     x,
+                                     y,
+                                     z,
                                      zoneType,
                                      ceilingHeight,
                                      floorArea,
                                      zoneVolume,
                                      intConvAlg,
                                      outConvAlg,
-                                     includedInTotArea, 
-                                     analyticalZoneId,
+                                     includedInTotArea,
                                      surfaces, 
                                      internalGains,
                                      hvac,
                                      infiltration,
                                      shadingZone);
 
-                allZones.AddZone(zoneToAdd);
+                Dictionary<string, Zone> linkedZone = new Dictionary<string, Zone>();
+                linkedZone.Add(analyticalZoneId, zoneToAdd);
+                allZones.Add(linkedZone);
 
                 n++;
             }
