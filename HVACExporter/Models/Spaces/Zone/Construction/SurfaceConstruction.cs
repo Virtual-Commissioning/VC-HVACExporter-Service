@@ -10,15 +10,11 @@ namespace HVACExporter.Models.Zone
     public class SurfaceConstruction
     {
         public string ConstructionId { get; set; }
-        public string AnalyticalConstructionId { get; set; }
-        public List<ConstructionLayer> ConstructionLayers { get; set; }
-        public string Name { get; set; }
+        public List<Dictionary<string, string>> ConstructionLayers { get; set; }
 
-        public SurfaceConstruction(string constructionId, string analyticalConstructionId, string name, List<ConstructionLayer> constructionLayers)
+        public SurfaceConstruction(string constructionId, List<Dictionary<string, string>> constructionLayers)
         {
             ConstructionId = constructionId;
-            AnalyticalConstructionId = analyticalConstructionId;
-            Name = name;
             ConstructionLayers = constructionLayers;
         }
     }

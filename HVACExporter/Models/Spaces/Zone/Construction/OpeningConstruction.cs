@@ -8,14 +8,17 @@ namespace HVACExporter.Models.Zone
 {
     public class OpeningConstruction
     {
-        public string OpeningConstructionId { get; set; }
-        public string AnalyticalOpeningConstructionId { get; set; }
-        public OpeningConstructionParameters OpeningConstructionParameters { get; set; }
-        public OpeningConstruction(string openingConstructionId, string analyticalOpeningConstructionId, OpeningConstructionParameters openingConstructionParameters)
+        public string Id { get; set; }
+        public string AirExchangeMethod { get; set; }
+        public string SimpleMixingAirChangesPerHour { get; set; }
+        public string SimpleMixingScheduleName { get; set; }
+
+        public OpeningConstruction(string id,string airExchangeMethod, string simpleMixingAirChangesPerHour, string simpleMixingScheduleName)
         {
-            OpeningConstructionId = openingConstructionId;
-            AnalyticalOpeningConstructionId = analyticalOpeningConstructionId;
-            OpeningConstructionParameters = openingConstructionParameters;
+            Id = id;
+            AirExchangeMethod = airExchangeMethod;
+            SimpleMixingAirChangesPerHour = simpleMixingAirChangesPerHour;
+            SimpleMixingScheduleName = simpleMixingScheduleName;
         }
     }
 }
