@@ -34,7 +34,7 @@ namespace HVACExporter
             Spaces spaces = new Spaces();
             List<Materials> allMaterials = new List<Materials>();
             List<Constructions> allConstructions = new List<Constructions>();
-            Zones zones = new Zones();
+            Dictionary<string, Site> bot = new Dictionary<string, Site>();
 
             var allElements = HelperFunctions.GetConnectorElements(doc);
             var allSpaces = new FilteredElementCollector(doc).WherePasses(new ElementClassFilter(typeof(SpatialElement))); //New way to filter classes
@@ -52,22 +52,12 @@ namespace HVACExporter
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
             allConstructions = ConstructionMapper.MapAllConstructions(allWalls, allFloors, allRoofs, allSpaces, allDoors, allWindows, allOpenings, doc);
-            zones = ZoneMapper.MapAllZones(allSpaces, doc, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces);
+            bot.Add("site", SiteMapper.MapSite(doc, allSpaces, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces));
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 
-            string serializedJson = JsonParser.ParseToJson(system, allMaterials, allConstructions, zones, userId, projectId);
+            string serializedJson = JsonParser.ParseToJson(system, allMaterials, allConstructions, bot, userId, projectId);
             
-            /*
-            File.WriteAllText(@"C:\Users\jon-m\Desktop\SelectAllFlowSystems.json", JsonConvert.SerializeObject(serializedJson));
-            Console.WriteLine(serializedJson);
-            using (StreamWriter file = File.CreateText(@"C:\Users\jon-m\Desktop\SelectAllFlowSystems.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, serializedJson);
-            }
-            */
-
             HttpClientHelper.POSTData(serializedJson, url);
 
             return Result.Succeeded;
