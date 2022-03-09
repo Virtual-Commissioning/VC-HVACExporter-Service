@@ -6,9 +6,9 @@ namespace HVACExporter.Helpers.MaterialMappers
 {
     class WindowMaterialMapper
     {
-        public static List<WindowMat> MapAllWindows(FilteredElementCollector allWindows, Autodesk.Revit.DB.Document doc)
+        public static List<Dictionary<string, WindowMat>> MapAllWindows(FilteredElementCollector allWindows, Autodesk.Revit.DB.Document doc)
         {
-            List<WindowMat> windowMaterials = new List<WindowMat>();
+            List<Dictionary<string, WindowMat>> windowMaterials = new List<Dictionary<string, WindowMat>>();
 
             foreach (FamilyInstance window in allWindows)
             {
@@ -22,8 +22,9 @@ namespace HVACExporter.Helpers.MaterialMappers
 
                 WindowMat windowMaterial = new WindowMat(id, thermalResistance,
                     solarHeatGain, visibleTransmittance);
-
-                windowMaterials.Add(windowMaterial);
+                Dictionary<string, WindowMat> linkedWindowMaterial = new Dictionary<string, WindowMat>();
+                linkedWindowMaterial.Add(windowMaterial.Id, windowMaterial);
+                windowMaterials.Add(linkedWindowMaterial);
 
             }
             return windowMaterials;

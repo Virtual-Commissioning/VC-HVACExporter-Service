@@ -29,7 +29,6 @@ namespace HVACExporter.Helpers
                     Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
                     string name = layerWallMaterial.Name;
                     int roughness = 0;
-                    //Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerWallMaterial, doc);
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
                     double visibleAbsorbtance = 0;

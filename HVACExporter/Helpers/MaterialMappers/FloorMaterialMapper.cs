@@ -25,11 +25,9 @@ namespace HVACExporter.Helpers
                 {
                     string id = layer.MaterialId.ToString();
                     double thickness = layer.Width;
-
                     Material layerFloorMaterial = doc.GetElement(layer.MaterialId) as Material;
                     string name = layerFloorMaterial.Name;
                     int roughness = 0;
-                    //Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerFloorMaterial, doc);
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
                     double visibleAbsorbtance = 0;

@@ -16,17 +16,19 @@ namespace HVACExporter.Helpers
 {
     public class AirGapMaterialMapper
     {
-        public static List<SurfaceMat> MapAllMaterials(FilteredElementCollector allWalls, 
+        public static List<Dictionary<string, SurfaceMat>> MapAllMaterials(FilteredElementCollector allWalls, 
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, Document doc)
         {
-            List<SurfaceMat> airGapMaterials = new List<SurfaceMat>();
+            List<Dictionary<string, SurfaceMat>> airGapMaterials = new List<Dictionary<string, SurfaceMat>>();
 
             List<SurfaceMat> layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
             foreach (SurfaceMat surfaceMat in layerWallMaterials)
             {
                 if (surfaceMat.Name == "Air")
                 {
-                    airGapMaterials.Add(surfaceMat);
+                    Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    airGapMaterials.Add(linkedSurfaceMat);
                 }
             }
 
@@ -35,7 +37,9 @@ namespace HVACExporter.Helpers
             {
                 if (surfaceMat.Name == "Air")
                 {
-                    airGapMaterials.Add(surfaceMat);
+                    Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    airGapMaterials.Add(linkedSurfaceMat);
                 }
             }
 
@@ -44,7 +48,9 @@ namespace HVACExporter.Helpers
             {
                 if (surfaceMat.Name == "Air")
                 {
-                    airGapMaterials.Add(surfaceMat);
+                    Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    airGapMaterials.Add(linkedSurfaceMat);
                 }
             }
 
