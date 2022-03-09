@@ -75,7 +75,6 @@
     <Compile Include="Helpers\MaterialMappers\AirGapMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMappers\WindowMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMappers\DoorMaterialMapper.cs" />
-    <Compile Include="Helpers\MaterialMappers\GetThermalAsset.cs" />
     <Compile Include="Helpers\MaterialMappers\FloorMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMappers\RoofMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMappers\WallMaterialMapper.cs" />

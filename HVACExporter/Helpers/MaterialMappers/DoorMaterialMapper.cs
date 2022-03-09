@@ -6,9 +6,9 @@ namespace HVACExporter.Helpers.MaterialMappers
 {
     class DoorMaterialMapper
     {
-        public static List<DoorMat> MapAllDoors(FilteredElementCollector allDoors, Autodesk.Revit.DB.Document doc)
+        public static List<Dictionary<string, DoorMat>> MapAllDoors(FilteredElementCollector allDoors, Autodesk.Revit.DB.Document doc)
         {
-            List<DoorMat> doorMaterials = new List<DoorMat>();
+            List<Dictionary<string, DoorMat>> doorMaterials = new List<Dictionary<string, DoorMat>>();
 
             foreach (FamilyInstance door in allDoors)
             {
@@ -21,12 +21,12 @@ namespace HVACExporter.Helpers.MaterialMappers
                 double thermalAbsorbtance = 0;
                 double solarAbsorbtance = 0;
                 double visibleTransmittance = 0;
-
                 DoorMat doorMaterial = new DoorMat(id, roughness, thermalResistance,
                     thermalAbsorbtance, solarAbsorbtance, visibleTransmittance);
+                Dictionary<string, DoorMat> linkedDoorMaterial = new Dictionary<string, DoorMat>();
 
-                doorMaterials.Add(doorMaterial);
-
+                linkedDoorMaterial.Add(doorMaterial.Id, doorMaterial);
+                doorMaterials.Add(linkedDoorMaterial);
             }
             return doorMaterials;
         }

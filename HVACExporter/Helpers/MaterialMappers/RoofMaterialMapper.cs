@@ -27,9 +27,7 @@ namespace HVACExporter.Helpers
                     double thickness = layer.Width;
                     Material layerRoofMaterial = doc.GetElement(layer.MaterialId) as Material;
                     string name = layerRoofMaterial.Name;
-                    //Roughness can only be found for the whole construction - default = 0
                     int roughness = 0;
-                    //Models.Zone.ThermalProperties thermalProperties = GetThermalProperties.MapThermalProperties(layerRoofMaterial, doc);
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
                     double visibleAbsorbtance = 0;

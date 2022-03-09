@@ -16,17 +16,19 @@ namespace HVACExporter.Helpers
 {
     class SurfaceMaterialMapper
     {
-        public static List<SurfaceMat> MapAllSurfaceMaterials(FilteredElementCollector allWalls, 
+        public static List<Dictionary<string, SurfaceMat>> MapAllSurfaceMaterials(FilteredElementCollector allWalls, 
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, Document doc)
         {
-            List<SurfaceMat> allSurfaceMaterials = new List<SurfaceMat>();
+            List<Dictionary<string, SurfaceMat>> allSurfaceMaterials = new List<Dictionary<string, SurfaceMat>>();
 
             List<SurfaceMat> layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
             foreach (SurfaceMat surfaceMat in layerWallMaterials)
             {
                 if (surfaceMat.Name != "Air")
                 {
-                    allSurfaceMaterials.Add(surfaceMat);
+                    Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    allSurfaceMaterials.Add(linkedSurfaceMat);
                 }
             }
 
@@ -35,7 +37,9 @@ namespace HVACExporter.Helpers
             {
                 if (surfaceMat.Name != "Air")
                 {
-                    allSurfaceMaterials.Add(surfaceMat);
+                    Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    allSurfaceMaterials.Add(linkedSurfaceMat);
                 }
             }
 
@@ -44,7 +48,9 @@ namespace HVACExporter.Helpers
             {
                 if (surfaceMat.Name != "Air")
                 {
-                    allSurfaceMaterials.Add(surfaceMat);
+                    Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    allSurfaceMaterials.Add(linkedSurfaceMat);
                 }
             }
             
