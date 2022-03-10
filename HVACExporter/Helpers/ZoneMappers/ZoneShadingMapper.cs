@@ -1,18 +1,21 @@
 ﻿using HVACExporter.Models.Zone;
+using System.Collections.Generic;
 
 namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 {
     public class ZoneShadingMapper
     {
-        public static ShadingZone MapZoneShading(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+        public static List<ShadingZone> MapZoneShading(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
+            List<ShadingZone> shadingZones = new List<ShadingZone>();
             string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Shading";
             string baseSurfId = "NA";
             string transmSchedule = "NA";
             VertexCoordinates vertexCoordinates = null;
 
             ShadingZone shadingZone = new ShadingZone(id, baseSurfId, transmSchedule, vertexCoordinates);
-            return shadingZone;
+            shadingZones.Add(shadingZone);
+            return shadingZones;
         }
     }
 }
