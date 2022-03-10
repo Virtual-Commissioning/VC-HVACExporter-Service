@@ -9,9 +9,9 @@ namespace HVACExporter.Helpers.ZoneMappers
 {
     public class SubSurfaceGeometryMapper
     {
-        public static List<VertexCoordinates> MapSubSurfaceGeometry(EnergyAnalysisOpening opening, Document doc)
+        public static List<Coordinate> MapSubSurfaceGeometry(EnergyAnalysisOpening opening, Document doc)
         {
-            List<VertexCoordinates> allVertices = new List<VertexCoordinates>();
+            List<Coordinate> vertices = new List<Coordinate>();
 
             Document surfDoc = opening.Document;
             Application app = surfDoc.Application;
@@ -30,22 +30,18 @@ namespace HVACExporter.Helpers.ZoneMappers
                         foreach (Autodesk.Revit.DB.Edge vertex in loop)
                         {
                             IList<XYZ> edgePts = vertex.Tessellate();
-                            List<Coordinate> coordinates = new List<Coordinate>();
+                            double x = edgePts[0].X;
+                            double y = edgePts[0].Y;
+                            double z = edgePts[0].Z;
+                            Coordinate point = new Coordinate(x, y, z);
 
-                            foreach (XYZ curve in edgePts)
-                            {
-                                Coordinate point = new Coordinate(curve.X, curve.Y, curve.Z);
-                                coordinates.Add(point);
-                            }
-                            var vertexCoordinatesToAdd = new VertexCoordinates(coordinates);
-
-                            allVertices.Add(vertexCoordinatesToAdd);
+                            vertices.Add(point);
                         }
                     }
                 }
             }
             
-            return allVertices;
+            return vertices;
         }
     }
 

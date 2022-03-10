@@ -21,9 +21,9 @@ namespace HVACExporter.Helpers
                 string airMixingChangesPerHour = "";
                 string simpleMixingPerHour = "";
                 OpeningConstruction openingConstructionToAdd = new OpeningConstruction(openingConstructionId, airExchangeMethod, airMixingChangesPerHour, simpleMixingPerHour);
-                Dictionary<string, OpeningConstruction> linkedOpeningConstruction = new Dictionary<string, OpeningConstruction>();
-                linkedOpeningConstruction.Add(openingConstructionId, openingConstructionToAdd);
-                allOpeningConstructions.Add(linkedOpeningConstruction);
+                Dictionary<string, OpeningConstruction> linkedOpeningConstructions = new Dictionary<string, OpeningConstruction>();
+                linkedOpeningConstructions.Add(openingConstructionId, openingConstructionToAdd);
+                allOpeningConstructions.Add(linkedOpeningConstructions);
             }
 
             return allOpeningConstructions;

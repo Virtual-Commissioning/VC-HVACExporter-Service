@@ -45,10 +45,10 @@ namespace HVACExporter.Helpers
                     windExposure = false;
                 }
                 string viewFactorToGround = "NA";
-                List<VertexCoordinates> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
+                List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
                 SubSurfOpening subSurfaceToAdd = new SubSurfOpening
                     (id, subSurfType, constructionId, zoneId, outsideBCObj, outsideBC, sunExposure, windExposure, viewFactorToGround, vertices);
-
+                
                 allSubSurfaces.Add(subSurfaceToAdd);
             }
 

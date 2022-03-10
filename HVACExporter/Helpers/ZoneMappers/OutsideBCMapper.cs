@@ -15,16 +15,16 @@ namespace HVACExporter.Helpers.ZoneMappers
 {
     public class OutsideBCMapper
     {
-        public static OutsideBC MapOutsideBC(EnergyAnalysisSurface energyAnalysisSurface)
+        public static string MapOutsideBC(EnergyAnalysisSurface energyAnalysisSurface)
         {
             string outsideBCType;
-            if ((energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" && energyAnalysisSurface.GetAnalyticalOpenings() == null) ||
+            if ((energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" && energyAnalysisSurface.GetAnalyticalOpenings().Count == 0) ||
                 energyAnalysisSurface.SurfaceType.ToString() == "InteriorFloor")
             {
                 outsideBCType = OutBC.Surface.ToString();
             }
             else if (energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" &&
-                energyAnalysisSurface.GetAnalyticalOpenings() != null)
+                energyAnalysisSurface.GetAnalyticalOpenings().Count > 0)
             {
                 outsideBCType = OutBC.Adiabatic.ToString();
             }
@@ -46,9 +46,8 @@ namespace HVACExporter.Helpers.ZoneMappers
             {
                 outsideBCType = null;
             }
-            OutsideBC outsideBC = new OutsideBC(outsideBCType);
 
-            return outsideBC;
+            return outsideBCType;
         }
     }
 }
