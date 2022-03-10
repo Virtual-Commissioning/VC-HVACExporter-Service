@@ -10,6 +10,7 @@ namespace HVACExporter.Models.Zone
     {
         public string Id { get; set; }
         public string ZoneId { get; set; }
+        public string ThermostatName { get; set; }
         public string AvaliabilitySchedule { get; set; }
         public double MaxHeatingSupplyAirTemp { get; set; }
         public double MinCoolingSupplyAirTemp { get; set; }
@@ -39,13 +40,14 @@ namespace HVACExporter.Models.Zone
         public double LatentHeatRecoveryEfficiency { get; set; }
 
 
-        public AirLoadSystem(string id, string zoneId, string avaliabilitySchedule, double maxHeatingSupplyAirTemp, double minCoolingSupplyAirTemp, double maxHeatingSupplyAirHumidity, double minCoolingSupplyAirHumidity,
+        public AirLoadSystem(string id, string zoneId, string thermostatName, string avaliabilitySchedule, double maxHeatingSupplyAirTemp, double minCoolingSupplyAirTemp, double maxHeatingSupplyAirHumidity, double minCoolingSupplyAirHumidity,
             double heatingLimit, double maxHeatingAFR, double maxSensibleHeatingCapacity, double coolingLimit, double maxCoolingAFR, double maxSensibleCoolingCapacity, string heatingAvaliabilitySchedule, string coolingAvaliabilitySchedule,
             string dehumidityControlType, double coolingSensibleHeatingRatio, string humidityControlType, double humiditySetpoint, string outdoorAirMethod, double outAFRPrPerson, double outAFRPrArea, double outAFRPrZone,
             string outdoorAirObject, string demandControlledVentilationType, string outdoorAirEconomizerType, string heatRecoveryType, double sensibleHeatRecoveryEfficiency, double latentHeatRecoveryEfficiency)
         {
             Id = id;
             ZoneId = zoneId;
+            ThermostatName = thermostatName;
             AvaliabilitySchedule = avaliabilitySchedule;
             MaxHeatingSupplyAirTemp = maxHeatingSupplyAirTemp;
             MinCoolingSupplyAirTemp = minCoolingSupplyAirTemp;

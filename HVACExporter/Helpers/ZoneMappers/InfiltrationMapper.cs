@@ -8,16 +8,20 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
         {
             string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Infiltration";
             string zoneId = associatedSpace.Id.ToString();
-            string infiltrationSchedule = "NA";
-            string calculationMethod = "NA";
-            double flowPrExhaustSurfaceArea = 0;
+            string infiltrationSchedule = "";
+            string calculationMethod = "";
+            double designFlowRate = 0;
+            double flowPerZoneFloorArea = 0;
+            double flowPrExteriorSurfaceArea = 0;
+            double airChangesPerHour = 0;
             double ConstantTermCoefficient = 0;
             double tempTermCoefficient = 0;
             double velocityTermCoefficient = 0;
             double velocityTermSqCoefficient = 0;
 
             Infiltration infiltration = new Infiltration(id, zoneId, infiltrationSchedule, calculationMethod,
-                flowPrExhaustSurfaceArea, ConstantTermCoefficient, tempTermCoefficient, velocityTermCoefficient,
+                designFlowRate, flowPerZoneFloorArea, flowPrExteriorSurfaceArea, airChangesPerHour,
+                ConstantTermCoefficient, tempTermCoefficient, velocityTermCoefficient,
                 velocityTermSqCoefficient);
             return infiltration;
         }

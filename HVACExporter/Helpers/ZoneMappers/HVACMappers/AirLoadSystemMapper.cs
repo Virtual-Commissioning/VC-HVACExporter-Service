@@ -13,6 +13,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
         {
             string id = "Zone" + associatedSpace.Id.ToString() + "_" + "AirLoadSystem";
             string zoneId = associatedSpace.Id.ToString();
+            string thermostatName = "Zone" + associatedSpace.Id.ToString() + "_" + "Thermostat";
             string avaliabilitySchedule = "NA";
             double maxHeatingSupplyAirTemp = 0;
             double minCoolingSupplyAirTemp = 0;
@@ -41,7 +42,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             double sensibleheatRecoveryEfficiency = 0;
             double latentHeatRecoveryEfficiency = 0;
 
-            AirLoadSystem airLoadSystem = new AirLoadSystem(id, zoneId, avaliabilitySchedule, maxHeatingSupplyAirTemp,
+            AirLoadSystem airLoadSystem = new AirLoadSystem(id, zoneId, thermostatName, avaliabilitySchedule, maxHeatingSupplyAirTemp,
                 minCoolingSupplyAirTemp, maxHeatingSupplyAirHumidity, minCoolingSupplyAirHumidity, heatingLimit,
                 maxHeatingAFR, maxSensibleHeatingCapacity, coolingLimit, maxCoolingAFT, maxSensibleCoolingCapacity,
                 heatingAvaliabilitySchedule, coolingAvaliabilitySchedule, dehumidityControlType, coolingSensibleHeatingRatio,

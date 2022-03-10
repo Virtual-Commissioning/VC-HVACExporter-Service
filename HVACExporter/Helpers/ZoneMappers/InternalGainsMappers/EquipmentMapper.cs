@@ -9,23 +9,25 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 {
     public class EquipmentMapper
     {
-        public static Equipment MapEquipment(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+        public static List<Equipment> MapEquipment(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
+            List<Equipment> equipment = new List<Equipment>();
             string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Equipment";
             string zoneId = associatedSpace.Id.ToString();
-            string equipmentSchedule = "NA";
-            string calculationMethod = "NA";
-            double designLevel = 1;
+            string equipmentSchedule = "";
+            string calculationMethod = "";
+            double designLevel = 0;
             double wattM2 = 0;
             double fractionLatent = 0;
             double fractionRadiant = 0;
             double fractionLost = 0;
-            string endUseSubCategory = "NA";
+            string endUseSubCategory = "";
 
             Equipment equipmentGains = new Equipment(id, zoneId, equipmentSchedule, calculationMethod,
                 designLevel, wattM2, fractionLatent, fractionRadiant,
                 fractionLost, endUseSubCategory);
-            return equipmentGains;
+            equipment.Add(equipmentGains);
+            return equipment;
         }
     }
 }
