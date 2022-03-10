@@ -65,11 +65,14 @@ namespace HVACExporter.Helpers
                     string viewFactorToGround = "NA";
                     List<Coordinate> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc);
                     SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces(energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
+
                     Models.Zone.Surface surface = new Models.Zone.Surface(id, surfType,
                         constructionId, zoneTag, outsideBC, outsideBCObj, sunExposure, windExposure,
                         viewFactorToGround, vertexCoordinates, subSurfType);
+
                     Dictionary<string, Models.Zone.Surface> linkedSurfaces = new Dictionary<string, Models.Zone.Surface>();
                     linkedSurfaces.Add(id, surface);
+
                     allSurfaces.Add(linkedSurfaces);
                 }
                 else continue;

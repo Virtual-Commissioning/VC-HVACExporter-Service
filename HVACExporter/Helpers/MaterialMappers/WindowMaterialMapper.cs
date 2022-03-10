@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 using HVACExporter.Models.Zone;
+using System;
 using System.Collections.Generic;
 
 namespace HVACExporter.Helpers.MaterialMappers
@@ -15,10 +16,10 @@ namespace HVACExporter.Helpers.MaterialMappers
                 ElementId windowSymbol = window.Symbol.Id;
                 FamilySymbol windowInfo = doc.GetElement(windowSymbol) as FamilySymbol;
 
-                string id = window.UniqueId;
-                double thermalResistance = windowInfo.GetThermalProperties().ThermalResistance;
-                double solarHeatGain = windowInfo.GetThermalProperties().SolarHeatGainCoefficient;
-                double visibleTransmittance = windowInfo.GetThermalProperties().VisualLightTransmittance;
+                string id = window.Id.ToString();
+                double thermalResistance = Math.Round(windowInfo.GetThermalProperties().ThermalResistance,3);
+                double solarHeatGain = Math.Round(windowInfo.GetThermalProperties().SolarHeatGainCoefficient,3);
+                double visibleTransmittance = Math.Round(windowInfo.GetThermalProperties().VisualLightTransmittance,3);
 
                 WindowMat windowMaterial = new WindowMat(id, thermalResistance,
                     solarHeatGain, visibleTransmittance);

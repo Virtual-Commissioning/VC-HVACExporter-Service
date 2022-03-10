@@ -3,6 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
 using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Zone;
+using System;
 using System.Collections.Generic;
 
 namespace HVACExporter.Helpers.ZoneMappers
@@ -30,9 +31,9 @@ namespace HVACExporter.Helpers.ZoneMappers
                         foreach (Autodesk.Revit.DB.Edge vertex in loop)
                         {
                             IList<XYZ> edgePts = vertex.Tessellate();
-                            double x = edgePts[0].X;
-                            double y = edgePts[0].Y;
-                            double z = edgePts[0].Z;
+                            double x = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].X),3);
+                            double y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Y),3);
+                            double z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Z),3);
                             Coordinate point = new Coordinate(x, y, z);
 
                             vertices.Add(point);
