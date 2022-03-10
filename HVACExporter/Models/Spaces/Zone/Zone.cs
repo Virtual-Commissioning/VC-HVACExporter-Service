@@ -24,12 +24,12 @@ namespace HVACExporter.Models.Zone
         public InternalGains InternalGains { get; set; }
         public HVAC HVAC { get; set; }
         public Infiltration Infiltration { get; set; }
-        public ShadingZone ShadingZone { get; set; }
+        public List<ShadingZone> ShadingZone { get; set; }
         
         public Zone(string zoneId, double xOrigin, double yOrigin, double zOrigin, string zoneType, 
             double ceilingHeight, double floorArea, double zoneVolume, string intConvAlg, string outConvAlg, 
             bool includedInTotArea, List<Dictionary<string, Surface>> surfaces, InternalGains internalGains, HVAC hvac,
-            Infiltration infiltration, ShadingZone shadingZone)
+            Infiltration infiltration, List<ShadingZone> shadingZone)
         {
             ZoneId = zoneId;
             XOrigin = xOrigin;
