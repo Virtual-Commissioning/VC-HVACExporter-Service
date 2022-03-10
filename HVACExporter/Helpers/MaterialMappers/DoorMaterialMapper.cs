@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 using HVACExporter.Models.Zone;
+using System;
 using System.Collections.Generic;
 
 namespace HVACExporter.Helpers.MaterialMappers
@@ -15,9 +16,9 @@ namespace HVACExporter.Helpers.MaterialMappers
                 ElementId doorSymbol = door.Symbol.Id;
                 FamilySymbol doorInfo = doc.GetElement(doorSymbol) as FamilySymbol;
 
-                string id = door.UniqueId;
+                string id = door.Id.ToString();
                 int roughness = 0;
-                double thermalResistance = doorInfo.GetThermalProperties().ThermalResistance;
+                double thermalResistance = Math.Round(ImperialToMetricConverter.ConvertThermalResistanceImpToMet(doorInfo.GetThermalProperties().ThermalResistance),3);
                 double thermalAbsorbtance = 0;
                 double solarAbsorbtance = 0;
                 double visibleTransmittance = 0;

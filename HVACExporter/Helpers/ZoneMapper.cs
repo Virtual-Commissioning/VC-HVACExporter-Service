@@ -9,6 +9,7 @@ using HVACExporter.Models.Spaces.Geometry;
 using HVACExporter.Models.Spaces.IndoorClimate;
 using HVACExporter.Models.Zone;
 using HVACExporter.Models.Zones;
+using System;
 using System.Collections.Generic;
 using Surface = HVACExporter.Models.Zone.Surface;
 
@@ -42,9 +43,9 @@ namespace HVACExporter.Helpers
                 }
                 else
                 {
-                    x = ((LocationPoint)associatedSpace.Location).Point.X;
-                    y = ((LocationPoint)associatedSpace.Location).Point.Y;
-                    z = ((LocationPoint)associatedSpace.Location).Point.Z;
+                    Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(x = ((LocationPoint)associatedSpace.Location).Point.X), 3);
+                    Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(y = ((LocationPoint)associatedSpace.Location).Point.Y), 3);
+                    Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(z = ((LocationPoint)associatedSpace.Location).Point.Z), 3);
                 }
                 string zoneType;
                 if (associatedSpace.SpaceType.ToString() == string.Empty)
@@ -57,9 +58,9 @@ namespace HVACExporter.Helpers
                 }
                 //string id = associatedSpace.Id.ToString();
                 string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
-                double ceilingHeight = associatedSpace.UnboundedHeight;
-                double floorArea = associatedSpace.Area;
-                double zoneVolume = (associatedSpace.UnboundedHeight - associatedSpace.Level.Elevation) * floorArea;
+                double ceilingHeight = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(associatedSpace.UnboundedHeight),3);
+                double floorArea = Math.Round(ImperialToMetricConverter.ConvertFromSqFeetToSqMeters(associatedSpace.Area),3);
+                double zoneVolume = ceilingHeight * floorArea;
                 string intConvAlg = "0";
                 string outConvAlg = "0";
                 bool includedInTotArea = true;
