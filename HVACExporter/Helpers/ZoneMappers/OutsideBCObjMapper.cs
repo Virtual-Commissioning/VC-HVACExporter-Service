@@ -15,24 +15,23 @@ namespace HVACExporter.Helpers.ZoneMappers
 {
     public class OutsideBCObjMapper
     {
-        public static OutsideBCObj MapOutsideBCObj(EnergyAnalysisSurface energyAnalysisSurface, OutsideBC outsideBC)
+        public static string MapOutsideBCObj(EnergyAnalysisSurface energyAnalysisSurface, string outsideBC)
         {
             string outsideBCObjType;
-            if (outsideBC.OutsideBCType == "Zone")
+            if (outsideBC == "Zone")
             {
                 outsideBCObjType = energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
             }
-            else if (outsideBC.OutsideBCType == "Surface")
+            else if (outsideBC == "Surface")
             {
                 outsideBCObjType = energyAnalysisSurface.Id.ToString();
             }
             else
             {
-                outsideBCObjType = null;
+                outsideBCObjType = "";
             }
-            OutsideBCObj outsideBCObj = new OutsideBCObj(outsideBCObjType);
 
-            return outsideBCObj;
+            return outsideBCObjType;
         }
     }
 }

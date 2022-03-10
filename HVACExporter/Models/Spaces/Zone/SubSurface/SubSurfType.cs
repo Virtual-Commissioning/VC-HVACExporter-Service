@@ -8,11 +8,11 @@ namespace HVACExporter.Models.Zone
 {
     public class SubSurfType
     {
-        public List<SubSurfDoorAndWindow> SubSurfDoor { get; set; }
-        public List<SubSurfDoorAndWindow> SubSurfWindow { get; set; }
-        public List<SubSurfOpening> SubSurfOpening { get; set; }
+        public List<Dictionary<string, SubSurfDoorAndWindow>> SubSurfDoor { get; set; }
+        public List<Dictionary<string, SubSurfDoorAndWindow>> SubSurfWindow { get; set; }
+        public List<Dictionary<string, SubSurfOpening>> SubSurfOpening { get; set; }
 
-        public SubSurfType(List<SubSurfDoorAndWindow> subSurfDoor, List<SubSurfDoorAndWindow> subSurfWindow, List<SubSurfOpening> subSurfOpening)
+        public SubSurfType(List<Dictionary<string, SubSurfDoorAndWindow>> subSurfDoor, List<Dictionary<string, SubSurfDoorAndWindow>> subSurfWindow, List<Dictionary<string, SubSurfOpening>> subSurfOpening)
         {
             SubSurfDoor = subSurfDoor;
             SubSurfWindow = subSurfWindow;

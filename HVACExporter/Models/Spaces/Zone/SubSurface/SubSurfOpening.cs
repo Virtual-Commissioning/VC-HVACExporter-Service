@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HVACExporter.Models.GeometricTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,11 @@ namespace HVACExporter.Models.Zone
         public bool SunExposure { get; set; }
         public bool WindExposure { get; set; }
         public string ViewFactorToGround { get; set; }
-        public List<VertexCoordinates> Vertices { get; set; }
+        public List<Coordinate> Vertices { get; set; }
 
         public SubSurfOpening(string id, string subSurfType, string constructionId, string zoneId, 
             string outsideBCObj, string outsideBC, bool sunExposure, bool windExposure, 
-            string viewFactorToGround, List<VertexCoordinates> vertices)
+            string viewFactorToGround, List<Coordinate> vertices)
         {
             Id = id;
             SubSurfType = subSurfType;

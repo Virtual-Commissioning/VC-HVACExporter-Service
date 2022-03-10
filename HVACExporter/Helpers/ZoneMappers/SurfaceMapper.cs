@@ -15,11 +15,11 @@ namespace HVACExporter.Helpers
 {
     public class SurfaceMapper
     {
-        public static List<Models.Zone.Surface> MapSurfaces
+        public static List<Dictionary<string, Models.Zone.Surface>> MapSurfaces
             (string analyticalZoneId, Document doc, FilteredElementCollector allAnalyticalSurfaces, 
             FilteredElementCollector allAnalyticalSubSurfaces)
         {
-            List<Models.Zone.Surface> allSurfaces = new List<Models.Zone.Surface>();
+            List<Dictionary<string, Models.Zone.Surface>> allSurfaces = new List<Dictionary<string, Models.Zone.Surface>>();
 
             foreach (EnergyAnalysisSurface energyAnalysisSurface in allAnalyticalSurfaces)
             {
@@ -48,8 +48,8 @@ namespace HVACExporter.Helpers
                     string constructionId = GetAssociatedConstruction.MapAssociatedConstruction(planeCenter, doc, energyAnalysisSurface);
                     string surfType = energyAnalysisSurface.SurfaceType.ToString();
                     string zoneTag = analyticalZoneId;
-                    OutsideBC outsideBC = OutsideBCMapper.MapOutsideBC(energyAnalysisSurface); //
-                    OutsideBCObj outsideBCObj = OutsideBCObjMapper.MapOutsideBCObj(energyAnalysisSurface, outsideBC); //
+                    string outsideBC = OutsideBCMapper.MapOutsideBC(energyAnalysisSurface); 
+                    string outsideBCObj = OutsideBCObjMapper.MapOutsideBCObj(energyAnalysisSurface, outsideBC);
                     bool sunExposure;
                     bool windExposure;
                     if ((energyAnalysisSurface.SurfaceType.ToString() == "ExteriorWall") || (energyAnalysisSurface.SurfaceType.ToString() == "Roof"))
@@ -63,13 +63,14 @@ namespace HVACExporter.Helpers
                         windExposure = false;
                     }
                     string viewFactorToGround = "NA";
-                    List<VertexCoordinates> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc);
+                    List<Coordinate> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc);
                     SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces(energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
                     Models.Zone.Surface surface = new Models.Zone.Surface(id, surfType,
                         constructionId, zoneTag, outsideBC, outsideBCObj, sunExposure, windExposure,
                         viewFactorToGround, vertexCoordinates, subSurfType);
-
-                    allSurfaces.Add(surface);
+                    Dictionary<string, Models.Zone.Surface> linkedSurfaces = new Dictionary<string, Models.Zone.Surface>();
+                    linkedSurfaces.Add(id, surface);
+                    allSurfaces.Add(linkedSurfaces);
                 }
                 else continue;
             }

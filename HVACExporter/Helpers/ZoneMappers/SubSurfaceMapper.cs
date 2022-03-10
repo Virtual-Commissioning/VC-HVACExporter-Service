@@ -12,25 +12,37 @@ namespace HVACExporter.Helpers
         {
             List<SubSurfDoorAndWindow> subSurfaces = DoorAndWindowSubSurfaceMapper.MapDoorAndWindowSubSurfaces
                 (energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
-            List<SubSurfOpening> subSurfaceOpenings = OpeningSubSurfaceMapper.MapOpeningSubSurfaces(energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
-            List<SubSurfDoorAndWindow> subSurfDoor = new List<SubSurfDoorAndWindow>();
-            List<SubSurfDoorAndWindow> subSurfWindow = new List<SubSurfDoorAndWindow>();
-            List<SubSurfOpening> subSurfOpening = new List<SubSurfOpening>();
+            List<SubSurfOpening> subSurfaceOpenings = OpeningSubSurfaceMapper.MapOpeningSubSurfaces
+                (energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
 
-            subSurfOpening.AddRange(subSurfaceOpenings);
+            List<Dictionary<string, SubSurfDoorAndWindow>> allSubSurfDoors = new List<Dictionary<string, SubSurfDoorAndWindow>>();
+            List<Dictionary<string, SubSurfDoorAndWindow>> allSubSurfWindows = new List<Dictionary<string, SubSurfDoorAndWindow>>();
+            List<Dictionary<string, SubSurfOpening>> allSubSurfOpenings = new List<Dictionary<string, SubSurfOpening>>();
+
+            foreach (SubSurfOpening subSurfOpening in subSurfaceOpenings)
+            {
+                Dictionary<string, SubSurfOpening> linkedSubSurf = new Dictionary<string, SubSurfOpening>();
+                linkedSubSurf.Add(subSurfOpening.Id, subSurfOpening);
+                allSubSurfOpenings.Add(linkedSubSurf);
+            }
             foreach (SubSurfDoorAndWindow subSurfDoorAndWindow in subSurfaces)
             {
                 if (subSurfDoorAndWindow.SubSurfType == "Window")
                 {
-                    subSurfWindow.Add(subSurfDoorAndWindow);
+                    Dictionary<string, SubSurfDoorAndWindow> linkedSubSurf = new Dictionary<string, SubSurfDoorAndWindow>();
+                    linkedSubSurf.Add(subSurfDoorAndWindow.Id, subSurfDoorAndWindow);
+                    allSubSurfWindows.Add(linkedSubSurf);
                 }
                 if (subSurfDoorAndWindow.SubSurfType == "Door")
                 {
-                    subSurfDoor.Add(subSurfDoorAndWindow);
+                    Dictionary<string, SubSurfDoorAndWindow> linkedSubSurf = new Dictionary<string, SubSurfDoorAndWindow>();
+                    linkedSubSurf.Add(subSurfDoorAndWindow.Id, subSurfDoorAndWindow);
+                    allSubSurfDoors.Add(linkedSubSurf);
                 }
+                else continue;
             }
 
-            SubSurfType AllSubSurfaces = new SubSurfType(subSurfDoor, subSurfWindow, subSurfOpening);
+            SubSurfType AllSubSurfaces = new SubSurfType(allSubSurfDoors, allSubSurfWindows, allSubSurfOpenings);
 
             return AllSubSurfaces;
         }

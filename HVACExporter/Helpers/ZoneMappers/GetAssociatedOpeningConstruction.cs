@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace HVACExporter.Helpers.ZoneMappers
 {
-    public class GetAssociatedConstruction
+    public class GetAssociatedOpeningConstruction
     {
-        public static string MapAssociatedConstruction(Coordinate point, Document doc, EnergyAnalysisSurface energyAnalysisSurface)
+        public static string MapAssociatedOpeningConstruction(Coordinate point, Document doc, EnergyAnalysisOpening energyAnalysisSubSurface)
         {
             if (point != null)
             {
@@ -18,19 +18,17 @@ namespace HVACExporter.Helpers.ZoneMappers
                 BoundingBoxContainsPointFilter filter = new BoundingBoxContainsPointFilter(basePnt, false);
                 FilteredElementCollector collector = new FilteredElementCollector(doc);
                 IList<Element> elements;
-                if (energyAnalysisSurface.SurfaceType.ToString() == "ExteriorWall" || 
-                    energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall")
+                if (energyAnalysisSubSurface.OpeningType.ToString() == "Window")
                 {
-                    elements = collector.OfClass(typeof(Wall)).WherePasses(filter).ToElements();
+                    elements = collector.OfCategory(BuiltInCategory.OST_Windows).WherePasses(filter).ToElements();
                 }
-                else if (energyAnalysisSurface.SurfaceType.ToString() == "Roof")
+                else if (energyAnalysisSubSurface.OpeningType.ToString() == "Door")
                 {
                     elements = collector.OfClass(typeof(RoofBase)).WherePasses(filter).ToElements();
                 }
-                else if (energyAnalysisSurface.SurfaceType.ToString() == "ExteriorFloor" ||
-                    energyAnalysisSurface.SurfaceType.ToString() == "InteriorFloor")
+                else if (energyAnalysisSubSurface.OpeningType.ToString() == "Air")
                 {
-                    elements = collector.OfClass(typeof(Floor)).WherePasses(filter).ToElements();
+                    elements = collector.OfCategory(BuiltInCategory.OST_SWallRectOpening).WherePasses(filter).ToElements();
                 }
                 else
                 {

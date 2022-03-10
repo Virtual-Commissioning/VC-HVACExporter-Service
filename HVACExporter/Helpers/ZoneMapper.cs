@@ -64,7 +64,7 @@ namespace HVACExporter.Helpers
                 string outConvAlg = "0";
                 bool includedInTotArea = true;
 
-                List<Surface> surfaces = SurfaceMapper.MapSurfaces
+                List<Dictionary<string, Models.Zone.Surface>> surfaces = SurfaceMapper.MapSurfaces
                     (analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
                 InternalGains internalGains = InternalGainsMapper.MapInternalGains(associatedSpace);
                 HVAC hvac = HVACMapper.MapHVAC(associatedSpace);

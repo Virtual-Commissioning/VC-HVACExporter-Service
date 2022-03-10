@@ -20,7 +20,7 @@ namespace HVACExporter.Models.Zone
         public string IntConvAlg { get; set; }
         public string OutConvAlg { get; set; }
         public bool IncludedInTotArea { get; set; }
-        public List<Surface> Surfaces { get; set; }
+        public List<Dictionary<string, Surface>> Surfaces { get; set; }
         public InternalGains InternalGains { get; set; }
         public HVAC HVAC { get; set; }
         public Infiltration Infiltration { get; set; }
@@ -28,7 +28,7 @@ namespace HVACExporter.Models.Zone
         
         public Zone(string zoneId, double xOrigin, double yOrigin, double zOrigin, string zoneType, 
             double ceilingHeight, double floorArea, double zoneVolume, string intConvAlg, string outConvAlg, 
-            bool includedInTotArea, List<Surface> surfaces, InternalGains internalGains, HVAC hvac,
+            bool includedInTotArea, List<Dictionary<string, Surface>> surfaces, InternalGains internalGains, HVAC hvac,
             Infiltration infiltration, ShadingZone shadingZone)
         {
             ZoneId = zoneId;
