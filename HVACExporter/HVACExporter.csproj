@@ -60,7 +60,7 @@
     <Compile Include="Helpers\ComponentMappers\EnergyConversionDeviceMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\SensorMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\TerminalMapper.cs" />
-    <Compile Include="Helpers\ConstructionMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\ConstructionMapper.cs" />
     <Compile Include="Helpers\ConstructionMappers\DoorConstructionMapper.cs" />
     <Compile Include="Helpers\ConstructionMappers\OpeningConstructionMapper.cs" />
     <Compile Include="Helpers\ConstructionMappers\WindowConstructionMapper.cs" />
@@ -81,9 +81,9 @@
     <Compile Include="Helpers\MaterialMappers\RoofMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMappers\WallMaterialMapper.cs" />
     <Compile Include="Helpers\MaterialMappers\SurfaceMaterialMapper.cs" />
-    <Compile Include="Helpers\MaterialMapper.cs" />
-    <Compile Include="Helpers\BuildingShadingMapper.cs" />
-    <Compile Include="Helpers\BuildingMapper.cs" />
+    <Compile Include="Helpers\MaterialMappers\MaterialMapper.cs" />
+    <Compile Include="Helpers\BuildingMapper\BuildingShadingMapper.cs" />
+    <Compile Include="Helpers\BuildingMapper\BuildingMapper.cs" />
     <Compile Include="Helpers\SpaceMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\GeometricMapper.cs" />
     <Compile Include="Helpers\SpaceMappers\IndoorClimateMapper.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="Helpers\ZoneMappers\SubSurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\DoorAndWindowSubSurfaceMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\SurfaceMapper.cs" />
-    <Compile Include="Helpers\ZoneMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\ZoneMapper.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDevice.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\HeatExchanger.cs" />
