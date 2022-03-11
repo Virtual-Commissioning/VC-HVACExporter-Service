@@ -26,7 +26,7 @@ namespace HVACExporter.Helpers.MaterialMappers
                     thermalAbsorbtance, solarAbsorbtance, visibleTransmittance);
                 Dictionary<string, DoorMat> linkedDoorMaterial = new Dictionary<string, DoorMat>();
 
-                linkedDoorMaterial.Add(doorMaterial.Id, doorMaterial);
+                linkedDoorMaterial.Add(doorMaterial.Name, doorMaterial);
                 doorMaterials.Add(linkedDoorMaterial);
             }
             return doorMaterials;

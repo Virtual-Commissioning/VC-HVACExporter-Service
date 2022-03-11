@@ -24,10 +24,9 @@ namespace HVACExporter.Helpers
 
                 foreach (CompoundStructureLayer layer in layers)
                 {
-                    string id = layer.MaterialId.ToString();
+                    string name = layer.MaterialId.ToString();
                     double thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width),3);
                     Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
-                    string name = layerWallMaterial.Name;
                     int roughness = 0;
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
@@ -41,7 +40,7 @@ namespace HVACExporter.Helpers
                     double density = Math.Round(ImperialToMetricConverter.ConvertDensityImpToMet(asset.Density),3);
                     double specificHeat = Math.Round(ImperialToMetricConverter.ConvertSpecificHeatImpToMet(asset.SpecificHeat),3);
 
-                    SurfaceMat layerWallMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
+                    SurfaceMat layerWallMaterialToAdd = new SurfaceMat(name, roughness, thickness,
                         conductivity, density, specificHeat, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 

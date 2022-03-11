@@ -8,25 +8,29 @@ namespace HVACExporter.Models.Zone
 {
     public class Building
     {
-        public string Id { get; set; }
-        public string NorthAxis { get; set; }
+        public string Name { get; set; }
+        public string North_Axis { get; set; }
         public string Terrain { get; set; }
-        public string LoadConvTol { get; set; }
-        public string TempConvTol { get; set; }
-        public string MaxWarmupDays { get; set; }
-        public string MinWarmupDays { get; set; }
+        public string Loads_Convergence_Tolerance_Value { get; set; }
+        public string Temperature_Convergence_Tolerance_Value { get; set; }
+        public string Solar_Distribution { get; set; }
+        public string Maximum_Number_of_Warmup_Days { get; set; }
+        public string Minimum_Number_of_Warmup_Days { get; set; }
         public List<Dictionary<string, Zone>> Zones { get; set; }
 
 
-        public Building(string id, string tag, string northAxis, string terrain, string loadConvTol, string tempConvTol, string maxWarmupDays, string minWarmupDays, List<Dictionary<string, Zone>> zones)
+        public Building(string name, string northAxis, string terrain, 
+            string loadConvTol, string tempConvTol, string solarDistribution, 
+            string maxWarmupDays, string minWarmupDays, List<Dictionary<string, Zone>> zones)
         {
-            Id = id;
-            NorthAxis = northAxis;
+            Name = name;
+            North_Axis = northAxis;
             Terrain = terrain;
-            LoadConvTol = loadConvTol;
-            TempConvTol = tempConvTol;
-            MaxWarmupDays = maxWarmupDays;
-            MinWarmupDays = minWarmupDays;
+            Loads_Convergence_Tolerance_Value = loadConvTol;
+            Temperature_Convergence_Tolerance_Value = tempConvTol;
+            Solar_Distribution = solarDistribution;
+            Maximum_Number_of_Warmup_Days = maxWarmupDays;
+            Minimum_Number_of_Warmup_Days = minWarmupDays;
             Zones = zones;
         }
     }

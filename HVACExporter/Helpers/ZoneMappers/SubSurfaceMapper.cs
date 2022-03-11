@@ -22,21 +22,21 @@ namespace HVACExporter.Helpers
             foreach (SubSurfOpening subSurfOpening in subSurfaceOpenings)
             {
                 Dictionary<string, SubSurfOpening> linkedSubSurf = new Dictionary<string, SubSurfOpening>();
-                linkedSubSurf.Add(subSurfOpening.Id, subSurfOpening);
+                linkedSubSurf.Add(subSurfOpening.Name, subSurfOpening);
                 allSubSurfOpenings.Add(linkedSubSurf);
             }
             foreach (SubSurfDoorAndWindow subSurfDoorAndWindow in subSurfaces)
             {
-                if (subSurfDoorAndWindow.SubSurfType == "Window")
+                if (subSurfDoorAndWindow.Surface_Type == "Window")
                 {
                     Dictionary<string, SubSurfDoorAndWindow> linkedSubSurf = new Dictionary<string, SubSurfDoorAndWindow>();
-                    linkedSubSurf.Add(subSurfDoorAndWindow.Id, subSurfDoorAndWindow);
+                    linkedSubSurf.Add(subSurfDoorAndWindow.Name, subSurfDoorAndWindow);
                     allSubSurfWindows.Add(linkedSubSurf);
                 }
-                if (subSurfDoorAndWindow.SubSurfType == "Door")
+                if (subSurfDoorAndWindow.Surface_Type == "Door")
                 {
                     Dictionary<string, SubSurfDoorAndWindow> linkedSubSurf = new Dictionary<string, SubSurfDoorAndWindow>();
-                    linkedSubSurf.Add(subSurfDoorAndWindow.Id, subSurfDoorAndWindow);
+                    linkedSubSurf.Add(subSurfDoorAndWindow.Name, subSurfDoorAndWindow);
                     allSubSurfDoors.Add(linkedSubSurf);
                 }
                 else continue;

@@ -12,11 +12,13 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
         public static Thermostat MapThermostat(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
             string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Thermostat";
-            string zoneId = associatedSpace.Id.ToString();
-            string heatingSetpointSchedule = "NA";
-            string coolingSetpointSchedule = "NA";
+            string heatingSetpointSchedule = "";
+            string constantHeatingSetpoint = "";
+            string coolingSetpointSchedule = "";
+            string constantCoolingSetpoint = "";
 
-            Thermostat equipmentGains = new Thermostat(id, zoneId, heatingSetpointSchedule, coolingSetpointSchedule);
+            Thermostat equipmentGains = new Thermostat(id, heatingSetpointSchedule, constantHeatingSetpoint, 
+                coolingSetpointSchedule, constantCoolingSetpoint);
             return equipmentGains;
         }
     }

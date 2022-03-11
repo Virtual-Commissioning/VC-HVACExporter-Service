@@ -27,7 +27,7 @@ namespace HVACExporter.Helpers
                 if (surfaceMat.Name == "Air")
                 {
                     Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
-                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
                     airGapMaterials.Add(linkedSurfaceMat);
                 }
             }
@@ -38,7 +38,7 @@ namespace HVACExporter.Helpers
                 if (surfaceMat.Name == "Air")
                 {
                     Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
-                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
                     airGapMaterials.Add(linkedSurfaceMat);
                 }
             }
@@ -49,7 +49,7 @@ namespace HVACExporter.Helpers
                 if (surfaceMat.Name == "Air")
                 {
                     Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
-                    linkedSurfaceMat.Add(surfaceMat.Id, surfaceMat);
+                    linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
                     airGapMaterials.Add(linkedSurfaceMat);
                 }
             }

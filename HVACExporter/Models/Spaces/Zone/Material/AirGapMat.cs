@@ -8,14 +8,12 @@ namespace HVACExporter.Models.Zone
 {
     public class AirGapMat
     {
-        public string Id { get; set; }
-        public string Tag { get; set; }
+        public string Name { get; set; }
         public double ThermalResistance { get; set; }
 
-        public AirGapMat(string id, string tag, double thermalResistance)
+        public AirGapMat(string name, string tag, double thermalResistance)
         {
-            Id = id;
-            Tag = tag;
+            Name = name;
             ThermalResistance = thermalResistance;
         }
     }

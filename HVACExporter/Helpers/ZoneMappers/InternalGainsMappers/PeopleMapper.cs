@@ -24,6 +24,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string mrtCalculationType = "";
             string surfaceId = "";
             string workEfficiencySchedule = "";
+            string clothingInsulationCalculationMethod = "";
             string clothingInsulationSchedule = "";
             string airVelocitySchedule = "";
             string thermalComfortType = "";
@@ -31,7 +32,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             People peopleGains = new People(id, zoneId, peopleSchedule, calculationMethod,
                 numberOfPeople, fractionRadiant, sensibleHeatFraction, activitySchedule,
                 co2GenerationRate, mrtCalculationType, surfaceId, workEfficiencySchedule,
-                clothingInsulationSchedule, airVelocitySchedule, thermalComfortType);
+                clothingInsulationCalculationMethod, clothingInsulationSchedule, airVelocitySchedule, thermalComfortType);
             people.Add(peopleGains);
             return people;
         }
