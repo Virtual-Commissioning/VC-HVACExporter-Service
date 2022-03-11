@@ -27,7 +27,6 @@ namespace HVACExporter.Helpers
                     string id = layer.MaterialId.ToString();
                     double thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width),3);
                     Material layerRoofMaterial = doc.GetElement(layer.MaterialId) as Material;
-                    string name = layerRoofMaterial.Name;
                     int roughness = 0;
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
@@ -41,7 +40,7 @@ namespace HVACExporter.Helpers
                     double density = Math.Round(ImperialToMetricConverter.ConvertDensityImpToMet(asset.Density),3);
                     double specificHeat = Math.Round(ImperialToMetricConverter.ConvertSpecificHeatImpToMet(asset.SpecificHeat),3);
 
-                    SurfaceMat layerRoofMaterialToAdd = new SurfaceMat(name, id, roughness, thickness,
+                    SurfaceMat layerRoofMaterialToAdd = new SurfaceMat(id, roughness, thickness,
                         conductivity, density, specificHeat, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 

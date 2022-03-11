@@ -8,31 +8,31 @@ namespace HVACExporter.Models.Zone
 {
     public class FrameAndDivider
     {
-        public string Id { get; set; }
-        public string FrameWidth { get; set; }
-        public string FrameOutsideProjection { get; set; }
-        public string FrameInsideProjection { get; set; }
-        public string FrameConductance { get; set; }
-        public string RatioOfFrameEdgeGlassConductanceToCenterOfGlassConductance { get; set; }
-        public string FrameSolarAbsorptance { get; set; }
-        public string FrameVisibleAbsorptance { get; set; }
-        public string FrameThermalHemisphericalEmissivity { get; set; }
-        public string DividerType { get; set; }
-        public string DividerWidth { get; set; }
-        public string NumberOfHorizontalDividers { get; set; }
-        public string NumberOfVerticalDividers { get; set; }
-        public string DividerOutsideProjection { get; set; }
-        public string DividerInsideProjection { get; set; }
-        public string DividerConductance { get; set; }
-        public string RatioOfDividerEdgeGlassConductanceToCenterOfGlassConductance { get; set; }
-        public string DividerSolarAbsorptance { get; set; }
-        public string DividerVisibleAbsorptance { get; set; }
-        public string DividerThermalHemisphericalEmissivity { get; set; }
-        public string OutsideRevealSolarAbsorptance { get; set; }
-        public string InsideSillDepth { get; set; }
-        public string InsideSillSolarAbsorptance { get; set; }
-        public string InsideRevealDepth { get; set; }
-        public string InsideRevealSolarAbsorptance { get; set; }
+        public string Name { get; set; }
+        public string Frame_Width { get; set; }
+        public string Frame_Outside_Projection { get; set; }
+        public string Frame_Inside_Projection { get; set; }
+        public string Frame_Conductance { get; set; }
+        public string Ratio_of_FrameEdge_Glass_Conductance_to_CenterOfGlass_Conductance { get; set; }
+        public string Frame_Solar_Absorptance { get; set; }
+        public string Frame_Visible_Absorptance { get; set; }
+        public string Frame_Thermal_Hemispherical_Emissivity { get; set; }
+        public string Divider_Type { get; set; }
+        public string Divider_Width { get; set; }
+        public string Number_of_Horizontal_Dividers { get; set; }
+        public string Number_of_Vertical_Dividers { get; set; }
+        public string Divider_Outside_Projection { get; set; }
+        public string Divider_Inside_Projection { get; set; }
+        public string Divider_Conductance { get; set; }
+        public string Ratio_of_DividerEdge_Glass_Conductance_to_CenterOfGlass_Conductance { get; set; }
+        public string Divider_Solar_Absorptance { get; set; }
+        public string Divider_Visible_Absorptance { get; set; }
+        public string Divider_Thermal_Hemispherical_Emissivity { get; set; }
+        public string Outside_Reveal_Solar_Absorptance { get; set; }
+        public string Inside_Sill_Depth { get; set; }
+        public string Inside_Sill_Solar_Absorptance { get; set; }
+        public string Inside_Reveal_Depth { get; set; }
+        public string Inside_Reveal_Solar_Absorptance { get; set; }
 
         public FrameAndDivider(string id,
             string frameWidth,
@@ -60,31 +60,31 @@ namespace HVACExporter.Models.Zone
             string insideRevealDepth,
             string insideRevealSolarAbsorptance)
         {
-            Id = id;
-            FrameWidth = frameWidth;
-            FrameOutsideProjection = frameOutsideProjection;
-            FrameInsideProjection = frameInsideProjection;
-            FrameConductance = frameConductance;
-            RatioOfFrameEdgeGlassConductanceToCenterOfGlassConductance = ratioOfFrameEdgeGlassConductanceToCenterOfGlassConductance;
-            FrameSolarAbsorptance = frameSolarAbsorptance;
-            FrameVisibleAbsorptance = frameVisibleAbsorptance;
-            FrameThermalHemisphericalEmissivity = frameThermalHemisphericalEmissivity;
-            DividerType = dividerType;
-            DividerWidth = dividerWidth;
-            NumberOfHorizontalDividers = numberOfHorizontalDividers;
-            NumberOfVerticalDividers = numberOfVerticalDividers;
-            DividerOutsideProjection = dividerOutsideProjection;
-            DividerInsideProjection = dividerInsideProjection;
-            DividerConductance = dividerConductance;
-            RatioOfDividerEdgeGlassConductanceToCenterOfGlassConductance = ratioOfDividerEdgeGlassConductanceToCenterOfGlassConductance;
-            DividerSolarAbsorptance = dividerSolarAbsorptance;
-            DividerVisibleAbsorptance = dividerVisibleAbsorptance;
-            DividerThermalHemisphericalEmissivity = dividerThermalHemisphericalEmissivity;
-            OutsideRevealSolarAbsorptance = outsideRevealSolarAbsorptance;
-            InsideSillDepth = insideSillDepth;
-            InsideSillSolarAbsorptance = insideSillSolarAbsorptance;
-            InsideRevealDepth = insideRevealDepth;
-            InsideRevealSolarAbsorptance = insideRevealSolarAbsorptance;
+            Name = id;
+            Frame_Width = frameWidth;
+            Frame_Outside_Projection = frameOutsideProjection;
+            Frame_Inside_Projection = frameInsideProjection;
+            Frame_Conductance = frameConductance;
+            Ratio_of_FrameEdge_Glass_Conductance_to_CenterOfGlass_Conductance = ratioOfFrameEdgeGlassConductanceToCenterOfGlassConductance;
+            Frame_Solar_Absorptance = frameSolarAbsorptance;
+            Frame_Visible_Absorptance = frameVisibleAbsorptance;
+            Frame_Thermal_Hemispherical_Emissivity = frameThermalHemisphericalEmissivity;
+            Divider_Type = dividerType;
+            Divider_Width = dividerWidth;
+            Number_of_Horizontal_Dividers = numberOfHorizontalDividers;
+            Number_of_Vertical_Dividers = numberOfVerticalDividers;
+            Divider_Outside_Projection = dividerOutsideProjection;
+            Divider_Inside_Projection = dividerInsideProjection;
+            Divider_Conductance = dividerConductance;
+            Ratio_of_DividerEdge_Glass_Conductance_to_CenterOfGlass_Conductance = ratioOfDividerEdgeGlassConductanceToCenterOfGlassConductance;
+            Divider_Solar_Absorptance = dividerSolarAbsorptance;
+            Divider_Visible_Absorptance = dividerVisibleAbsorptance;
+            Divider_Thermal_Hemispherical_Emissivity = dividerThermalHemisphericalEmissivity;
+            Outside_Reveal_Solar_Absorptance = outsideRevealSolarAbsorptance;
+            Inside_Sill_Depth = insideSillDepth;
+            Inside_Sill_Solar_Absorptance = insideSillSolarAbsorptance;
+            Inside_Reveal_Depth = insideRevealDepth;
+            Inside_Reveal_Solar_Absorptance = insideRevealSolarAbsorptance;
         }
     }
 }

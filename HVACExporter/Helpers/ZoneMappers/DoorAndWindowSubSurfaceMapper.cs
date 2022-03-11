@@ -44,7 +44,7 @@ namespace HVACExporter.Helpers
                 string viewFactorToGround = "NA";
                 int multiplier = 1;
                 FrameAndDivider frameAndDivider = FrameAndDividerMapper.MapFrameAndDivider(opening);
-                string frameAndDividerName = frameAndDivider.Id;
+                string frameAndDividerName = frameAndDivider.Name;
                 List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
                 SubSurfDoorAndWindow subSurfaceToAdd = new SubSurfDoorAndWindow
                     (id, subSurfType, constructionId, hostSurfId, outsideBCObj, viewFactorToGround, 

@@ -9,12 +9,12 @@ namespace HVACExporter.Models.Zone
     public class HVAC
     {
         public Thermostat Thermostat { get; set; }
-        public AirLoadSystem AirLoadSystem { get; set; }
+        public AirLoadSystem IdealAirLoadSystem { get; set; }
 
         public HVAC(Thermostat thermostat, AirLoadSystem airLoadSystem)
         {
             Thermostat = thermostat;
-            AirLoadSystem = airLoadSystem;
+            IdealAirLoadSystem = airLoadSystem;
         }
     }
 }

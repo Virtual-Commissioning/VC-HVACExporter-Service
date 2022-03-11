@@ -62,7 +62,7 @@ namespace HVACExporter.Helpers
                         sunExposure = false;
                         windExposure = false;
                     }
-                    string viewFactorToGround = "NA";
+                    string viewFactorToGround = "";
                     List<Coordinate> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc);
                     SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces(energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
 

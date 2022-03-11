@@ -8,14 +8,14 @@ namespace HVACExporter.Models.Zone
 {
     public class ShadingBuilding
     {
-        public string Id { get; set; }
-        public string TransmSchedule { get; set; }
+        public string Name { get; set; }
+        public string Transmittance_Schedule_Name { get; set; }
         public VertexCoordinates VertexCoordinates { get; set; }
 
         public ShadingBuilding(string id, string transmSchedule, VertexCoordinates vertexCoordinates)
         {
-            Id = id;
-            TransmSchedule = transmSchedule;
+            Name = id;
+            Transmittance_Schedule_Name = transmSchedule;
             VertexCoordinates = vertexCoordinates;
         }
     }

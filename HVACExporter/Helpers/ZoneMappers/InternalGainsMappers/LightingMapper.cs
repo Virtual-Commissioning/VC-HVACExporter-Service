@@ -17,7 +17,6 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string lightingSchedule = "";
             string calculationMethod = "";
             double lightingLevel = 0;
-            double wattM2 = 0;
             double returnAirFraction = 0;
             double fractionRadiant = 0;
             double fractionVisible = 0;
@@ -25,7 +24,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string endUseSubCategory = "";
 
             Lighting lightingGains = new Lighting(id, zoneId, lightingSchedule, calculationMethod,
-                lightingLevel, wattM2, returnAirFraction, fractionRadiant,
+                lightingLevel, returnAirFraction, fractionRadiant,
                 fractionVisible, fractionReplaceable, endUseSubCategory);
             lighting.Add(lightingGains);
             return lighting;

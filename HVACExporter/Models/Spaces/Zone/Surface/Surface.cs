@@ -9,17 +9,17 @@ namespace HVACExporter.Models.Zone
 {
     public class Surface
     {
-        public string Id { get; set; }
-        public string SurfType { get; set; }
-        public string ConstructionId { get; set; }
-        public string ZoneTag { get; set; }
-        public string OutsideBC { get; set; }  
-        public string OutsideBCObject { get; set; }
-        public bool SunExposure { get; set; }
-        public bool WindExposure { get; set; }
-        public string ViewFactorToGround { get; set; } 
+        public string Name { get; set; }
+        public string Surface_Type { get; set; }
+        public string Construction_Name { get; set; }
+        public string Zone_Name { get; set; }
+        public string Outside_Boundary_Condition { get; set; }  
+        public string Outside_Boundary_Condition_Object { get; set; }
+        public bool Sun_Exposure { get; set; }
+        public bool Wind_Exposure { get; set; }
+        public string View_Factor_to_Ground { get; set; } 
         public List<Coordinate> VertexCoordinates { get; set; }
-        public SubSurfType SubSurfaceType { get; set; }
+        public SubSurfType SubSurfaces { get; set; }
 
         public Surface(string id,
             string surfType,
@@ -33,17 +33,17 @@ namespace HVACExporter.Models.Zone
             List<Coordinate> vertexCoordinates, 
             SubSurfType subSurfaceType)
         {
-            Id = id;
-            SurfType = surfType;
-            ConstructionId = constructionId;
-            ZoneTag = zoneTag;
-            OutsideBC = outsideBC;
-            OutsideBCObject = outsideBCObject;
-            SunExposure = sunExposure;
-            WindExposure = windExposure;
-            ViewFactorToGround = viewFactorToGround;
+            Name = id;
+            Surface_Type = surfType;
+            Construction_Name = constructionId;
+            Zone_Name = zoneTag;
+            Outside_Boundary_Condition = outsideBC;
+            Outside_Boundary_Condition_Object = outsideBCObject;
+            Sun_Exposure = sunExposure;
+            Wind_Exposure = windExposure;
+            View_Factor_to_Ground = viewFactorToGround;
             VertexCoordinates = vertexCoordinates;
-            SubSurfaceType = subSurfaceType;
+            SubSurfaces = subSurfaceType;
         }
     }
 }

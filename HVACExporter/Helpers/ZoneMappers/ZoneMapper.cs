@@ -50,7 +50,7 @@ namespace HVACExporter.Helpers
                 string zoneType;
                 if (associatedSpace.SpaceType.ToString() == string.Empty)
                 {
-                    zoneType = "NA";
+                    zoneType = "";
                 }
                 else
                 {
@@ -61,8 +61,8 @@ namespace HVACExporter.Helpers
                 double ceilingHeight = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(associatedSpace.UnboundedHeight),3);
                 double floorArea = Math.Round(ImperialToMetricConverter.ConvertFromSqFeetToSqMeters(associatedSpace.Area),3);
                 double zoneVolume = ceilingHeight * floorArea;
-                string intConvAlg = "0";
-                string outConvAlg = "0";
+                string intConvAlg = "";
+                string outConvAlg = "";
                 bool includedInTotArea = true;
 
                 List<Dictionary<string, Models.Zone.Surface>> surfaces = SurfaceMapper.MapSurfaces

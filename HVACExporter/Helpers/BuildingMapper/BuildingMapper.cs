@@ -6,6 +6,7 @@ using HVACExporter.Models.Spaces.Geometry;
 using HVACExporter.Models.Spaces.IndoorClimate;
 using HVACExporter.Models.Zone;
 using HVACExporter.Models.Zones;
+using System;
 using System.Collections.Generic;
 
 namespace HVACExporter.Helpers
@@ -22,7 +23,16 @@ namespace HVACExporter.Helpers
             {
                 string name = projectInfo.BuildingName;
                 XYZ origin = new XYZ(0,0,0);
-                string northAxis = plCurrent.GetProjectPosition(origin).Angle.ToString();
+                double rotation = plCurrent.GetProjectPosition(origin).Angle * 180 / Math.PI;
+                string northAxis;
+                if (rotation < 0)
+                {
+                    northAxis = (360 + rotation).ToString();
+                }
+                else
+                {
+                    northAxis = rotation.ToString();
+                }
                 string terrain = "";
                 string loadsConvergenceToleranceValue = "";
                 string temperatureConvergenceToleranceValue = "";
@@ -30,7 +40,8 @@ namespace HVACExporter.Helpers
                 string maxNumberOfWarmupDays = "";
                 string minNumberOfWarmupDays = "";
                 List<Dictionary<string, Zone>> zones = ZoneMapper.MapAllZones(allSpaces, doc, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces);
-                Building building1 = new Building(name, northAxis, terrain, loadsConvergenceToleranceValue, temperatureConvergenceToleranceValue, solarDistribution, maxNumberOfWarmupDays, minNumberOfWarmupDays, zones);
+                Building building1 = new Building(name, northAxis, terrain, loadsConvergenceToleranceValue, 
+                    temperatureConvergenceToleranceValue, solarDistribution, maxNumberOfWarmupDays, minNumberOfWarmupDays, zones);
                 Dictionary<string, Building> linkedBuilding = new Dictionary<string, Building>();
                 linkedBuilding.Add(name, building1);
                 buildings.Add(linkedBuilding);

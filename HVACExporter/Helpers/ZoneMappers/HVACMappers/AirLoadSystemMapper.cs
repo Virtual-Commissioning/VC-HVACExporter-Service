@@ -11,10 +11,9 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
     {
         public static AirLoadSystem MapAirLoadSystem(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
         {
-            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "AirLoadSystem";
             string zoneId = associatedSpace.Id.ToString();
             string thermostatName = "Zone" + associatedSpace.Id.ToString() + "_" + "Thermostat";
-            string avaliabilitySchedule = "NA";
+            string avaliabilitySchedule = "";
             double maxHeatingSupplyAirTemp = 0;
             double minCoolingSupplyAirTemp = 0;
             double maxHeatingSupplyAirHumidity = 0;
@@ -25,28 +24,29 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             double coolingLimit = 0;
             double maxCoolingAFT = 0;
             double maxSensibleCoolingCapacity = 0;
-            string heatingAvaliabilitySchedule = "NA";
-            string coolingAvaliabilitySchedule = "NA";
-            string dehumidityControlType = "NA";
+            string heatingAvaliabilitySchedule = "";
+            string coolingAvaliabilitySchedule = "";
+            string dehumidityControlType = "";
             double coolingSensibleHeatingRatio = 0;
-            string humidityControlType = "NA";
+            double dehumidificationSetpoint = 0;
+            string humidityControlType = "";
             double humiditySetpoint = 0;
-            string outdoorAirMethod = "NA";
+            string outdoorAirMethod = "";
             double outAFPPrPerson = 0;
             double outAFPPrArea = 0;
             double outAFPPrZone = 0;
-            string outdoorAirObject = "NA";
-            string demandControllVentilationType = "NA";
-            string outdoorAirEconomizerType = "NA";
-            string heatRecoveryType = "NA";
+            string outdoorAirObject = "";
+            string demandControllVentilationType = "";
+            string outdoorAirEconomizerType = "";
+            string heatRecoveryType = "";
             double sensibleheatRecoveryEfficiency = 0;
             double latentHeatRecoveryEfficiency = 0;
 
-            AirLoadSystem airLoadSystem = new AirLoadSystem(id, zoneId, thermostatName, avaliabilitySchedule, maxHeatingSupplyAirTemp,
+            AirLoadSystem airLoadSystem = new AirLoadSystem(zoneId, thermostatName, avaliabilitySchedule, maxHeatingSupplyAirTemp,
                 minCoolingSupplyAirTemp, maxHeatingSupplyAirHumidity, minCoolingSupplyAirHumidity, heatingLimit,
                 maxHeatingAFR, maxSensibleHeatingCapacity, coolingLimit, maxCoolingAFT, maxSensibleCoolingCapacity,
                 heatingAvaliabilitySchedule, coolingAvaliabilitySchedule, dehumidityControlType, coolingSensibleHeatingRatio,
-                humidityControlType, humiditySetpoint, outdoorAirMethod, outAFPPrPerson, outAFPPrArea, outAFPPrZone,
+                dehumidificationSetpoint, humidityControlType, humiditySetpoint, outdoorAirMethod, outAFPPrPerson, outAFPPrArea, outAFPPrZone,
                 outdoorAirObject, demandControllVentilationType, outdoorAirEconomizerType, heatRecoveryType, 
                 sensibleheatRecoveryEfficiency, latentHeatRecoveryEfficiency);
             return airLoadSystem;

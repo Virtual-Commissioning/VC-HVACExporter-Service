@@ -16,15 +16,15 @@ namespace HVACExporter.Helpers.MaterialMappers
                 ElementId windowSymbol = window.Symbol.Id;
                 FamilySymbol windowInfo = doc.GetElement(windowSymbol) as FamilySymbol;
 
-                string id = window.Id.ToString();
-                double thermalResistance = Math.Round(windowInfo.GetThermalProperties().ThermalResistance,3);
+                string name = window.Id.ToString();
+                double uFactor = 1/Math.Round(windowInfo.GetThermalProperties().ThermalResistance,3);
                 double solarHeatGain = Math.Round(windowInfo.GetThermalProperties().SolarHeatGainCoefficient,3);
                 double visibleTransmittance = Math.Round(windowInfo.GetThermalProperties().VisualLightTransmittance,3);
 
-                WindowMat windowMaterial = new WindowMat(id, thermalResistance,
+                WindowMat windowMaterial = new WindowMat(name, uFactor,
                     solarHeatGain, visibleTransmittance);
                 Dictionary<string, WindowMat> linkedWindowMaterial = new Dictionary<string, WindowMat>();
-                linkedWindowMaterial.Add(windowMaterial.Id, windowMaterial);
+                linkedWindowMaterial.Add(windowMaterial.Name, windowMaterial);
                 windowMaterials.Add(linkedWindowMaterial);
 
             }
