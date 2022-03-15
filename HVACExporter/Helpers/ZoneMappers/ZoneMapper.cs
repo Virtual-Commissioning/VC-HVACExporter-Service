@@ -32,21 +32,13 @@ namespace HVACExporter.Helpers
             foreach (SpatialElement zone in allSpaces)
             {
                 if (zone.Category.Name != "Spaces") continue;
+                if (zone.Location == null) continue;
                 //string tag = zone.Id.ToString();
                 Autodesk.Revit.DB.Mechanical.Space associatedSpace = (Autodesk.Revit.DB.Mechanical.Space)zone;
-                double x, y, z;
-                if (associatedSpace.Location == null)
-                {
-                    x = 0;
-                    y = 0;
-                    z = 0;
-                }
-                else
-                {
-                    Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(x = ((LocationPoint)associatedSpace.Location).Point.X), 3);
-                    Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(y = ((LocationPoint)associatedSpace.Location).Point.Y), 3);
-                    Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(z = ((LocationPoint)associatedSpace.Location).Point.Z), 3);
-                }
+                double x = 0;
+                double y = 0;
+                double z = 0;
+                
                 string zoneType;
                 if (associatedSpace.SpaceType.ToString() == string.Empty)
                 {
@@ -67,10 +59,10 @@ namespace HVACExporter.Helpers
 
                 List<Dictionary<string, Models.Zone.Surface>> surfaces = SurfaceMapper.MapSurfaces
                     (analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
-                InternalGains internalGains = InternalGainsMapper.MapInternalGains(associatedSpace);
-                HVAC hvac = HVACMapper.MapHVAC(associatedSpace);
-                Infiltration infiltration = InfiltrationMapper.MapInfiltration(associatedSpace);
-                List<ShadingZone> shadingZone = ZoneShadingMapper.MapZoneShading(associatedSpace);
+                InternalGains internalGains = InternalGainsMapper.MapInternalGains(analyticalZoneId);
+                HVAC hvac = HVACMapper.MapHVAC(analyticalZoneId);
+                Infiltration infiltration = InfiltrationMapper.MapInfiltration(analyticalZoneId);
+                List<ShadingZone> shadingZone = ZoneShadingMapper.MapZoneShading(analyticalZoneId);
                 var zoneToAdd = new Zone(analyticalZoneId,
                                      x,
                                      y,

@@ -8,7 +8,7 @@ namespace HVACExporter.Models.Zone
 {
     public class SurfaceMat
     {
-
+        public string ReadableName { get; set; }
         public string Name { get; set; }
         public int Roughness { get; set; }
         public double Thickness { get; set; }
@@ -20,10 +20,11 @@ namespace HVACExporter.Models.Zone
         public double Solar_Absorptance { get; set; }
         public double Visible_Absorptance { get; set; }
 
-        public SurfaceMat(string name, int roughness, double thickness, 
+        public SurfaceMat(string readableName, string name, int roughness, double thickness, 
             double conductivity, double density, double specificHeat, double thermalAbsorptance, 
             double solarAbsorptance, double visibleAbsorptance)
         {
+            ReadableName = readableName;
             Name = name;
             Roughness = roughness;
             Thickness = thickness;

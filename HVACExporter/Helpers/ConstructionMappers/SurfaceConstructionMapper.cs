@@ -27,8 +27,11 @@ namespace HVACExporter.Helpers
             allSurfaceConstructions.AddRange(windowConstructions);
             allSurfaceConstructions.AddRange(doorConstructions);
 
-            return allSurfaceConstructions;
-         }
+            List<Dictionary<string, SurfaceConstruction>> filteredDictionary =
+                allSurfaceConstructions.GroupBy(x => string.Join("", x.Select(i => string.Format("{0}{1}", i.Key, i.Value)))).Select(x => x.First()).ToList();
+
+            return filteredDictionary;
+        }
 
     }
 }

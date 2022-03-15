@@ -20,7 +20,7 @@ namespace HVACExporter.Helpers
         public static FrameAndDivider MapFrameAndDivider
             (EnergyAnalysisOpening opening)
         {
-            string id = opening.Id.ToString();
+            string name = opening.Id.ToString() + "_frame";
             string frameWidth = "";
             string frameOutsideProjection = "";
             string frameInsideProjection = "";
@@ -46,7 +46,7 @@ namespace HVACExporter.Helpers
             string insideRevealDepth = "";
             string insideRevealSolarAbsorptance = "";
 
-            FrameAndDivider frameAndDivider = new FrameAndDivider(id, frameWidth, frameOutsideProjection, frameInsideProjection, frameConductance,
+            FrameAndDivider frameAndDivider = new FrameAndDivider(name, frameWidth, frameOutsideProjection, frameInsideProjection, frameConductance,
                 ratioOfFrameEdgeGlassConductanceToCenterOfGlassConductance, frameSolarAbsorptance, frameVisibleAbsorptance, frameThermalHemisphericalEmissivity,
                 dividerType, dividerWidth, numberOfHorizontalDividers, numberOfVerticalDividers, dividerOutsideProjection, dividerInsideProjection,
                 dividerConductance, ratioOfDividerEdgeGlassConductanceToCenterOfGlassConductance, dividerSolarAbsorptance, dividerVisibleAbsorptance,

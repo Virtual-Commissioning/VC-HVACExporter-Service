@@ -10,14 +10,14 @@ namespace HVACExporter.Models.Zone
     {
         public List<People> People { get; set; }
         public List<Lighting> Lights { get; set; }
-        public List<Equipment> Equiptment { get; set; }
+        public List<Equipment> Equipment { get; set; }
 
         public InternalGains
-            (List<People> people, List<Lighting> lighting, List<Equipment> equiptment)
+            (List<People> people, List<Lighting> lighting, List<Equipment> equipment)
         {
             People = people;
             Lights = lighting;
-            Equiptment = equiptment;
+            Equipment = equipment;
         }
     }
 }

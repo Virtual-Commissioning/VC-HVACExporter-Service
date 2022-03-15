@@ -24,7 +24,7 @@ namespace HVACExporter.Helpers.ZoneMappers
                 }
                 else if (energyAnalysisSubSurface.OpeningType.ToString() == "Door")
                 {
-                    elements = collector.OfClass(typeof(RoofBase)).WherePasses(filter).ToElements();
+                    elements = collector.OfCategory(BuiltInCategory.OST_Doors).WherePasses(filter).ToElements();
                 }
                 else if (energyAnalysisSubSurface.OpeningType.ToString() == "Air")
                 {

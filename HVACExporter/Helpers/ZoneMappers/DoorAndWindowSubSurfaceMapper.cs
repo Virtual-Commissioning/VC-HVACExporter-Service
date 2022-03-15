@@ -26,7 +26,22 @@ namespace HVACExporter.Helpers
             foreach (EnergyAnalysisOpening opening in subSurfaces)
             {
                 if (opening.OpeningType.ToString() == "Air") continue;
-                string id = opening.Id.ToString();
+                string name;
+                if (opening.OpeningType.ToString() == "Door")
+                {
+                    if (energyAnalysisSurface.GetAdjacentAnalyticalSpace() != null)
+                    {
+                        name = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
+                    }
+                    else
+                    {
+                        name = opening.Id.ToString();
+                    }
+                }
+                else
+                {
+                    name = opening.Id.ToString();
+                }
                 string subSurfType = opening.OpeningType.ToString();
                 Coordinate openingCenter = SubSurfaceCenterMapper.MapSubSurface(opening, doc);
                 string constructionId = GetAssociatedOpeningConstruction.MapAssociatedOpeningConstruction(openingCenter, doc, opening);
@@ -40,14 +55,22 @@ namespace HVACExporter.Helpers
                 {
                     hostSurfId = energyAnalysisSurface.Id.ToString();
                 }
-                string outsideBCObj = "NA";
-                string viewFactorToGround = "NA";
+                string outsideBCObj;
+                if (energyAnalysisSurface.GetAdjacentAnalyticalSpace() != null)
+                {
+                    outsideBCObj = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                }
+                else
+                {
+                    outsideBCObj = "";
+                }
+                string viewFactorToGround = "";
                 int multiplier = 1;
                 FrameAndDivider frameAndDivider = FrameAndDividerMapper.MapFrameAndDivider(opening);
                 string frameAndDividerName = frameAndDivider.Name;
                 List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
                 SubSurfDoorAndWindow subSurfaceToAdd = new SubSurfDoorAndWindow
-                    (id, subSurfType, constructionId, hostSurfId, outsideBCObj, viewFactorToGround, 
+                    (name, subSurfType, constructionId, hostSurfId, outsideBCObj, viewFactorToGround, 
                     frameAndDividerName, multiplier, vertices, frameAndDivider);
                 
                 allSubSurfaces.Add(subSurfaceToAdd);

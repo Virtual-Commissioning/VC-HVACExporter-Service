@@ -9,11 +9,11 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 {
     public class PeopleMapper
     {
-        public static List<People> MapPeople(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+        public static List<People> MapPeople(string analyticalZoneId)
         {
             List<People> people = new List<People>();
-            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "People";
-            string zoneId = associatedSpace.Id.ToString();
+            string id = "Zone" + analyticalZoneId + "_" + "People";
+            string zoneId = analyticalZoneId;
             string peopleSchedule = "";
             string calculationMethod = "";
             int numberOfPeople = 0;
@@ -21,6 +21,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             double sensibleHeatFraction = 0;
             string activitySchedule = "";
             double co2GenerationRate = 0;
+            string enableAshare55ComfortWarnings = "";
             string mrtCalculationType = "";
             string surfaceId = "";
             string workEfficiencySchedule = "";
@@ -31,7 +32,7 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 
             People peopleGains = new People(id, zoneId, peopleSchedule, calculationMethod,
                 numberOfPeople, fractionRadiant, sensibleHeatFraction, activitySchedule,
-                co2GenerationRate, mrtCalculationType, surfaceId, workEfficiencySchedule,
+                co2GenerationRate, enableAshare55ComfortWarnings, mrtCalculationType, surfaceId, workEfficiencySchedule,
                 clothingInsulationCalculationMethod, clothingInsulationSchedule, airVelocitySchedule, thermalComfortType);
             people.Add(peopleGains);
             return people;

@@ -26,12 +26,12 @@ namespace HVACExporter.Helpers
             foreach (EnergyAnalysisOpening opening in subSurfaces)
             {
                 if (opening.OpeningType.ToString() != "Air") continue;
-                string id = opening.Id.ToString();
+                string name = opening.Id.ToString();
                 string subSurfType = opening.OpeningType.ToString();
                 string constructionId = opening.Type.ToString();
                 string zoneId = analyticalSurface.GetAdjacentAnalyticalSpace().Id.ToString();
-                string outsideBCObj = "NA";
-                string outsideBC = "NA";
+                string outsideBCObj = "";
+                string outsideBC = "";
                 bool sunExposure;
                 bool windExposure;
                 if (analyticalSurface.GetAnalyticalOpenings().Count > 0 && analyticalSurface.SurfaceType.ToString() == "ExteriorWall")
@@ -44,10 +44,10 @@ namespace HVACExporter.Helpers
                     sunExposure = false;
                     windExposure = false;
                 }
-                string viewFactorToGround = "NA";
+                string viewFactorToGround = "";
                 List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
                 SubSurfOpening subSurfaceToAdd = new SubSurfOpening
-                    (id, subSurfType, constructionId, zoneId, outsideBCObj, outsideBC, sunExposure, windExposure, viewFactorToGround, vertices);
+                    (name, subSurfType, constructionId, zoneId, outsideBCObj, outsideBC, sunExposure, windExposure, viewFactorToGround, vertices);
                 
                 allSubSurfaces.Add(subSurfaceToAdd);
             }

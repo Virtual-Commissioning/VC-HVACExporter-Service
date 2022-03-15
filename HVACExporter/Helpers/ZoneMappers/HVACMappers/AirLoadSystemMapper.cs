@@ -9,10 +9,10 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 {
     public class AirLoadSystemMapper
     {
-        public static AirLoadSystem MapAirLoadSystem(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+        public static AirLoadSystem MapAirLoadSystem(string analyticalZoneId)
         {
-            string zoneId = associatedSpace.Id.ToString();
-            string thermostatName = "Zone" + associatedSpace.Id.ToString() + "_" + "Thermostat";
+            string zoneId = analyticalZoneId;
+            string thermostatName = "Zone" + analyticalZoneId + "_" + "Thermostat";
             string avaliabilitySchedule = "";
             double maxHeatingSupplyAirTemp = 0;
             double minCoolingSupplyAirTemp = 0;
