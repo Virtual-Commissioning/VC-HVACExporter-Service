@@ -5,6 +5,7 @@ using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Zone;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HVACExporter.Helpers.ZoneMappers
 {
@@ -31,18 +32,28 @@ namespace HVACExporter.Helpers.ZoneMappers
                         foreach (Autodesk.Revit.DB.Edge vertex in loop)
                         {
                             IList<XYZ> edgePts = vertex.Tessellate();
-                            double x = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].X),3);
-                            double y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Y),3);
-                            double z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Z),3);
-                            Coordinate point = new Coordinate(x, y, z);
-
-                            vertices.Add(point);
+                            double x, y, z;
+                            foreach (XYZ edgePt in edgePts)
+                            {
+                                x = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.X), 3);
+                                y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.Y), 3);
+                                z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.Z), 3);
+                                Coordinate point = new Coordinate(x, y, z);
+                                vertices.Add(point);
+                            }
                         }
                     }
                 }
             }
-            
-            return vertices;
+            List<Coordinate> newVertices = new List<Coordinate>();
+            foreach (Coordinate coord in vertices)
+            {
+                if (!newVertices.Where(x => x.X == coord.X && x.Y == coord.Y && x.Z == coord.Z).Any())
+                {
+                    newVertices.Add(coord);
+                }
+            }
+            return newVertices;
         }
     }
 

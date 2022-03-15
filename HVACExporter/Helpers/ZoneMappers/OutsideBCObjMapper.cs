@@ -24,7 +24,7 @@ namespace HVACExporter.Helpers.ZoneMappers
             }
             else if (outsideBC == "Surface")
             {
-                outsideBCObjType = energyAnalysisSurface.Id.ToString();
+                outsideBCObjType = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
             }
             else
             {

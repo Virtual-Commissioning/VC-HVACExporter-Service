@@ -46,7 +46,20 @@ namespace HVACExporter.Helpers
 
                     Coordinate planeCenter = PlaneCenterMapper.MapPlaneCenter(energyAnalysisSurface, doc);
                     string constructionId = GetAssociatedConstruction.MapAssociatedConstruction(planeCenter, doc, energyAnalysisSurface);
-                    string surfType = energyAnalysisSurface.SurfaceType.ToString();
+                    string surfType;
+                    if (energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" ||
+                        energyAnalysisSurface.SurfaceType.ToString() == "ExteriorWall")
+                    {
+                        surfType = "Wall";
+                    }
+                    else if (energyAnalysisSurface.SurfaceType.ToString() == "ExteriorFloor")
+                    {
+                        surfType = "Floor";
+                    }
+                    else
+                    {
+                        surfType = energyAnalysisSurface.SurfaceType.ToString();
+                    }
                     string zoneTag = analyticalZoneId;
                     string outsideBC = OutsideBCMapper.MapOutsideBC(energyAnalysisSurface); 
                     string outsideBCObj = OutsideBCObjMapper.MapOutsideBCObj(energyAnalysisSurface, outsideBC);
@@ -65,6 +78,17 @@ namespace HVACExporter.Helpers
                     string viewFactorToGround = "";
                     List<Coordinate> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc);
                     SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces(energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
+
+                    List<Coordinate> subSurfaceVertices = new List<Coordinate>();
+                    if (energyAnalysisSurface.GetAnalyticalOpenings().Count > 0)
+                    {
+                        foreach (EnergyAnalysisOpening opening in energyAnalysisSurface.GetAnalyticalOpenings())
+                        {
+                            List<Coordinate> coordinates = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
+                            subSurfaceVertices.AddRange(coordinates);
+                        }
+                    }
+                    vertexCoordinates.RemoveAll(p1 => subSurfaceVertices.Exists(p2 => p2.X == p1.X && p2.Y == p1.Y && p2.Z == p1.Z));
 
                     Models.Zone.Surface surface = new Models.Zone.Surface(id, surfType,
                         constructionId, zoneTag, outsideBC, outsideBCObj, sunExposure, windExposure,

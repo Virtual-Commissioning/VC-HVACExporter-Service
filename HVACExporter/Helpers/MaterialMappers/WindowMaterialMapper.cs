@@ -17,7 +17,7 @@ namespace HVACExporter.Helpers.MaterialMappers
                 FamilySymbol windowInfo = doc.GetElement(windowSymbol) as FamilySymbol;
 
                 string name = window.Id.ToString();
-                double uFactor = 1/Math.Round(windowInfo.GetThermalProperties().ThermalResistance,3);
+                double uFactor = Math.Round(1 / windowInfo.GetThermalProperties().ThermalResistance,3);
                 double solarHeatGain = Math.Round(windowInfo.GetThermalProperties().SolarHeatGainCoefficient,3);
                 double visibleTransmittance = Math.Round(windowInfo.GetThermalProperties().VisualLightTransmittance,3);
 

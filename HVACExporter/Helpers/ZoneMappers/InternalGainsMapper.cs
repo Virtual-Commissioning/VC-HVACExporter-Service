@@ -18,11 +18,11 @@ namespace HVACExporter.Helpers
     public class InternalGainsMapper
     {
         public static InternalGains MapInternalGains
-            (Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+            (string analyticalZoneId)
         {
-            List<People> people = PeopleMapper.MapPeople(associatedSpace);
-            List<Lighting> lighting = LightingMapper.MapLighting(associatedSpace);
-            List<Equipment> equipment = EquipmentMapper.MapEquipment(associatedSpace);
+            List<People> people = PeopleMapper.MapPeople(analyticalZoneId);
+            List<Lighting> lighting = LightingMapper.MapLighting(analyticalZoneId);
+            List<Equipment> equipment = EquipmentMapper.MapEquipment(analyticalZoneId);
 
             InternalGains allInternalGains = new InternalGains(people, lighting, equipment);
 

@@ -4,10 +4,10 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 {
     public class InfiltrationMapper
     {
-        public static Infiltration MapInfiltration(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+        public static Infiltration MapInfiltration(string analyticalZoneId)
         {
-            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Infiltration";
-            string zoneId = associatedSpace.Id.ToString();
+            string id = "Zone" + analyticalZoneId + "_" + "Infiltration";
+            string zoneId = analyticalZoneId;
             string infiltrationSchedule = "";
             string calculationMethod = "";
             double designFlowRate = 0;

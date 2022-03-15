@@ -18,10 +18,10 @@ namespace HVACExporter.Helpers
     public class HVACMapper
     {
         public static HVAC MapHVAC
-            (Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+            (string analyticalZoneId)
         {
-            Thermostat thermostat = ThermostatMapper.MapThermostat(associatedSpace);
-            AirLoadSystem airLoadSystem = AirLoadSystemMapper.MapAirLoadSystem(associatedSpace);
+            Thermostat thermostat = ThermostatMapper.MapThermostat(analyticalZoneId);
+            AirLoadSystem airLoadSystem = AirLoadSystemMapper.MapAirLoadSystem(analyticalZoneId);
             HVAC hvac = new HVAC(thermostat, airLoadSystem);
 
             return hvac;

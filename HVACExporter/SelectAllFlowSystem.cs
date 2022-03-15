@@ -52,7 +52,7 @@ namespace HVACExporter
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
             allConstructions = ConstructionMapper.MapAllConstructions(allWalls, allFloors, allRoofs, allSpaces, allDoors, allWindows, allOpenings, doc);
-            bot.Add("site", SiteMapper.MapSite(doc, allSpaces, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces));
+            bot.Add("Site", SiteMapper.MapSite(doc, allSpaces, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces));
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 

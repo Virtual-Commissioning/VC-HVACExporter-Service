@@ -9,11 +9,11 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 {
     public class LightingMapper
     {
-        public static List<Lighting> MapLighting(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+        public static List<Lighting> MapLighting(string analyticalZoneId)
         {
             List<Lighting> lighting = new List<Lighting>();
-            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Lighting";
-            string zoneId = associatedSpace.Id.ToString();
+            string id = "Zone" + analyticalZoneId + "_" + "Lighting";
+            string zoneId = analyticalZoneId;
             string lightingSchedule = "";
             string calculationMethod = "";
             double lightingLevel = 0;

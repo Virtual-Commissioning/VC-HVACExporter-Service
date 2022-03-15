@@ -17,7 +17,7 @@ namespace HVACExporter.Models.Zone
         public string Outside_Boundary_Condition { get; set; }
         public bool Sun_Exposure { get; set; }
         public bool Wind_Exposure { get; set; }
-        public string View_Factor_To_Ground { get; set; }
+        public string View_Factor_to_Ground { get; set; }
         public List<Coordinate> VertexCoordinates { get; set; }
 
         public SubSurfOpening(string id, string subSurfType, string constructionId, string zoneId, 
@@ -32,7 +32,7 @@ namespace HVACExporter.Models.Zone
             Outside_Boundary_Condition = outsideBC;
             Sun_Exposure = sunExposure;
             Wind_Exposure = windExposure;
-            View_Factor_To_Ground = viewFactorToGround;
+            View_Factor_to_Ground = viewFactorToGround;
             VertexCoordinates = vertices;
         }
     }

@@ -8,6 +8,7 @@ using HVACExporter.Models.Spaces.IndoorClimate;
 using HVACExporter.Models.Zone;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HVACExporter.Helpers
 {
@@ -25,8 +26,21 @@ namespace HVACExporter.Helpers
                 foreach (CompoundStructureLayer layer in layers)
                 {
                     string id = layer.MaterialId.ToString();
-                    double thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width), 3);
+                    double thickness;
+                    if (layer.Width == 0)
+                    {
+                        thickness = 0.001;
+                    }
+                    else
+                    {
+                        thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width), 3);
+                    }
+                    //bool alreadyExists = layerFloorMaterials.Any(item => item.Name.ToString() == id && item.Thickness == thickness);
+                    //if (alreadyExists == true) continue;
+                    string preName = id + "_" + thickness.ToString();
+                    string name = preName.Replace(',', '.');
                     Material layerFloorMaterial = doc.GetElement(layer.MaterialId) as Material;
+                    string readableName = layerFloorMaterial.Name;
                     int roughness = 0;
                     double thermalAbsorbtance = 0; 
                     double solarAbsorbtance = 0; 
@@ -36,11 +50,12 @@ namespace HVACExporter.Helpers
                     PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;
                     if (pse == null) continue;
                     ThermalAsset asset = pse.GetThermalAsset();
-                    double conductivity = Math.Round(ImperialToMetricConverter.ConvertThermalConductivityImpToMet(asset.ThermalConductivity),3);
-                    double density = Math.Round(ImperialToMetricConverter.ConvertDensityImpToMet(asset.Density),3);
-                    double specificHeat = Math.Round(ImperialToMetricConverter.ConvertSpecificHeatImpToMet(asset.SpecificHeat),3);
+                    double conductivity = Math.Round(ImperialToMetricConverter.ConvertThermalConductivityImpToMet(asset.ThermalConductivity), 3);
+                    double density = Math.Round(ImperialToMetricConverter.ConvertDensityImpToMet(asset.Density), 3);
+                    double specificHeat = Math.Round(ImperialToMetricConverter.ConvertSpecificHeatImpToMet(asset.SpecificHeat), 3) * 1000;
+                    
 
-                    SurfaceMat layerFloorMaterialToAdd = new SurfaceMat(id, roughness, thickness,
+                    SurfaceMat layerFloorMaterialToAdd = new SurfaceMat(readableName, name, roughness, thickness,
                         conductivity, density, specificHeat, thermalAbsorbtance,
                         solarAbsorbtance, visibleAbsorbtance);
 

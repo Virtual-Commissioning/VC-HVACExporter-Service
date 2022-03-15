@@ -9,9 +9,9 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
 {
     public class ThermostatMapper
     {
-        public static Thermostat MapThermostat(Autodesk.Revit.DB.Mechanical.Space associatedSpace)
+        public static Thermostat MapThermostat(string analyticalZoneId)
         {
-            string id = "Zone" + associatedSpace.Id.ToString() + "_" + "Thermostat";
+            string id = "Zone" + analyticalZoneId + "_" + "Thermostat";
             string heatingSetpointSchedule = "";
             string constantHeatingSetpoint = "";
             string coolingSetpointSchedule = "";
