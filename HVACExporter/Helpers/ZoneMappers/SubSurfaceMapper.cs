@@ -8,12 +8,12 @@ namespace HVACExporter.Helpers
     public class SubSurfaceMapper
     {
         public static SubSurfType MapSubSurfaces
-            (EnergyAnalysisSurface energyAnalysisSurface, Document doc, FilteredElementCollector allAnalyticalSubSurfaces)
+            (EnergyAnalysisSurface energyAnalysisSurface, EnergyAnalysisSpace energyAnalysisSpace, Document doc, FilteredElementCollector allAnalyticalSubSurfaces, string analyticalZoneId)
         {
             List<SubSurfDoorAndWindow> subSurfaces = DoorAndWindowSubSurfaceMapper.MapDoorAndWindowSubSurfaces
-                (energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
+                (energyAnalysisSurface, energyAnalysisSpace, doc, allAnalyticalSubSurfaces, analyticalZoneId);
             List<SubSurfOpening> subSurfaceOpenings = OpeningSubSurfaceMapper.MapOpeningSubSurfaces
-                (energyAnalysisSurface, doc, allAnalyticalSubSurfaces);
+                (energyAnalysisSurface, doc, allAnalyticalSubSurfaces, analyticalZoneId);
 
             List<Dictionary<string, SubSurfDoorAndWindow>> allSubSurfDoors = new List<Dictionary<string, SubSurfDoorAndWindow>>();
             List<Dictionary<string, SubSurfDoorAndWindow>> allSubSurfWindows = new List<Dictionary<string, SubSurfDoorAndWindow>>();

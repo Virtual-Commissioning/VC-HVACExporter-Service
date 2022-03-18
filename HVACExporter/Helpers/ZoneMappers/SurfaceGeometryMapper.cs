@@ -10,7 +10,7 @@ namespace HVACExporter.Helpers.ZoneMappers
 {
     public class SurfaceGeometryMapper
     {
-        public static List<Coordinate> MapSurfaceGeometry(EnergyAnalysisSurface energyAnalysisSurface, Document doc)
+        public static List<Coordinate> MapSurfaceGeometry(EnergyAnalysisSurface energyAnalysisSurface, Document doc, string analyticalZoneId)
         {
             List<Coordinate> vertices = new List<Coordinate>();
             Document surfDoc = energyAnalysisSurface.Document;
@@ -34,13 +34,21 @@ namespace HVACExporter.Helpers.ZoneMappers
                             double y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Y),3);
                             double z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Z),3);
                             Coordinate point = new Coordinate(x,y,z);
-
-                            vertices.Add(point);
+                            //In order to controll the direction of the normal vector of the surface, the order of vertices in the list is determined by:
+                            if (energyAnalysisSurface.GetAnalyticalSpace().Id.ToString() == analyticalZoneId)
+                            {
+                                //vertices.Add(point);
+                                vertices.Insert(0, point);
+                            }
+                            else
+                            {
+                                vertices.Add(point);
+                                //vertices.Insert(0, point);
+                            }
                         }
                     }
                 }
             }
-            
             return vertices;
         }
     }

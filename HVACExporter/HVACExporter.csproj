@@ -96,6 +96,9 @@
     <Compile Include="Helpers\ZoneMappers\GetAssociatedOpeningConstruction.cs" />
     <Compile Include="Helpers\ZoneMappers\GetAssociatedConstruction.cs" />
     <Compile Include="Helpers\ZoneMappers\FrameAndDividerMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\GetAngle.cs" />
+    <Compile Include="Helpers\ZoneMappers\SortPointsV2.cs" />
+    <Compile Include="Helpers\ZoneMappers\SortPoints.cs" />
     <Compile Include="Helpers\ZoneMappers\SubSurfaceCenterMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\PlaneCenterMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\ZoneShadingMapper.cs" />

@@ -33,10 +33,12 @@ namespace HVACExporter.Helpers
                         if (wall != null)
                         {
                             string constructionId = wall.Id.ToString();
+                            string constructionId2 = wall.Id.ToString() + "_Adjacent";
                             CompoundStructure structure = wall.WallType.GetCompoundStructure();
                             IList<CompoundStructureLayer> layers = structure.GetLayers();
 
                             List<Dictionary<string, string>> constructionLayers = new List<Dictionary<string, string>>();
+                            List<Dictionary<string, string>> constructionLayers2 = new List<Dictionary<string, string>>();
 
                             foreach (CompoundStructureLayer layer in layers)
                             {
@@ -47,7 +49,9 @@ namespace HVACExporter.Helpers
                                 if (pse == null) continue;
 
                                 int layerId = layer.LayerId + 1;
+                                int layerId2 = layers.Count - layerId + 1;
                                 string layerName = "Layer" + layerId.ToString();
+                                string layerName2 = "Layer" + layerId2;
                                 double thickness;
                                 if (layer.Width == 0)
                                 {
@@ -60,14 +64,28 @@ namespace HVACExporter.Helpers
                                 string preMaterialId = layer.MaterialId.ToString() + "_" + thickness;
                                 string materialId = preMaterialId.Replace(',', '.');
                                 Dictionary<string, string> layerValues = new Dictionary<string, string>();
+                                Dictionary<string, string> layerValues2 = new Dictionary<string, string>();
                                 layerValues.Add(layerName, materialId);
+                                layerValues2.Add(layerName2, materialId);
                                 constructionLayers.Add(layerValues);
+                                constructionLayers2.Insert(0, layerValues2);
+                                
                             }
-
                             SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, constructionLayers);
+                            SurfaceConstruction surfaceConstructionToAdd2 = new SurfaceConstruction(constructionId2, constructionLayers2);
                             Dictionary<string, SurfaceConstruction> linkedSurfaceConstruction = new Dictionary<string, SurfaceConstruction>();
+                            Dictionary<string, SurfaceConstruction> linkedSurfaceConstruction2 = new Dictionary<string, SurfaceConstruction>();
                             linkedSurfaceConstruction.Add(constructionId, surfaceConstructionToAdd);
-                            surfaceConstructions.Add(linkedSurfaceConstruction);
+                            linkedSurfaceConstruction2.Add(constructionId2, surfaceConstructionToAdd2);
+                            if (wall.WallType.Function.ToString() == "Interior")
+                            {
+                                surfaceConstructions.Add(linkedSurfaceConstruction);
+                                surfaceConstructions.Add(linkedSurfaceConstruction2);
+                            }
+                            else
+                            {
+                                surfaceConstructions.Add(linkedSurfaceConstruction);
+                            }
                         }
                         else continue;
 

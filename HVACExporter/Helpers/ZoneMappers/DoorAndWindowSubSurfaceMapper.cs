@@ -17,7 +17,7 @@ namespace HVACExporter.Helpers
     public class DoorAndWindowSubSurfaceMapper
     {
         public static List<SubSurfDoorAndWindow> MapDoorAndWindowSubSurfaces
-            (EnergyAnalysisSurface energyAnalysisSurface, Document doc, FilteredElementCollector allAnalyticalSurfaces)
+            (EnergyAnalysisSurface energyAnalysisSurface, EnergyAnalysisSpace energyAnalysisSpace, Document doc, FilteredElementCollector allAnalyticalSurfaces, string analyticalZoneId)
         {
             List<SubSurfDoorAndWindow> allSubSurfaces = new List<SubSurfDoorAndWindow>();
 
@@ -31,7 +31,14 @@ namespace HVACExporter.Helpers
                 {
                     if (energyAnalysisSurface.GetAdjacentAnalyticalSpace() != null)
                     {
-                        name = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
+                        if (energyAnalysisSurface.GetAnalyticalSpace().Id == energyAnalysisSpace.Id)
+                        {
+                            name = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
+                        }
+                        else
+                        {
+                            name = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                        }
                     }
                     else
                     {
@@ -49,7 +56,14 @@ namespace HVACExporter.Helpers
                 if (energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" ||
                     energyAnalysisSurface.SurfaceType.ToString() == "InteriorFloor")
                 {
-                    hostSurfId = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().ToString();
+                    if (energyAnalysisSurface.GetAnalyticalSpace().Id == energyAnalysisSpace.Id)
+                    {
+                        hostSurfId = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
+                    }
+                    else
+                    {
+                        hostSurfId = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                    }
                 }
                 else
                 {
@@ -58,7 +72,14 @@ namespace HVACExporter.Helpers
                 string outsideBCObj;
                 if (energyAnalysisSurface.GetAdjacentAnalyticalSpace() != null)
                 {
-                    outsideBCObj = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                    if (energyAnalysisSurface.GetAnalyticalSpace().Id == energyAnalysisSpace.Id)
+                    {
+                        outsideBCObj = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                    }
+                    else
+                    {
+                        outsideBCObj = opening.Id.ToString() + "_" + energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
+                    }
                 }
                 else
                 {
@@ -68,7 +89,7 @@ namespace HVACExporter.Helpers
                 int multiplier = 1;
                 FrameAndDivider frameAndDivider = FrameAndDividerMapper.MapFrameAndDivider(opening);
                 string frameAndDividerName = frameAndDivider.Name;
-                List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
+                List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc, energyAnalysisSurface, analyticalZoneId);
                 SubSurfDoorAndWindow subSurfaceToAdd = new SubSurfDoorAndWindow
                     (name, subSurfType, constructionId, hostSurfId, outsideBCObj, viewFactorToGround, 
                     frameAndDividerName, multiplier, vertices, frameAndDivider);

@@ -17,7 +17,7 @@ namespace HVACExporter.Helpers
     public class OpeningSubSurfaceMapper
     {
         public static List<SubSurfOpening> MapOpeningSubSurfaces
-            (EnergyAnalysisSurface energyAnalysisSurface, Document doc, FilteredElementCollector allAnalyticalSurfaces)
+            (EnergyAnalysisSurface energyAnalysisSurface, Document doc, FilteredElementCollector allAnalyticalSurfaces, string analyticalZoneId)
         {
             List<SubSurfOpening> allSubSurfaces = new List<SubSurfOpening>();
 
@@ -45,7 +45,7 @@ namespace HVACExporter.Helpers
                     windExposure = false;
                 }
                 string viewFactorToGround = "";
-                List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc);
+                List<Coordinate> vertices = SubSurfaceGeometryMapper.MapSubSurfaceGeometry(opening, doc, energyAnalysisSurface, analyticalZoneId);
                 SubSurfOpening subSurfaceToAdd = new SubSurfOpening
                     (name, subSurfType, constructionId, zoneId, outsideBCObj, outsideBC, sunExposure, windExposure, viewFactorToGround, vertices);
                 

@@ -26,7 +26,7 @@ namespace HVACExporter.Helpers.ZoneMappers
             else if (energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall" &&
                 energyAnalysisSurface.GetAnalyticalOpenings().Count > 0)
             {
-                outsideBCType = OutBC.Adiabatic.ToString();
+                outsideBCType = OutBC.Surface.ToString();
             }
             else if (energyAnalysisSurface.SurfaceType.ToString() == "ExteriorWall" || 
                 energyAnalysisSurface.SurfaceType.ToString() == "ExteriorFloor" || 
