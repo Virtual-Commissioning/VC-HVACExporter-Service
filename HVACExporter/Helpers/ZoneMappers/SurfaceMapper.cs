@@ -145,6 +145,11 @@ namespace HVACExporter.Helpers
                             }
                         }
                     }
+                    if (energyAnalysisSurface.SurfaceType.ToString() == "ExteriorFloor" ||
+                        surfType == "Roof")
+                    {
+                        faceNormal = - faceNormal;
+                    }
                     List<Coordinate> sortedVertices = SortPointsV2.PointSorter(vertexCoordinates, faceNormal);
 
                     Models.Zone.Surface surface = new Models.Zone.Surface(id, surfType,

@@ -20,6 +20,7 @@ namespace HVACExporter.Helpers.ZoneMappers
             List<Coordinate> q2 = new List<Coordinate>();
             List<Coordinate> q3 = new List<Coordinate>();
             List<Coordinate> q4 = new List<Coordinate>();
+            List<Coordinate> quadrantsAdded = new List<Coordinate>();
             int normalX = (int)Math.Round(faceNormal.X);
             int normalY = (int)Math.Round(faceNormal.Y);
             int normalZ = (int)Math.Round(faceNormal.Z);
@@ -59,16 +60,16 @@ namespace HVACExporter.Helpers.ZoneMappers
                         q4 = q4.OrderBy(p => p.Z).ThenByDescending(p => p.Y).ToList();
                     }
                 }
-                sortedCoordinates.AddRange(q1_1);
-                sortedCoordinates.AddRange(q2);
-                sortedCoordinates.AddRange(q3);
-                sortedCoordinates.AddRange(q4);
-                sortedCoordinates.AddRange(q1_2);
-
+                quadrantsAdded.AddRange(q1_1);
+                quadrantsAdded.AddRange(q2);
+                quadrantsAdded.AddRange(q3);
+                quadrantsAdded.AddRange(q4);
+                quadrantsAdded.AddRange(q1_2);
                 if (normalX == -1)
                 {
-                    sortedCoordinates.Reverse();
+                    quadrantsAdded.Reverse();
                 }
+                sortedCoordinates.AddRange(quadrantsAdded);
             }
             else if (normalY == 1 || normalY == -1)
             {
@@ -106,15 +107,16 @@ namespace HVACExporter.Helpers.ZoneMappers
                         q4 = q4.OrderBy(p => p.Z).ThenByDescending(p => p.X).ToList();
                     }
                 }
-                sortedCoordinates.AddRange(q1_1);
-                sortedCoordinates.AddRange(q2);
-                sortedCoordinates.AddRange(q3);
-                sortedCoordinates.AddRange(q4);
-                sortedCoordinates.AddRange(q1_2);
+                quadrantsAdded.AddRange(q1_1);
+                quadrantsAdded.AddRange(q2);
+                quadrantsAdded.AddRange(q3);
+                quadrantsAdded.AddRange(q4);
+                quadrantsAdded.AddRange(q1_2);
                 if (normalY == -1)
                 {
-                    sortedCoordinates.Reverse();
+                    quadrantsAdded.Reverse();
                 }
+                sortedCoordinates.AddRange(quadrantsAdded);
             }
             else
             {
@@ -152,16 +154,16 @@ namespace HVACExporter.Helpers.ZoneMappers
                         q4 = q4.OrderBy(p => p.Y).ThenByDescending(p => p.X).ToList();
                     }
                 }
-                sortedCoordinates.AddRange(q1_1);
-                sortedCoordinates.AddRange(q2);
-                sortedCoordinates.AddRange(q3);
-                sortedCoordinates.AddRange(q4);
-                sortedCoordinates.AddRange(q1_2);
-
+                quadrantsAdded.AddRange(q1_1);
+                quadrantsAdded.AddRange(q2);
+                quadrantsAdded.AddRange(q3);
+                quadrantsAdded.AddRange(q4);
+                quadrantsAdded.AddRange(q1_2);
                 if (normalZ == -1)
                 {
-                    sortedCoordinates.Reverse();
+                    quadrantsAdded.Reverse();
                 }
+                sortedCoordinates.AddRange(quadrantsAdded);
             }
 
             return sortedCoordinates;
