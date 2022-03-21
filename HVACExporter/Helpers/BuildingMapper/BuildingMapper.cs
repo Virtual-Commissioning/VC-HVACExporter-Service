@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using HVACExporter.Helpers.SpaceMappers;
 using HVACExporter.Models.GeometricTypes;
 using HVACExporter.Models.Spaces;
@@ -13,7 +14,10 @@ namespace HVACExporter.Helpers
 {
     class BuildingMapper
     {
-        public static List<Dictionary<string, Building>> MapAllBuildings(Document doc, FilteredElementCollector allSpaces, FilteredElementCollector allAnalyticalSurfaces, FilteredElementCollector allAnalyticalSpaces, FilteredElementCollector allAnalyticalSubSurfaces)
+        public static List<Dictionary<string, Building>> MapAllBuildings(Document doc, FilteredElementCollector allSpaces, 
+            FilteredElementCollector allAnalyticalSurfaces, FilteredElementCollector allAnalyticalSpaces, 
+            FilteredElementCollector allAnalyticalSubSurfaces, FilteredElementCollector allMasses,
+            FilteredElementCollector allWalls, ExternalCommandData commandData)
         {
             List<Dictionary<string, Building>> buildings = new List<Dictionary<string, Building>>();
 
@@ -40,8 +44,10 @@ namespace HVACExporter.Helpers
                 string maxNumberOfWarmupDays = "";
                 string minNumberOfWarmupDays = "";
                 List<Dictionary<string, Zone>> zones = ZoneMapper.MapAllZones(allSpaces, doc, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces);
+                List<Dictionary<string, ShadingBuilding>> buildingShadings = BuildingShadingMapper.MapBuildingShading(allSpaces, allWalls, doc, commandData);
+
                 Building building1 = new Building(name, northAxis, terrain, loadsConvergenceToleranceValue, 
-                    temperatureConvergenceToleranceValue, solarDistribution, maxNumberOfWarmupDays, minNumberOfWarmupDays, zones);
+                    temperatureConvergenceToleranceValue, solarDistribution, maxNumberOfWarmupDays, minNumberOfWarmupDays, zones, buildingShadings);
                 Dictionary<string, Building> linkedBuilding = new Dictionary<string, Building>();
                 linkedBuilding.Add(name, building1);
                 buildings.Add(linkedBuilding);

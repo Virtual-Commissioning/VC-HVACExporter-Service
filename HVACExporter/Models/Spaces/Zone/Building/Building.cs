@@ -17,11 +17,13 @@ namespace HVACExporter.Models.Zone
         public string Maximum_Number_of_Warmup_Days { get; set; }
         public string Minimum_Number_of_Warmup_Days { get; set; }
         public List<Dictionary<string, Zone>> Zones { get; set; }
+        public List<Dictionary<string, ShadingBuilding>> BuildingShadings { get; set; }
 
 
         public Building(string name, string northAxis, string terrain, 
             string loadConvTol, string tempConvTol, string solarDistribution, 
-            string maxWarmupDays, string minWarmupDays, List<Dictionary<string, Zone>> zones)
+            string maxWarmupDays, string minWarmupDays, List<Dictionary<string, Zone>> zones,
+            List<Dictionary<string, ShadingBuilding>> buildingShadings)
         {
             Name = name;
             North_Axis = northAxis;
@@ -32,6 +34,7 @@ namespace HVACExporter.Models.Zone
             Maximum_Number_of_Warmup_Days = maxWarmupDays;
             Minimum_Number_of_Warmup_Days = minWarmupDays;
             Zones = zones;
+            BuildingShadings = buildingShadings;
         }
     }
 }

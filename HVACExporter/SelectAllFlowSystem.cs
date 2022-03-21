@@ -47,12 +47,17 @@ namespace HVACExporter
             var allAnalyticalSurfaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisSurface));
             var allAnalyticalSpaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisSpace));
             var allAnalyticalSubSurfaces = new FilteredElementCollector(doc).OfClass(typeof(EnergyAnalysisOpening));
+            //var allMasses = new FilteredElementCollector(doc).WherePasses(new ElementCategoryFilter(BuiltInCategory.OST_Mass));
+            ElementCategoryFilter massCategoryFilter = new ElementCategoryFilter(BuiltInCategory.OST_Mass);
+            ElementClassFilter familySymbolFilter = new ElementClassFilter(typeof(FamilyInstance));
+            LogicalAndFilter logicalAndFiter = new LogicalAndFilter(massCategoryFilter, familySymbolFilter);
+            FilteredElementCollector allMasses = new FilteredElementCollector(doc).WherePasses(logicalAndFiter);
 
             system = Mapper.MapAllComponents(allElements);
             spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
             allConstructions = ConstructionMapper.MapAllConstructions(allWalls, allFloors, allRoofs, allSpaces, allDoors, allWindows, allOpenings, doc);
-            bot.Add("Site", SiteMapper.MapSite(doc, allSpaces, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces));
+            bot.Add("Site", SiteMapper.MapSite(doc, allSpaces, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces, allMasses, allWalls, commandData));
 
             (string userId, string projectId, string url) = HelperFunctions.PromptToken();
 
