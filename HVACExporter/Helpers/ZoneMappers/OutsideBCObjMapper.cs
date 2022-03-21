@@ -15,7 +15,8 @@ namespace HVACExporter.Helpers.ZoneMappers
 {
     public class OutsideBCObjMapper
     {
-        public static string MapOutsideBCObj(EnergyAnalysisSurface energyAnalysisSurface, string outsideBC)
+        public static string MapOutsideBCObj
+            (EnergyAnalysisSurface energyAnalysisSurface, string outsideBC, string surfaceAnalyticalSpaceId, string analyticalZoneId)
         {
             string outsideBCObjType;
             if (outsideBC == "Zone")
@@ -24,7 +25,14 @@ namespace HVACExporter.Helpers.ZoneMappers
             }
             else if (outsideBC == "Surface")
             {
-                outsideBCObjType = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                if (surfaceAnalyticalSpaceId == analyticalZoneId)
+                {
+                    outsideBCObjType = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
+                }
+                else
+                {
+                    outsideBCObjType = energyAnalysisSurface.Id.ToString() + "_" + energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
+                }
             }
             else
             {

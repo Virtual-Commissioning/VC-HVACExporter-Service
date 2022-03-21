@@ -58,7 +58,7 @@ namespace HVACExporter.Helpers
                 bool includedInTotArea = true;
 
                 List<Dictionary<string, Models.Zone.Surface>> surfaces = SurfaceMapper.MapSurfaces
-                    (analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces);
+                    (analyticalZoneId, doc, allAnalyticalSurfaces, allAnalyticalSubSurfaces, energyAnalysisSpaces[n], associatedSpace);
                 InternalGains internalGains = InternalGainsMapper.MapInternalGains(analyticalZoneId);
                 HVAC hvac = HVACMapper.MapHVAC(analyticalZoneId);
                 Infiltration infiltration = InfiltrationMapper.MapInfiltration(analyticalZoneId);
