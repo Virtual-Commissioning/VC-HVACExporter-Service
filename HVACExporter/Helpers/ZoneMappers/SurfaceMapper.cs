@@ -82,7 +82,7 @@ namespace HVACExporter.Helpers
                     }
                     else if (energyAnalysisSurface.SurfaceType.ToString() == "InteriorFloor")
                     {
-                        if (surfaceAdjacentAnalyticalSpaceId == analyticalZoneId)
+                        if (surfaceAdjacentAnalyticalSpaceId != analyticalZoneId)
                         {
                             surfType = "Ceiling";
                         }
@@ -145,8 +145,7 @@ namespace HVACExporter.Helpers
                             }
                         }
                     }
-                    if (energyAnalysisSurface.SurfaceType.ToString() == "ExteriorFloor" ||
-                        surfType == "Roof")
+                    if (surfType == "Floor" || surfType == "Roof" || surfType == "Ceiling")
                     {
                         faceNormal = - faceNormal;
                     }

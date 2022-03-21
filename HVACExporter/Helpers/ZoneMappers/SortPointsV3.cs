@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace HVACExporter.Helpers.ZoneMappers
 {
-    public class SortPointsV3 //Finds angle between three points
+    public class SortPointsV3 //Attempt on sorting vertices based on angles. Does not work completely, but think this is the optimal way to solve the sorting.
     {
         public static List<Coordinate> PointSorter(List<Coordinate> vertices, XYZ faceNormal)
         {
