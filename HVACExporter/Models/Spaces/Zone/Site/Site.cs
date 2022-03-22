@@ -14,9 +14,9 @@ namespace HVACExporter.Models.Zone
         public string Time_Zone { get; set; }
         public string Elevation { get; set; }
         public List<Dictionary<string, Building>> Buildings { get; set; }
-        public List<ShadingSite> SiteShadings { get; set; }
+        public List<Dictionary<string, ShadingSite>> SiteShadings { get; set; }
 
-        public Site(string name, string latitude, string longitude, string timeZone, string elevation, List<Dictionary<string, Building>> buildings, List<ShadingSite> shadingSite)
+        public Site(string name, string latitude, string longitude, string timeZone, string elevation, List<Dictionary<string, Building>> buildings, List<Dictionary<string, ShadingSite>> shadingSite)
         {
             Name = name;
             Latitude = latitude;

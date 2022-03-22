@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\BuildingMapper\ShadingGeometryMapper.cs" />
     <Compile Include="Helpers\SiteShadingMapper.cs" />
     <Compile Include="Helpers\SiteMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\FlowControllerMapper.cs" />
