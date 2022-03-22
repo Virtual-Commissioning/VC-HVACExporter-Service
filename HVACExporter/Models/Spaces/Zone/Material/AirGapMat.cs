@@ -9,9 +9,9 @@ namespace HVACExporter.Models.Zone
     public class AirGapMat
     {
         public string Name { get; set; }
-        public double Thermal_Resistance { get; set; }
+        public double? Thermal_Resistance { get; set; }
 
-        public AirGapMat(string name, double thermalResistance)
+        public AirGapMat(string name, double? thermalResistance)
         {
             Name = name;
             Thermal_Resistance = thermalResistance;

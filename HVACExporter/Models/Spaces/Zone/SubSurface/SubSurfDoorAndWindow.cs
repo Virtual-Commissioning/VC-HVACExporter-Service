@@ -16,13 +16,13 @@ namespace HVACExporter.Models.Zone
         public string Outside_Boundary_Condition_Object { get; set; } 
         public string View_Factor_to_Ground { get; set; }
         public string Frame_and_Divider_Name { get; set; }
-        public int Multiplier { get; set; }
+        public int? Multiplier { get; set; }
         public List<Coordinate> VertexCoordinates { get; set; }
         public FrameAndDivider FrameAndDivider { get; set; }
 
         public SubSurfDoorAndWindow(string name, string subSurfType, string constructionId, 
             string hostSurfId, string outsideBCObj, string viewFactorToGround, string frameAndDividerName, 
-            int multiplier, List<Coordinate> vertexCoordinates, FrameAndDivider frameAndDivider)
+            int? multiplier, List<Coordinate> vertexCoordinates, FrameAndDivider frameAndDivider)
         {
             Name = name;
             Surface_Type = subSurfType;

@@ -41,10 +41,10 @@ namespace HVACExporter.Helpers
                     string name = preName.Replace(',', '.');
                     Material layerRoofMaterial = doc.GetElement(layer.MaterialId) as Material;
                     string readableName = layerRoofMaterial.Name;
-                    int roughness = 0;
-                    double thermalAbsorbtance = 0; 
-                    double solarAbsorbtance = 0; 
-                    double visibleAbsorbtance = 0;
+                    int? roughness = null;
+                    double? thermalAbsorbtance = null; 
+                    double? solarAbsorbtance = null; 
+                    double? visibleAbsorbtance = null;
                     // Getting thermal assets:
                     ElementId thermalAssetId = layerRoofMaterial.ThermalAssetId;
                     PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;

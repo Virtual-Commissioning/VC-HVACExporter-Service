@@ -17,11 +17,11 @@ namespace HVACExporter.Helpers.MaterialMappers
                 FamilySymbol doorInfo = doc.GetElement(doorSymbol) as FamilySymbol;
 
                 string id = door.Id.ToString();
-                int roughness = 0;
-                double thermalResistance = Math.Round(ImperialToMetricConverter.ConvertThermalResistanceImpToMet(doorInfo.GetThermalProperties().ThermalResistance),3);
-                double thermalAbsorbtance = 0;
-                double solarAbsorbtance = 0;
-                double visibleTransmittance = 0;
+                int? roughness = null;
+                double? thermalResistance = Math.Round(ImperialToMetricConverter.ConvertThermalResistanceImpToMet(doorInfo.GetThermalProperties().ThermalResistance),3);
+                double? thermalAbsorbtance = null;
+                double? solarAbsorbtance = null;
+                double? visibleTransmittance = null;
                 DoorMat doorMaterial = new DoorMat(id, roughness, thermalResistance,
                     thermalAbsorbtance, solarAbsorbtance, visibleTransmittance);
                 Dictionary<string, DoorMat> linkedDoorMaterial = new Dictionary<string, DoorMat>();

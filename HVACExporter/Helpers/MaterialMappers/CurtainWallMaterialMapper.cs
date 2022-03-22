@@ -22,15 +22,15 @@ namespace HVACExporter.Helpers
             {
                 if (wall.WallType.Kind.ToString() != "Curtain") continue;
                     string name = "CW_Mat_" + wall.Id.ToString();
-                    double thickness = 0.0;
+                    double? thickness = null;
                     string readableName = wall.WallType.Name;
-                    int roughness = 0;
-                    double thermalAbsorbtance = 0; 
-                    double solarAbsorbtance = 0; 
-                    double visibleAbsorbtance = 0;
-                    double conductivity = 0;
-                    double density = 0;
-                    double specificHeat = 0;
+                    int? roughness = null;
+                    double? thermalAbsorbtance = null; 
+                    double? solarAbsorbtance = null; 
+                    double? visibleAbsorbtance = null;
+                    double? conductivity = null;
+                    double? density = null;
+                    double? specificHeat = null;
 
                     SurfaceMat layerWallMaterialToAdd = new SurfaceMat(readableName, name, roughness, thickness,
                         conductivity, density, specificHeat, thermalAbsorbtance,

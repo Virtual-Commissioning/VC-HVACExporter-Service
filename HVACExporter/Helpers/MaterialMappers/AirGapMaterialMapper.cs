@@ -28,7 +28,7 @@ namespace HVACExporter.Helpers
                 {
                     Dictionary<string, AirGapMat> linkedSurfaceMat = new Dictionary<string, AirGapMat>();
                     string name = surfaceMat.Name;
-                    double thermalResistance = 1/surfaceMat.Conductivity;
+                    double? thermalResistance = 1/surfaceMat.Conductivity;
                     AirGapMat airGapMat = new AirGapMat(name, thermalResistance);
                     linkedSurfaceMat.Add(surfaceMat.Name, airGapMat);
                     airGapMaterials.Add(linkedSurfaceMat);
@@ -42,7 +42,7 @@ namespace HVACExporter.Helpers
                 {
                     Dictionary<string, AirGapMat> linkedSurfaceMat = new Dictionary<string, AirGapMat>();
                     string name = surfaceMat.Name;
-                    double thermalResistance = 1 / surfaceMat.Conductivity;
+                    double? thermalResistance = 1 / surfaceMat.Conductivity;
                     AirGapMat airGapMat = new AirGapMat(name, thermalResistance);
                     linkedSurfaceMat.Add(surfaceMat.Name, airGapMat);
                     airGapMaterials.Add(linkedSurfaceMat);
@@ -56,7 +56,7 @@ namespace HVACExporter.Helpers
                 {
                     Dictionary<string, AirGapMat> linkedSurfaceMat = new Dictionary<string, AirGapMat>();
                     string name = surfaceMat.Name;
-                    double thermalResistance = 1 / surfaceMat.Conductivity;
+                    double? thermalResistance = 1 / surfaceMat.Conductivity;
                     AirGapMat airGapMat = new AirGapMat(name, thermalResistance);
                     linkedSurfaceMat.Add(surfaceMat.Name, airGapMat);
                     airGapMaterials.Add(linkedSurfaceMat);

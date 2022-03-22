@@ -10,14 +10,14 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string zoneId = analyticalZoneId;
             string infiltrationSchedule = "";
             string calculationMethod = "";
-            double designFlowRate = 0;
-            double flowPerZoneFloorArea = 0;
-            double flowPrExteriorSurfaceArea = 0;
-            double airChangesPerHour = 0;
-            double ConstantTermCoefficient = 0;
-            double tempTermCoefficient = 0;
-            double velocityTermCoefficient = 0;
-            double velocityTermSqCoefficient = 0;
+            double? designFlowRate = null;
+            double? flowPerZoneFloorArea = null;
+            double? flowPrExteriorSurfaceArea = null;
+            double? airChangesPerHour = null;
+            double? ConstantTermCoefficient = null;
+            double? tempTermCoefficient = null;
+            double? velocityTermCoefficient = null;
+            double? velocityTermSqCoefficient = null;
 
             Infiltration infiltration = new Infiltration(id, zoneId, infiltrationSchedule, calculationMethod,
                 designFlowRate, flowPerZoneFloorArea, flowPrExteriorSurfaceArea, airChangesPerHour,

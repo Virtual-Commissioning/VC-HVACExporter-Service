@@ -15,9 +15,9 @@ namespace HVACExporter.Helpers.MaterialMappers
             {
                 if (wall.WallType.Kind.ToString() != "Curtain") continue;
                 string name = "CW_Window_Mat_" + wall.Id.ToString();
-                double uFactor = 0;
-                double solarHeatGain = 0;
-                double visibleTransmittance = 0;
+                double? uFactor = null;
+                double? solarHeatGain = null;
+                double? visibleTransmittance = null;
 
                 WindowMat windowMaterial = new WindowMat(name, uFactor, solarHeatGain, visibleTransmittance);
                 Dictionary<string, WindowMat> linkedWindowMaterial = new Dictionary<string, WindowMat>();
