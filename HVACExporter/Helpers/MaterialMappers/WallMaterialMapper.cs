@@ -20,6 +20,7 @@ namespace HVACExporter.Helpers
 
             foreach (Wall wall in allWalls)
             {
+                if (wall.WallType.Kind.ToString() == "Curtain") continue;
                 CompoundStructure structure = wall.WallType.GetCompoundStructure();
                 IList<CompoundStructureLayer> layers = structure.GetLayers();
 
@@ -35,8 +36,6 @@ namespace HVACExporter.Helpers
                     {
                         thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width), 3);
                     }
-                    //bool alreadyExists = layerWallMaterials.Any(item => item.Name.ToString() == id && item.Thickness == thickness);
-                    //if (alreadyExists == true) continue;
                     string preName = id + "_" + thickness.ToString();
                     string name = preName.Replace(',', '.');
                     Material layerWallMaterial = doc.GetElement(layer.MaterialId) as Material;
@@ -52,7 +51,7 @@ namespace HVACExporter.Helpers
                     ThermalAsset asset = pse.GetThermalAsset();
                     double conductivity = Math.Round(ImperialToMetricConverter.ConvertThermalConductivityImpToMet(asset.ThermalConductivity), 3);
                     double density = Math.Round(ImperialToMetricConverter.ConvertDensityImpToMet(asset.Density), 3);
-                    double specificHeat = Math.Round(ImperialToMetricConverter.ConvertSpecificHeatImpToMet(asset.SpecificHeat), 3) * 1000;
+                    double specificHeat = Math.Round(ImperialToMetricConverter.ConvertSpecificHeatImpToMet(asset.SpecificHeat), 3);
 
                     SurfaceMat layerWallMaterialToAdd = new SurfaceMat(readableName, name, roughness, thickness,
                         conductivity, density, specificHeat, thermalAbsorbtance,

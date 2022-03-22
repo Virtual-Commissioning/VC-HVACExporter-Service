@@ -18,7 +18,7 @@ namespace HVACExporter.Helpers
             List<Dictionary<string, SurfaceMat>> surfaceMaterials = SurfaceMaterialMapper.MapAllSurfaceMaterials(allWalls, allRoofs, allFloors, doc);
             List<Dictionary<string, AirGapMat>> airGapMaterials = AirGapMaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, doc);
             List<Dictionary<string, DoorMat>> doorMaterials = DoorMaterialMapper.MapAllDoors(allDoors, doc);
-            List<Dictionary<string, WindowMat>> windowMaterials = WindowMaterialMapper.MapAllWindows(allWindows, doc);
+            List<Dictionary<string, WindowMat>> windowMaterials = WindowMaterialMapper.MapAllWindows(allWindows, allWalls, doc);
 
             Materials materialsToAdd = new Materials(surfaceMaterials, airGapMaterials, doorMaterials, windowMaterials);
 

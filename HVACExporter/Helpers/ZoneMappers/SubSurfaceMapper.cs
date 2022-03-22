@@ -8,7 +8,8 @@ namespace HVACExporter.Helpers
     public class SubSurfaceMapper
     {
         public static SubSurfType MapSubSurfaces
-            (EnergyAnalysisSurface energyAnalysisSurface, EnergyAnalysisSpace energyAnalysisSpace, Document doc, FilteredElementCollector allAnalyticalSubSurfaces, string analyticalZoneId)
+            (EnergyAnalysisSurface energyAnalysisSurface, EnergyAnalysisSpace energyAnalysisSpace, Document doc, 
+            FilteredElementCollector allAnalyticalSubSurfaces, string analyticalZoneId, string constructionId)
         {
             List<SubSurfDoorAndWindow> subSurfaces = DoorAndWindowSubSurfaceMapper.MapDoorAndWindowSubSurfaces
                 (energyAnalysisSurface, energyAnalysisSpace, doc, allAnalyticalSubSurfaces, analyticalZoneId);
@@ -33,13 +34,21 @@ namespace HVACExporter.Helpers
                     linkedSubSurf.Add(subSurfDoorAndWindow.Name, subSurfDoorAndWindow);
                     allSubSurfWindows.Add(linkedSubSurf);
                 }
-                if (subSurfDoorAndWindow.Surface_Type == "Door")
+                else if (subSurfDoorAndWindow.Surface_Type == "Door")
                 {
                     Dictionary<string, SubSurfDoorAndWindow> linkedSubSurf = new Dictionary<string, SubSurfDoorAndWindow>();
                     linkedSubSurf.Add(subSurfDoorAndWindow.Name, subSurfDoorAndWindow);
                     allSubSurfDoors.Add(linkedSubSurf);
                 }
                 else continue;
+            }
+            if (constructionId.Contains("CW_") == true)
+            {
+                SubSurfDoorAndWindow curtainWallWindows = CurtainWallWindowSubSurfaceMapper.MapCurtainWallWindowSubSurfaces
+                    (energyAnalysisSurface, energyAnalysisSpace, doc, constructionId, analyticalZoneId);
+                Dictionary<string, SubSurfDoorAndWindow> linkedSubSurf = new Dictionary<string, SubSurfDoorAndWindow>();
+                linkedSubSurf.Add(curtainWallWindows.Name, curtainWallWindows);
+                allSubSurfWindows.Add(linkedSubSurf);
             }
 
             SubSurfType AllSubSurfaces = new SubSurfType(allSubSurfDoors, allSubSurfWindows, allSubSurfOpenings);

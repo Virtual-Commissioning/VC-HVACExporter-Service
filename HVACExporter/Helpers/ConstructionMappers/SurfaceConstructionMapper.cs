@@ -20,12 +20,14 @@ namespace HVACExporter.Helpers
             List<Dictionary<string, SurfaceConstruction>> floorConstructions = FloorConstructionMapper.MapAllFloors(allFloors, doc);
             List<Dictionary<string, SurfaceConstruction>> windowConstructions = WindowConstructionMapper.MapAllWindows(allWindows, doc);
             List<Dictionary<string, SurfaceConstruction>> doorConstructions = DoorConstructionMapper.MapAllDoors(allDoors, doc);
+            List<Dictionary<string, SurfaceConstruction>> curtainWallWindowConstructions = CurtainWallWindowConstructionMapper.MapAllCurtainWallWindows(allWalls);
 
             allSurfaceConstructions.AddRange(wallConstructions);
             allSurfaceConstructions.AddRange(roofConstructions);
             allSurfaceConstructions.AddRange(floorConstructions);
             allSurfaceConstructions.AddRange(windowConstructions);
             allSurfaceConstructions.AddRange(doorConstructions);
+            allSurfaceConstructions.AddRange(curtainWallWindowConstructions);
 
             List<Dictionary<string, SurfaceConstruction>> filteredDictionary =
                 allSurfaceConstructions.GroupBy(x => string.Join("", x.Select(i => string.Format("{0}{1}", i.Key, i.Value)))).Select(x => x.First()).ToList();

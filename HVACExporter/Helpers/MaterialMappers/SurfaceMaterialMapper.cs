@@ -35,6 +35,20 @@ namespace HVACExporter.Helpers
                 }
             }
 
+            List<SurfaceMat> layerCurtainWallMaterials = CurtainWallMaterialMapper.MapAllCurtainWalls(allWalls, doc);
+            if (layerCurtainWallMaterials.Count != 0)
+            {
+                foreach (SurfaceMat surfaceMat in layerCurtainWallMaterials)
+                {
+                    if (surfaceMat.ReadableName != "Air")
+                    {
+                        Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                        linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
+                        allSurfaceMaterials.Add(linkedSurfaceMat);
+                    }
+                }
+            }
+
             List<SurfaceMat> layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
             if (layerRoofMaterials.Count != 0)
             {
@@ -62,10 +76,7 @@ namespace HVACExporter.Helpers
                     }
                 }
             }
-            foreach (Dictionary<string, SurfaceMat> surfaceMaterial in allSurfaceMaterials)
-            {
-
-            }
+            
             List<Dictionary<string, SurfaceMat>> filteredDictionary = 
                 allSurfaceMaterials.GroupBy(x => string.Join("", x.Select(i => string.Format("{0}{1}", i.Key, i.Value)))).Select(x => x.First()).ToList();
 

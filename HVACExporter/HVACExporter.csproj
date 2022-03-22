@@ -53,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\BuildingMapper\ShadingGeometryMapper.cs" />
+    <Compile Include="Helpers\ConstructionMappers\CurtainWallWindowConstructionMapper.cs" />
+    <Compile Include="Helpers\MaterialMappers\CurtainWallMaterialMapper.cs" />
+    <Compile Include="Helpers\MaterialMappers\CurtainWallWindowMaterialMapper.cs" />
     <Compile Include="Helpers\SiteShadingMapper.cs" />
     <Compile Include="Helpers\SiteMapper.cs" />
     <Compile Include="Helpers\ComponentMappers\FlowControllerMapper.cs" />
@@ -94,10 +97,13 @@
     <Compile Include="Helpers\PromptTokenForm.Designer.cs">
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ZoneMappers\CurtainWallWindowSubSurfaceMapper.cs" />
+    <Compile Include="Helpers\ZoneMappers\CWFrameAndDividerMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\GetAssociatedOpeningConstruction.cs" />
     <Compile Include="Helpers\ZoneMappers\GetAssociatedConstruction.cs" />
     <Compile Include="Helpers\ZoneMappers\FrameAndDividerMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\GetAngle.cs" />
+    <Compile Include="Helpers\ZoneMappers\MovePointTowardsPoint.cs" />
     <Compile Include="Helpers\ZoneMappers\SortPointsV3.cs" />
     <Compile Include="Helpers\ZoneMappers\SortPointsV2.cs" />
     <Compile Include="Helpers\ZoneMappers\SortPoints.cs" />

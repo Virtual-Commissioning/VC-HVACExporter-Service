@@ -7,7 +7,7 @@ namespace HVACExporter.Helpers.MaterialMappers
 {
     class WindowMaterialMapper
     {
-        public static List<Dictionary<string, WindowMat>> MapAllWindows(FilteredElementCollector allWindows, Autodesk.Revit.DB.Document doc)
+        public static List<Dictionary<string, WindowMat>> MapAllWindows(FilteredElementCollector allWindows, FilteredElementCollector allWalls, Autodesk.Revit.DB.Document doc)
         {
             List<Dictionary<string, WindowMat>> windowMaterials = new List<Dictionary<string, WindowMat>>();
 
@@ -26,8 +26,10 @@ namespace HVACExporter.Helpers.MaterialMappers
                 Dictionary<string, WindowMat> linkedWindowMaterial = new Dictionary<string, WindowMat>();
                 linkedWindowMaterial.Add(windowMaterial.Name, windowMaterial);
                 windowMaterials.Add(linkedWindowMaterial);
-
             }
+            List<Dictionary<string, WindowMat>> curtainWallWindowMaterials = CurtainWallWindowMaterialMapper.MapAllCurtainWallWindows(allWalls);
+            windowMaterials.AddRange(curtainWallWindowMaterials);
+
             return windowMaterials;
         }
     }
