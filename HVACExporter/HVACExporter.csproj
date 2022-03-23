@@ -104,6 +104,8 @@
     <Compile Include="Helpers\ZoneMappers\FrameAndDividerMapper.cs" />
     <Compile Include="Helpers\ZoneMappers\GetAngle.cs" />
     <Compile Include="Helpers\ZoneMappers\MovePointTowardsPoint.cs" />
+    <Compile Include="Helpers\ZoneMappers\MovePointTowardsPointV2.cs" />
+    <Compile Include="Helpers\ZoneMappers\PlaneCenterMapperV2.cs" />
     <Compile Include="Helpers\ZoneMappers\SortPointsV3.cs" />
     <Compile Include="Helpers\ZoneMappers\SortPointsV2.cs" />
     <Compile Include="Helpers\ZoneMappers\SortPoints.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="Models\Controls\PumpControllerSubclasses\ProportionalPressureControl.cs" />
     <Compile Include="Models\Controls\PumpControllerSubclasses\ConstantPressureControl.cs" />
     <Compile Include="Models\Controls\PumpControllerSubclasses\ConstantSpeedControl.cs" />
+    <Compile Include="Models\GeometricTypes\Coordinate2D.cs" />
     <Compile Include="Models\GeometricTypes\Coordinate.cs" />
     <Compile Include="Models\GeometricTypes\DirectionVector.cs" />
     <Compile Include="Models\Spaces\Geometry\Edge.cs" />

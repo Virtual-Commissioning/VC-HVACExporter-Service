@@ -46,7 +46,8 @@ namespace HVACExporter.Helpers
             int multiplier = 1;
             FrameAndDivider frameAndDivider = CWFrameAndDividerMapper.MapCWFrameAndDivider(energyAnalysisSurface);
             List<Coordinate> vertices = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc, analyticalZoneId);
-            Coordinate planeCenter = PlaneCenterMapper.MapPlaneCenter(energyAnalysisSurface,doc);
+            Coordinate planeCenter = new Coordinate(vertices.Average(p => p.X),
+                            vertices.Average(p => p.Y), vertices.Average(p => p.Z));
             XYZ faceNormal = new XYZ();
             Document surfDoc = energyAnalysisSurface.Document;
             Application app = surfDoc.Application;
@@ -65,7 +66,7 @@ namespace HVACExporter.Helpers
             List<Coordinate> newVertices = new List<Coordinate>();
             foreach (Coordinate vertex in vertices)
             {
-                Coordinate newVertex = MovePointTowardsPoint.PointMover(vertex, planeCenter, 0.5, faceNormal);
+                Coordinate newVertex = MovePointTowardsPointV2.PointMover(vertex, planeCenter, 0.1, faceNormal);
                 
                 newVertices.Add(newVertex);
             }

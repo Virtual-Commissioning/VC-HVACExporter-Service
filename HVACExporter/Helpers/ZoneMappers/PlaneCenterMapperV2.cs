@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace HVACExporter.Helpers.ZoneMappers
 {
-    public class PlaneCenterMapper
+    public class PlaneCenterMapperV2
     {
         public static Coordinate MapPlaneCenter(EnergyAnalysisSurface energyAnalysisSurface, Document doc)
         {
@@ -85,7 +85,7 @@ namespace HVACExporter.Helpers.ZoneMappers
                         centerPoint.Add(calculatedCenter);
                     }
                 }
-
+                
             }
             if (null != centerPoint)
             {
