@@ -25,13 +25,14 @@ namespace HVACExporter.Helpers
 
             foreach (EnergyAnalysisSurface energyAnalysisSurface in allAnalyticalSurfaces)
             {
+                if (energyAnalysisSurface.GetAnalyticalSpace() == null) continue;
                 string surfaceAnalyticalSpaceId = energyAnalysisSurface.GetAnalyticalSpace().Id.ToString();
                 string surfaceAdjacentAnalyticalSpaceId;
                 if (energyAnalysisSurface.GetAdjacentAnalyticalSpace() != null)
                 {
                     surfaceAdjacentAnalyticalSpaceId = energyAnalysisSurface.GetAdjacentAnalyticalSpace().Id.ToString();
                 }
-                else { surfaceAdjacentAnalyticalSpaceId = "0"; }
+                else { surfaceAdjacentAnalyticalSpaceId = ""; }
                 if (surfaceAnalyticalSpaceId == analyticalZoneId || surfaceAdjacentAnalyticalSpaceId == analyticalZoneId) //Checking if the analytical surface belongs to analytical zone
                 {
                     string id;
@@ -112,7 +113,8 @@ namespace HVACExporter.Helpers
                     }
                     string viewFactorToGround = "";
                     List<Coordinate> vertexCoordinates = SurfaceGeometryMapper.MapSurfaceGeometry(energyAnalysisSurface, doc, analyticalZoneId);
-                    SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces(energyAnalysisSurface, energyAnalysisSpace, doc, allAnalyticalSubSurfaces, analyticalZoneId);
+                    SubSurfType subSurfType = SubSurfaceMapper.MapSubSurfaces
+                        (energyAnalysisSurface, energyAnalysisSpace, doc, allAnalyticalSubSurfaces, analyticalZoneId, constructionId);
 
                     List<Coordinate> subSurfaceVertices = new List<Coordinate>();
                     if (energyAnalysisSurface.GetAnalyticalOpenings().Count > 0)

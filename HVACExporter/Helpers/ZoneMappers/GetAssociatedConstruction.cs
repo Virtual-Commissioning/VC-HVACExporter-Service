@@ -14,7 +14,7 @@ namespace HVACExporter.Helpers.ZoneMappers
             if (point != null)
             {
                 XYZ basePnt = new XYZ(point.X, point.Y, point.Z);
-
+                bool isCW;
                 BoundingBoxContainsPointFilter filter = new BoundingBoxContainsPointFilter(basePnt, false);
                 FilteredElementCollector collector = new FilteredElementCollector(doc);
                 IList<Element> elements;
@@ -22,29 +22,48 @@ namespace HVACExporter.Helpers.ZoneMappers
                     energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall")
                 {
                     elements = collector.OfClass(typeof(Wall)).WherePasses(filter).ToElements();
+                    Wall wall = doc.GetElement(elements[0].Id) as Wall;
+                    if (wall.WallType.Kind.ToString() == "Curtain")
+                    {
+                        isCW = true;
+                    }
+                    else
+                    {
+                        isCW = false;
+                    }
                 }
                 else if (energyAnalysisSurface.SurfaceType.ToString() == "Roof")
                 {
                     elements = collector.OfClass(typeof(RoofBase)).WherePasses(filter).ToElements();
+                    isCW = false;
                 }
                 else if (energyAnalysisSurface.SurfaceType.ToString() == "ExteriorFloor" ||
                     energyAnalysisSurface.SurfaceType.ToString() == "InteriorFloor")
                 {
                     elements = collector.OfClass(typeof(Floor)).WherePasses(filter).ToElements();
+                    isCW = false;
                 }
                 else
                 {
                     elements = collector.WherePasses(filter).ToElements();
+                    isCW = false;
                 }
 
                 string constructionId;
                 if (elements.Count == 1)
                 {
-                    constructionId = elements[0].Id.ToString();
+                    if (isCW == true)
+                    {
+                        constructionId = "CW_" + elements[0].Id.ToString();
+                    }
+                    else
+                    {
+                        constructionId = elements[0].Id.ToString();
+                    }
                 }
                 else if (elements.Count == 0)
                 {
-                    constructionId = "No elements found";
+                    constructionId = "No construction found";
                 }
                 else
                 {

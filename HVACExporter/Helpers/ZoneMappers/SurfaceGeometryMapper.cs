@@ -30,21 +30,12 @@ namespace HVACExporter.Helpers.ZoneMappers
                         foreach (Autodesk.Revit.DB.Edge vertex in loop)
                         {
                             IList<XYZ> edgePts = vertex.Tessellate();
-                            double x = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].X),3);
-                            double y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Y),3);
-                            double z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Z),3);
+                            double x = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].X),4);
+                            double y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Y),4);
+                            double z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePts[0].Z),4);
                             Coordinate point = new Coordinate(x,y,z);
-                            //In order to controll the direction of the normal vector of the surface, the order of vertices in the list is determined by:
-                            if (energyAnalysisSurface.GetAnalyticalSpace().Id.ToString() == analyticalZoneId)
-                            {
-                                //vertices.Add(point);
-                                vertices.Insert(0, point);
-                            }
-                            else
-                            {
-                                vertices.Add(point);
-                                //vertices.Insert(0, point);
-                            }
+                            
+                            vertices.Add(point);
                         }
                     }
                 }

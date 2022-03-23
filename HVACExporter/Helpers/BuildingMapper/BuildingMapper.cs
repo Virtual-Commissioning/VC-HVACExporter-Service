@@ -27,7 +27,7 @@ namespace HVACExporter.Helpers
             {
                 string name = projectInfo.BuildingName;
                 XYZ origin = new XYZ(0,0,0);
-                double rotation = plCurrent.GetProjectPosition(origin).Angle * 180 / Math.PI;
+                double? rotation = Math.Round(plCurrent.GetProjectPosition(origin).Angle * 180 / Math.PI, 1);
                 string northAxis;
                 if (rotation < 0)
                 {

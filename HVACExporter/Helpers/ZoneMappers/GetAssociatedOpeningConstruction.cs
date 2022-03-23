@@ -42,7 +42,7 @@ namespace HVACExporter.Helpers.ZoneMappers
                 }
                 else if (elements.Count == 0)
                 {
-                    constructionId = "No elements found";
+                    constructionId = "";
                 }
                 else
                 {
@@ -58,7 +58,7 @@ namespace HVACExporter.Helpers.ZoneMappers
             }
             else
             {
-                string constructionId = "No Id found.";
+                string constructionId = "";
                 return constructionId;
             }
         }

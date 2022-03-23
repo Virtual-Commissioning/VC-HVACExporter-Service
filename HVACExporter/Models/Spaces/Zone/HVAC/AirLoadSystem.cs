@@ -11,43 +11,43 @@ namespace HVACExporter.Models.Zone
         public string Zone_Name { get; set; }
         public string Template_Thermostat_Name { get; set; }
         public string System_Availability_Schedule_Name { get; set; }
-        public double Maximum_Heating_Supply_Air_Temperature { get; set; }
-        public double Minimum_Cooling_Supply_Air_Temperature { get; set; }
-        public double Maximum_Heating_Supply_Air_Humidity_Ratio { get; set; }
-        public double Minimum_Cooling_Supply_Air_Humidity_Ratio { get; set; }
-        public double Heating_Limit { get; set; }
-        public double Maximum_Heating_Air_Flow_Rate { get; set; }
-        public double Maximum_Sensible_Heating_Capacity { get; set; }
-        public double Cooling_Limit { get; set; }
-        public double Maximum_Cooling_Air_Flow_Rate { get; set; }
-        public double Maximum_Total_Cooling_Capacity { get; set; }
+        public double? Maximum_Heating_Supply_Air_Temperature { get; set; }
+        public double? Minimum_Cooling_Supply_Air_Temperature { get; set; }
+        public double? Maximum_Heating_Supply_Air_Humidity_Ratio { get; set; }
+        public double? Minimum_Cooling_Supply_Air_Humidity_Ratio { get; set; }
+        public double? Heating_Limit { get; set; }
+        public double? Maximum_Heating_Air_Flow_Rate { get; set; }
+        public double? Maximum_Sensible_Heating_Capacity { get; set; }
+        public double? Cooling_Limit { get; set; }
+        public double? Maximum_Cooling_Air_Flow_Rate { get; set; }
+        public double? Maximum_Total_Cooling_Capacity { get; set; }
         public string Heating_Availability_Schedule_Name { get; set;}
         public string Cooling_Availability_Schedule_Name { get; set;}
         public string Dehumidification_Control_Type { get; set;}
-        public double Cooling_Sensible_Heat_Ratio { get; set; }
-        public double Dehumidification_Setpoint { get; set; }
+        public double? Cooling_Sensible_Heat_Ratio { get; set; }
+        public double? Dehumidification_Setpoint { get; set; }
         public string Humidification_Control_Type { get; set;}
-        public double Humidification_Setpoint { get; set; }
+        public double? Humidification_Setpoint { get; set; }
         public string Outdoor_Air_Method { get; set; }
-        public double Outdoor_Air_Flow_Rate_per_Person { get; set; }
-        public double Outdoor_Air_Flow_Rate_per_Zone_Floor_Area { get; set; }
-        public double Outdoor_Air_Flow_Rate_per_Zone { get; set; }
+        public double? Outdoor_Air_Flow_Rate_per_Person { get; set; }
+        public double? Outdoor_Air_Flow_Rate_per_Zone_Floor_Area { get; set; }
+        public double? Outdoor_Air_Flow_Rate_per_Zone { get; set; }
         public string Design_Specification_Outdoor_Air_Object_Name { get; set; }
         public string Demand_Controlled_Ventilation_Type { get; set; }
         public string Outdoor_Air_Economizer_Type { get; set; }
         public string Heat_Recovery_Type { get; set; }
-        public double Sensible_Heat_Recovery_Effectiveness { get; set; }
-        public double Latent_Heat_Recovery_Effectiveness { get; set; }
+        public double? Sensible_Heat_Recovery_Effectiveness { get; set; }
+        public double? Latent_Heat_Recovery_Effectiveness { get; set; }
 
 
-        public AirLoadSystem(string zoneId, string thermostatName, string avaliabilitySchedule, double maxHeatingSupplyAirTemp, 
-            double minCoolingSupplyAirTemp, double maxHeatingSupplyAirHumidity, double minCoolingSupplyAirHumidity,
-            double heatingLimit, double maxHeatingAFR, double maxSensibleHeatingCapacity, double coolingLimit, 
-            double maxCoolingAFR, double maxSensibleCoolingCapacity, string heatingAvaliabilitySchedule, string coolingAvaliabilitySchedule,
-            string dehumidityControlType, double coolingSensibleHeatingRatio, double dehumidificationSetpoint, string humidityControlType, 
-            double humiditySetpoint, string outdoorAirMethod, double outAFRPrPerson, double outAFRPrArea, double outAFRPrZone,
+        public AirLoadSystem(string zoneId, string thermostatName, string avaliabilitySchedule, double? maxHeatingSupplyAirTemp, 
+            double? minCoolingSupplyAirTemp, double? maxHeatingSupplyAirHumidity, double? minCoolingSupplyAirHumidity,
+            double? heatingLimit, double? maxHeatingAFR, double? maxSensibleHeatingCapacity, double? coolingLimit, 
+            double? maxCoolingAFR, double? maxSensibleCoolingCapacity, string heatingAvaliabilitySchedule, string coolingAvaliabilitySchedule,
+            string dehumidityControlType, double? coolingSensibleHeatingRatio, double? dehumidificationSetpoint, string humidityControlType, 
+            double? humiditySetpoint, string outdoorAirMethod, double? outAFRPrPerson, double? outAFRPrArea, double? outAFRPrZone,
             string outdoorAirObject, string demandControlledVentilationType, string outdoorAirEconomizerType, 
-            string heatRecoveryType, double sensibleHeatRecoveryEfficiency, double latentHeatRecoveryEfficiency)
+            string heatRecoveryType, double? sensibleHeatRecoveryEfficiency, double? latentHeatRecoveryEfficiency)
         {
             Zone_Name = zoneId;
             Template_Thermostat_Name = thermostatName;

@@ -23,7 +23,7 @@ namespace HVACExporter.Helpers
         }
         public static double ConvertSpecificHeatImpToMet(double feet)
         {
-            return feet * 9.290304000000171e-5; //From own calcs 9.290304000000171e-5
+            return feet * 9.290304000000171e-5 * 1000; //From own calcs 9.290304000000171e-5
         }
         public static double ConvertThermalConductivityImpToMet(double feet)
         {

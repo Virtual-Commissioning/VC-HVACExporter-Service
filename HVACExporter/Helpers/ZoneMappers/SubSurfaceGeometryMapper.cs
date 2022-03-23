@@ -37,9 +37,9 @@ namespace HVACExporter.Helpers.ZoneMappers
                             double x, y, z;
                             foreach (XYZ edgePt in edgePts)
                             {
-                                x = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.X), 3);
-                                y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.Y), 3);
-                                z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.Z), 3) + 0.00001; //Value can be added to keep points within wall (+0.01)
+                                x = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.X), 4);
+                                y = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.Y), 4);
+                                z = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(edgePt.Z), 4) + 0.00001; //Value can be added to keep points within wall (+0.01)
                                 Coordinate point = new Coordinate(x, y, z);
                                 if (energyAnalysisSurface.GetAnalyticalSpace().Id.ToString() == analyticalZoneId)
                                 {

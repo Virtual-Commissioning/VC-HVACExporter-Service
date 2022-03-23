@@ -16,11 +16,11 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string zoneId = analyticalZoneId;
             string lightingSchedule = "";
             string calculationMethod = "";
-            double lightingLevel = 0;
-            double returnAirFraction = 0;
-            double fractionRadiant = 0;
-            double fractionVisible = 0;
-            double fractionReplaceable = 0;
+            double? lightingLevel = null;
+            double? returnAirFraction = null;
+            double? fractionRadiant = null;
+            double? fractionVisible = null;
+            double? fractionReplaceable = null;
             string endUseSubCategory = "";
 
             Lighting lightingGains = new Lighting(id, zoneId, lightingSchedule, calculationMethod,

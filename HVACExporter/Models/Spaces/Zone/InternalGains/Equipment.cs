@@ -12,15 +12,15 @@ namespace HVACExporter.Models.Zone
         public string Zone_or_ZoneList_or_Space_or_SpaceList_Name { get; set; }
         public string Schedule_Name { get; set; }
         public string Design_Level_Calculation_Method { get; set; }
-        public double Design_Level { get; set; }
-        public double Fraction_Latent { get; set; }
-        public double Fraction_Radiant { get; set; }
-        public double Fraction_Lost { get; set; }
+        public double? Design_Level { get; set; }
+        public double? Fraction_Latent { get; set; }
+        public double? Fraction_Radiant { get; set; }
+        public double? Fraction_Lost { get; set; }
         public string EndUse_Subcategory { get; set; }
 
         public Equipment(string id, string zoneId, string equipmentSchedule,
-            string calculationMethod, double designLevel,
-            double fractionLatent, double fractionRadiant, double fractionLost,
+            string calculationMethod, double? designLevel,
+            double? fractionLatent, double? fractionRadiant, double? fractionLost,
             string endUseSubCategory)
         {
             Name = id;

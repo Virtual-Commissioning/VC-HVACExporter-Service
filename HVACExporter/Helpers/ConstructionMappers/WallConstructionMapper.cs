@@ -32,44 +32,62 @@ namespace HVACExporter.Helpers
 
                         if (wall != null)
                         {
-                            string constructionId = wall.Id.ToString();
-                            string constructionId2 = wall.Id.ToString() + "_Adjacent";
-                            CompoundStructure structure = wall.WallType.GetCompoundStructure();
-                            IList<CompoundStructureLayer> layers = structure.GetLayers();
-
+                            string constructionId, constructionId2, layerName, layerName2, preMaterialId, materialId, name;
+                            double thickness;
+                            
                             List<Dictionary<string, string>> constructionLayers = new List<Dictionary<string, string>>();
                             List<Dictionary<string, string>> constructionLayers2 = new List<Dictionary<string, string>>();
-
-                            foreach (CompoundStructureLayer layer in layers)
+                            if (wall.WallType.Kind.ToString() == "Curtain")
                             {
-                                //Filtering away materials without thermal properties
-                                Material layerMaterial = doc.GetElement(layer.MaterialId) as Material;
-                                ElementId thermalAssetId = layerMaterial.ThermalAssetId;
-                                PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;
-                                if (pse == null) continue;
-
-                                int layerId = layer.LayerId + 1;
-                                int layerId2 = layers.Count - layerId + 1;
-                                string layerName = "Layer" + layerId.ToString();
-                                string layerName2 = "Layer" + layerId2;
-                                double thickness;
-                                if (layer.Width == 0)
-                                {
-                                    thickness = 0.001;
-                                }
-                                else
-                                {
-                                    thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width), 3);
-                                }
-                                string preMaterialId = layer.MaterialId.ToString() + "_" + thickness;
-                                string materialId = preMaterialId.Replace(',', '.');
+                                constructionId = "CW_" + wall.Id.ToString();
+                                constructionId2 = "CW_" + wall.Id.ToString() + "_Adjacent";
+                                layerName = "Layer1";
+                                layerName2 = "Layer1";
+                                thickness = 0;
+                                name = "CW_" + wall.Id.ToString();
+                                materialId = "CW_Mat_" + wall.Id.ToString();
                                 Dictionary<string, string> layerValues = new Dictionary<string, string>();
                                 Dictionary<string, string> layerValues2 = new Dictionary<string, string>();
                                 layerValues.Add(layerName, materialId);
                                 layerValues2.Add(layerName2, materialId);
                                 constructionLayers.Add(layerValues);
                                 constructionLayers2.Insert(0, layerValues2);
-                                
+                            }
+                            else
+                            {
+                                constructionId = wall.Id.ToString();
+                                constructionId2 = wall.Id.ToString() + "_Adjacent";
+                                CompoundStructure structure = wall.WallType.GetCompoundStructure();
+                                IList<CompoundStructureLayer> layers = structure.GetLayers();
+
+                                foreach (CompoundStructureLayer layer in layers)
+                                {
+                                    //Filtering away materials without thermal properties
+                                    Material layerMaterial = doc.GetElement(layer.MaterialId) as Material;
+                                    ElementId thermalAssetId = layerMaterial.ThermalAssetId;
+                                    PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;
+                                    if (pse == null) continue;
+                                    Dictionary<string, string> layerValues = new Dictionary<string, string>();
+                                    Dictionary<string, string> layerValues2 = new Dictionary<string, string>();
+                                    int layerId = layer.LayerId + 1;
+                                    int layerId2 = layers.Count - layerId + 1;
+                                    layerName = "Layer" + layerId.ToString();
+                                    layerName2 = "Layer" + layerId2.ToString();
+                                    if (layer.Width == 0)
+                                    {
+                                        thickness = 0.001;
+                                    }
+                                    else
+                                    {
+                                        thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width), 3);
+                                    }
+                                    preMaterialId = layer.MaterialId.ToString() + "_" + thickness;
+                                    materialId = preMaterialId.Replace(',', '.');
+                                    layerValues.Add(layerName, materialId);
+                                    layerValues2.Add(layerName2, materialId);
+                                    constructionLayers.Add(layerValues);
+                                    constructionLayers2.Insert(0, layerValues2);
+                                }
                             }
                             SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, constructionLayers);
                             SurfaceConstruction surfaceConstructionToAdd2 = new SurfaceConstruction(constructionId2, constructionLayers2);
@@ -94,7 +112,6 @@ namespace HVACExporter.Helpers
             }
 
             return surfaceConstructions;
-
         }
     }
 }

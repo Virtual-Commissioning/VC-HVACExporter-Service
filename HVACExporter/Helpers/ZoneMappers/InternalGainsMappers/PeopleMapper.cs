@@ -16,11 +16,11 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string zoneId = analyticalZoneId;
             string peopleSchedule = "";
             string calculationMethod = "";
-            int numberOfPeople = 0;
-            double fractionRadiant = 0;
-            double sensibleHeatFraction = 0;
+            int? numberOfPeople = null;
+            double? fractionRadiant = null;
+            double? sensibleHeatFraction = null;
             string activitySchedule = "";
-            double co2GenerationRate = 0;
+            double? co2GenerationRate = null;
             string enableAshare55ComfortWarnings = "";
             string mrtCalculationType = "";
             string surfaceId = "";
