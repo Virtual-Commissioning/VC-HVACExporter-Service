@@ -63,6 +63,7 @@ namespace HVACExporter.Helpers
                     Dictionary<string, SurfaceConstruction> linkedSurfaceConstruction2 = new Dictionary<string, SurfaceConstruction>();
                     linkedSurfaceConstruction.Add(constructionId, surfaceConstructionToAdd);
                     linkedSurfaceConstruction2.Add(constructionId2, surfaceConstructionToAdd2);
+                    
                     surfaceConstructions.Add(linkedSurfaceConstruction);
                     surfaceConstructions.Add(linkedSurfaceConstruction2);
                 }

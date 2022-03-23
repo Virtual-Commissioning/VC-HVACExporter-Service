@@ -59,13 +59,13 @@ namespace HVACExporter.Helpers
                 foreach (Face face in solid.Faces)
                 {
                     PlanarFace planarFace = face as PlanarFace;
-                    faceNormal = planarFace.FaceNormal;
+                    faceNormal = -planarFace.FaceNormal;
                 }
             }     
             List<Coordinate> newVertices = new List<Coordinate>();
             foreach (Coordinate vertex in vertices)
             {
-                Coordinate newVertex = MovePointTowardsPoint.PointMover(vertex, planeCenter, 0.0, faceNormal);
+                Coordinate newVertex = MovePointTowardsPoint.PointMover(vertex, planeCenter, 0.5, faceNormal);
                 
                 newVertices.Add(newVertex);
             }

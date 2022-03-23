@@ -45,7 +45,7 @@ namespace HVACExporter.Models.Zone
             double? heatingLimit, double? maxHeatingAFR, double? maxSensibleHeatingCapacity, double? coolingLimit, 
             double? maxCoolingAFR, double? maxSensibleCoolingCapacity, string heatingAvaliabilitySchedule, string coolingAvaliabilitySchedule,
             string dehumidityControlType, double? coolingSensibleHeatingRatio, double? dehumidificationSetpoint, string humidityControlType, 
-            double? humiditySetpoint, string outdoorAirMethod, double outAFRPrPerson, double? outAFRPrArea, double? outAFRPrZone,
+            double? humiditySetpoint, string outdoorAirMethod, double? outAFRPrPerson, double? outAFRPrArea, double? outAFRPrZone,
             string outdoorAirObject, string demandControlledVentilationType, string outdoorAirEconomizerType, 
             string heatRecoveryType, double? sensibleHeatRecoveryEfficiency, double? latentHeatRecoveryEfficiency)
         {

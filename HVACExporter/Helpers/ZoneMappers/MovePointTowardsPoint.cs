@@ -18,21 +18,20 @@ namespace HVACExporter.Helpers.ZoneMappers
             var vector = new Coordinate(b.X - a.X, b.Y - a.Y, b.Z - a.Z);
             var length = Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y + vector.Z * vector.Z);
             var unitVector = new Coordinate(vector.X / length, vector.Y / length, vector.Z / length);
+            int decimalPlaces = 3;
 
             if (normalX != 0)
             {
-                return new Coordinate(Math.Round(a.X, 4), Math.Round(a.Y + unitVector.Y * distance, 4), Math.Round(a.Z + unitVector.Z * distance, 4));
+                return new Coordinate(Math.Round(a.X, decimalPlaces), Math.Round(a.Y + unitVector.Y * distance, decimalPlaces), Math.Round(a.Z + unitVector.Z * distance, decimalPlaces));
             }
             else if(normalY != 0)
             {
-                return new Coordinate(Math.Round(a.X + unitVector.X * distance, 4), Math.Round(a.Y, 4), Math.Round(a.Z + unitVector.Z * distance, 4));
+                return new Coordinate(Math.Round(a.X + unitVector.X * distance, decimalPlaces), Math.Round(a.Y, decimalPlaces), Math.Round(a.Z + unitVector.Z * distance, decimalPlaces));
             }
             else
             {
-                return new Coordinate(Math.Round(a.X + unitVector.X * distance, 4), Math.Round(a.Y + unitVector.Y * distance, 4), Math.Round(a.Z, 4));
+                return new Coordinate(Math.Round(a.X + unitVector.X * distance, decimalPlaces), Math.Round(a.Y + unitVector.Y * distance, decimalPlaces), Math.Round(a.Z, decimalPlaces));
             }
-            
         }
     }
-
 }

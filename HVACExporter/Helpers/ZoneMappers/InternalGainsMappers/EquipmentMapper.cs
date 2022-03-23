@@ -16,10 +16,10 @@ namespace HVACExporter.Helpers.ZoneMappers.InternalGainsMappers
             string zoneId = analyticalZoneId;
             string equipmentSchedule = "";
             string calculationMethod = "";
-            double designLevel = 0;
-            double fractionLatent = 0;
-            double fractionRadiant = 0;
-            double fractionLost = 0;
+            double? designLevel = null;
+            double? fractionLatent = null;
+            double? fractionRadiant = null;
+            double? fractionLost = null;
             string endUseSubCategory = "";
 
             Equipment equipmentGains = new Equipment(name, zoneId, equipmentSchedule, calculationMethod,
