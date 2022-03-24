@@ -10,45 +10,77 @@ using HVACExporter.Models.Spaces.Zone;
 using HVACExporter.Models.Zone;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace HVACExporter.Helpers
 {
     class SurfaceMaterialMapper
     {
-        public static MaterialsOfLayers MapAllSurfaceMaterials(FilteredElementCollector allWalls, 
+        public static List<Dictionary<string, SurfaceMat>> MapAllSurfaceMaterials(FilteredElementCollector allWalls, 
             FilteredElementCollector allRoofs, FilteredElementCollector allFloors, Document doc)
         {
-            var allSurfaceMaterials = new MaterialsOfLayers();
+            List<Dictionary<string, SurfaceMat>> allSurfaceMaterials = new List<Dictionary<string, SurfaceMat>>();
 
-            var layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
-            foreach (SurfaceMat surfaceMat in layerWallMaterials)
+            List<SurfaceMat> layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
+            if (layerWallMaterials.Count != 0)
             {
-                if (surfaceMat.Name != "Air")
+                foreach (SurfaceMat surfaceMat in layerWallMaterials)
                 {
-                    allSurfaceMaterials.AddMaterial(surfaceMat);
+                    if (surfaceMat.ReadableName != "Air")
+                    {
+                        Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                        linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
+                        allSurfaceMaterials.Add(linkedSurfaceMat);
+                    }
+                }
+            }
+
+            List<SurfaceMat> layerCurtainWallMaterials = CurtainWallMaterialMapper.MapAllCurtainWalls(allWalls, doc);
+            if (layerCurtainWallMaterials.Count != 0)
+            {
+                foreach (SurfaceMat surfaceMat in layerCurtainWallMaterials)
+                {
+                    if (surfaceMat.ReadableName != "Air")
+                    {
+                        Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                        linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
+                        allSurfaceMaterials.Add(linkedSurfaceMat);
+                    }
+                }
+            }
+
+            List<SurfaceMat> layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
+            if (layerRoofMaterials.Count != 0)
+            {
+                foreach (SurfaceMat surfaceMat in layerRoofMaterials)
+                {
+                    if (surfaceMat.Name != "Air")
+                    {
+                        Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                        linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
+                        allSurfaceMaterials.Add(linkedSurfaceMat);
+                    }
+                }
+            }
+
+            List<SurfaceMat> layerFloorMaterials = FloorMaterialMapper.MapAllFloors(allFloors, doc);
+            if (layerFloorMaterials.Count != 0)
+            {
+                foreach (SurfaceMat surfaceMat in layerFloorMaterials)
+                {
+                    if (surfaceMat.Name != "Air")
+                    {
+                        Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
+                        linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
+                        allSurfaceMaterials.Add(linkedSurfaceMat);
+                    }
                 }
             }
             
-            var layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
-            foreach (SurfaceMat surfaceMat in layerRoofMaterials)
-            {
-                if (surfaceMat.Name != "Air")
-                {
-                    allSurfaceMaterials.AddMaterial(surfaceMat);
-                }
-            }
+            List<Dictionary<string, SurfaceMat>> filteredDictionary = 
+                allSurfaceMaterials.GroupBy(x => string.Join("", x.Select(i => string.Format("{0}{1}", i.Key, i.Value)))).Select(x => x.First()).ToList();
 
-            var layerFloorMaterials = FloorMaterialMapper.MapAllFloors(allFloors, doc);
-            foreach (SurfaceMat surfaceMat in layerFloorMaterials)
-            {
-                if (surfaceMat.Name != "Air")
-                {
-                    allSurfaceMaterials.AddMaterial(surfaceMat);
-                }
-            }
-
-            return allSurfaceMaterials;
+            return filteredDictionary;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HVACExporter.Models.GeometricTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,33 +9,31 @@ namespace HVACExporter.Models.Zone
 {
     public class SubSurfOpening
     {
-        public string Id { get; set; }
-        public string Tag { get; set; }
-        public string SubSurfType { get; set; } // If bool is needed, define types and use the SubSurfType class
-        public string ConstructionId { get; set; }
-        public string ZoneId { get; set; }
-        public string SpaceId { get; set; }
-        public string OutsideBCObj { get; set; }
-        public string OutsideBC { get; set; }
-        public bool SunExposure { get; set; }
-        public bool WindExposure { get; set; }
-        public string ViewFactorToGround { get; set; }
-        public VertexCoordinates VertexCoordinates { get; set; }
+        public string Name { get; set; }
+        public string Surface_Type { get; set; } // If bool is needed, define types and use the SubSurfType class
+        public string Construction_Name { get; set; }
+        public string Zone_Name { get; set; }
+        public string Outside_Boundary_Condition_Object { get; set; }
+        public string Outside_Boundary_Condition { get; set; }
+        public bool Sun_Exposure { get; set; }
+        public bool Wind_Exposure { get; set; }
+        public string View_Factor_to_Ground { get; set; }
+        public List<Coordinate> VertexCoordinates { get; set; }
 
-        public SubSurfOpening(string id, string tag, string subSurfType, string constructionId, string zoneId, string spaceId, string outsideBCObj, string outsideBC, bool sunExposure, bool windExposure, string viewFactorToGround, VertexCoordinates vertexCoordinates)
+        public SubSurfOpening(string id, string subSurfType, string constructionId, string zoneId, 
+            string outsideBCObj, string outsideBC, bool sunExposure, bool windExposure, 
+            string viewFactorToGround, List<Coordinate> vertices)
         {
-            Id = id;
-            Tag = tag;
-            SubSurfType = subSurfType;
-            ConstructionId = constructionId;
-            ZoneId = zoneId;
-            SpaceId = spaceId;
-            OutsideBCObj = outsideBCObj;
-            OutsideBC = outsideBC;
-            SunExposure = sunExposure;
-            WindExposure = windExposure;
-            ViewFactorToGround = viewFactorToGround;
-            VertexCoordinates = vertexCoordinates;
+            Name = id;
+            Surface_Type = subSurfType;
+            Construction_Name = constructionId;
+            Zone_Name = zoneId;
+            Outside_Boundary_Condition_Object = outsideBCObj;
+            Outside_Boundary_Condition = outsideBC;
+            Sun_Exposure = sunExposure;
+            Wind_Exposure = windExposure;
+            View_Factor_to_Ground = viewFactorToGround;
+            VertexCoordinates = vertices;
         }
     }
 }

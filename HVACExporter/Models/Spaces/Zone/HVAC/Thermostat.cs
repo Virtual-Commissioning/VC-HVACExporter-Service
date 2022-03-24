@@ -8,17 +8,20 @@ namespace HVACExporter.Models.Zone
 {
     public class Thermostat
     {
-        public string Id { get; set; }
-        public string Tag { get; set; }
-        public string HeatingSetpointSchedule { get; set; }
-        public string CoolingSetpointSchedule { get; set; }
+        public string Name { get; set; }
+        public string Heating_Setpoint_Schedule_Name { get; set; }
+        public string Constant_Heating_Setpoint { get; set; }
+        public string Cooling_Setpoint_Schedule_Name { get; set; }
+        public string Constant_Cooling_Setpoint { get; set; }
 
-        public Thermostat(string id, string tag, string heatingSetpointSchedule, string coolingSetpointSchedule)
+        public Thermostat(string name, string heatingSetpointSchedule, string constantHeatingSetpoint, 
+            string coolingSetpointSchedule, string constantCoolingSetpoint)
         {
-            Id = id;
-            Tag = tag;
-            HeatingSetpointSchedule = heatingSetpointSchedule;
-            CoolingSetpointSchedule = coolingSetpointSchedule;
+            Name = name;
+            Heating_Setpoint_Schedule_Name = heatingSetpointSchedule;
+            Constant_Heating_Setpoint = constantHeatingSetpoint;
+            Cooling_Setpoint_Schedule_Name=coolingSetpointSchedule;
+            Constant_Cooling_Setpoint = constantCoolingSetpoint;
         }
     }
 }

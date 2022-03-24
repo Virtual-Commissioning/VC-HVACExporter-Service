@@ -1,35 +1,54 @@
 ﻿using Autodesk.Revit.DB;
 using HVACExporter.Models.Spaces.Zone;
 using HVACExporter.Models.Zone;
+using System;
 using System.Collections.Generic;
 
 namespace HVACExporter.Helpers
 {
     class RoofConstructionMapper
     {
-        public static List<SurfaceConstruction> MapAllRoofs(FilteredElementCollector allRoofs, Autodesk.Revit.DB.Document doc)
+        public static List<Dictionary<string, SurfaceConstruction>> MapAllRoofs(FilteredElementCollector allRoofs, Autodesk.Revit.DB.Document doc)
         {
-            List<SurfaceConstruction> surfaceConstructions = new List<SurfaceConstruction>();
+            List<Dictionary<string, SurfaceConstruction>> surfaceConstructions = new List<Dictionary<string, SurfaceConstruction>>();
 
             foreach (RoofBase roof in allRoofs)
             {
-                string constructionId = roof.UniqueId;
-                string analyticalConstructionId = roof.GetAnalyticalModelId().ToString();
-                string name = roof.RoofType.Name;
+                string constructionId = roof.Id.ToString();
 
                 CompoundStructure structure = roof.RoofType.GetCompoundStructure();
                 IList<CompoundStructureLayer> layers = structure.GetLayers();
 
-                List<ConstructionLayer> constructionLayers = new List<ConstructionLayer>();
+                List<Dictionary<string, string>> constructionLayers = new List<Dictionary<string, string>>();
                 foreach (CompoundStructureLayer layer in layers)
                 {
-                    string layerId = layer.LayerId.ToString();
-                    string materialId = layer.MaterialId.ToString();
-                    ConstructionLayer constructionLayerToAdd = new ConstructionLayer(materialId, layerId);
-                    constructionLayers.Add(constructionLayerToAdd);
+                    //Filtering away materials without thermal properties
+                    Material layerMaterial = doc.GetElement(layer.MaterialId) as Material;
+                    ElementId thermalAssetId = layerMaterial.ThermalAssetId;
+                    PropertySetElement pse = doc.GetElement(thermalAssetId) as PropertySetElement;
+                    if (pse == null) continue;
 
-                    SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, analyticalConstructionId, name, constructionLayers);
-                    surfaceConstructions.Add(surfaceConstructionToAdd);
+                    int layerId = layer.LayerId + 1;
+                    string layerName = "Layer" + layerId.ToString();
+                    double thickness;
+                    if (layer.Width == 0)
+                    {
+                        thickness = 0.001;
+                    }
+                    else
+                    {
+                        thickness = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(layer.Width), 3);
+                    }
+                    string preMaterialId = layer.MaterialId.ToString() + "_" + thickness;
+                    string materialId = preMaterialId.Replace(',', '.');
+                    Dictionary<string, string> layerValues = new Dictionary<string, string>();
+                    layerValues.Add(layerName, materialId);
+                    constructionLayers.Add(layerValues);
+
+                    SurfaceConstruction surfaceConstructionToAdd = new SurfaceConstruction(constructionId, constructionLayers);
+                    Dictionary<string, SurfaceConstruction> linkedSurfaceConstruction = new Dictionary<string, SurfaceConstruction>();
+                    linkedSurfaceConstruction.Add(constructionId, surfaceConstructionToAdd);
+                    surfaceConstructions.Add(linkedSurfaceConstruction);
                 }
             }
 

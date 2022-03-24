@@ -10,23 +10,20 @@ namespace HVACExporter.Helpers
 {
     public class OpeningConstructionMapper
     {
-        public static List<OpeningConstruction> MapAllOpeningConstructions(FilteredElementCollector allOpenings)
+        public static List<Dictionary<string, OpeningConstruction>> MapAllOpeningConstructions(FilteredElementCollector allOpenings)
         {
-            List<OpeningConstruction> allOpeningConstructions = new List<OpeningConstruction>();
+            List<Dictionary<string, OpeningConstruction>> allOpeningConstructions = new List<Dictionary<string, OpeningConstruction>>();
 
             foreach (Opening opening in allOpenings)
             {
-                string openingConstructionId = opening.UniqueId.ToString();
-                string analyticalOpeningConstructionId = opening.GetAnalyticalModelId().ToString();
-                string airExchangeMethod = "0";
-                string airMixingChangesPerHour = "0";
-                string simpleMixingPerHour = "0";
-
-                OpeningConstructionParameters openingConstructionParameters 
-                    = new OpeningConstructionParameters(airExchangeMethod, airMixingChangesPerHour, simpleMixingPerHour);
-
-                OpeningConstruction openingConstructionToAdd = new OpeningConstruction(openingConstructionId, analyticalOpeningConstructionId, openingConstructionParameters);
-                allOpeningConstructions.Add(openingConstructionToAdd);
+                string openingConstructionId = opening.Id.ToString();
+                string airExchangeMethod = "";
+                string airMixingChangesPerHour = "";
+                string simpleMixingPerHour = "";
+                OpeningConstruction openingConstructionToAdd = new OpeningConstruction(openingConstructionId, airExchangeMethod, airMixingChangesPerHour, simpleMixingPerHour);
+                Dictionary<string, OpeningConstruction> linkedOpeningConstructions = new Dictionary<string, OpeningConstruction>();
+                linkedOpeningConstructions.Add(openingConstructionId, openingConstructionToAdd);
+                allOpeningConstructions.Add(linkedOpeningConstructions);
             }
 
             return allOpeningConstructions;

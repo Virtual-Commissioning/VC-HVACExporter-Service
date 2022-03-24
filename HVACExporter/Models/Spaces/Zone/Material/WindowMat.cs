@@ -8,20 +8,18 @@ namespace HVACExporter.Models.Zone
 {
     public class WindowMat
     {
-        public string Id { get; set; }
-        public string Tag { get; set; }
-        public double ThermalResistance { get; set; }
-        public double SolarHeatGain { get; set; }
-        public double VisibleTransmittance { get; set; }
+        public string Name { get; set; }
+        public double? UFactor { get; set; }
+        public double? Solar_Heat_Gain_Coefficient { get; set; }
+        public double? Visible_Transmittance { get; set; }
 
 
-        public WindowMat(string id, string tag, double thermalResistance, double solarHeatGain, double visibleTransmittance)
+        public WindowMat(string id, double? uFactor, double? solarHeatGain, double? visibleTransmittance)
         {
-            Id = id;
-            Tag = tag;
-            ThermalResistance = thermalResistance;
-            SolarHeatGain = solarHeatGain;
-            VisibleTransmittance = visibleTransmittance;
+            Name = id;
+            UFactor = uFactor;
+            Solar_Heat_Gain_Coefficient = solarHeatGain;
+            Visible_Transmittance = visibleTransmittance;
         }
     }
 }

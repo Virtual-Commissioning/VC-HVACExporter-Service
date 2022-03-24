@@ -8,18 +8,16 @@ namespace HVACExporter.Models.Zone
 {
     public class ShadingZone
     {
-        public string Id { get; set; }
-        public string BaseSurfId { get; set; }
-        public string TransmSchedule { get; set; }
-        public int NoVertices { get; set; }
+        public string Name { get; set; }
+        public string Base_Surface_Name { get; set; }
+        public string Transmittance_Schedule_Name { get; set; }
         public VertexCoordinates VertexCoordinates { get; set; }
 
-        public ShadingZone(string id, string baseSurfId, string transmSchedule, int noVertices, VertexCoordinates vertexCoordinates)
+        public ShadingZone(string id, string baseSurfId, string transmSchedule, VertexCoordinates vertexCoordinates)
         {
-            Id = id;
-            BaseSurfId = baseSurfId;
-            TransmSchedule = transmSchedule;
-            NoVertices = noVertices;
+            Name = id;
+            Base_Surface_Name = baseSurfId;
+            Transmittance_Schedule_Name = transmSchedule;
             VertexCoordinates = vertexCoordinates;
         }
     }

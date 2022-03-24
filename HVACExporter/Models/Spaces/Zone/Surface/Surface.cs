@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HVACExporter.Models.GeometricTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,39 +9,41 @@ namespace HVACExporter.Models.Zone
 {
     public class Surface
     {
-        public string Id { get; set; }
-        public string Tag { get; set; }
-        public string SurfType { get; set; } // If bool is needed, use the SurfType class
-        public string ConstructionId { get; set; }
-        public string ZoneTag { get; set; }
-        public string OutsideBC { get; set; }    //Class changed from OutsideBC for testing
-        public string OutsideBCObject { get; set; }
-        public bool SunExposure { get; set; }
-        public bool WindExposure { get; set; }
-        public string ViewFactorToGround { get; set; } // Not sure how to define this
-        public VertexCoordinates VertexCoordinates { get; set; }
+        public string Name { get; set; }
+        public string Surface_Type { get; set; }
+        public string Construction_Name { get; set; }
+        public string Zone_Name { get; set; }
+        public string Outside_Boundary_Condition { get; set; }  
+        public string Outside_Boundary_Condition_Object { get; set; }
+        public bool Sun_Exposure { get; set; }
+        public bool Wind_Exposure { get; set; }
+        public string View_Factor_to_Ground { get; set; } 
+        public List<Coordinate> VertexCoordinates { get; set; }
+        public SubSurfType SubSurfaces { get; set; }
 
-        public Surface(string id, 
-            string tag, 
-            string surfType, 
-            string constructionId, 
-            string zoneTag, 
-            string outsideBC, //Class changed from OutsideBC for testing
-            bool sunExposure, 
-            bool windExposure, 
-            string viewFactorToGround, 
-            VertexCoordinates vertexCoordinates)
+        public Surface(string id,
+            string surfType,
+            string constructionId,
+            string zoneTag,
+            string outsideBC, 
+            string outsideBCObject,
+            bool sunExposure,
+            bool windExposure,
+            string viewFactorToGround,
+            List<Coordinate> vertexCoordinates, 
+            SubSurfType subSurfaceType)
         {
-            Id = id;
-            Tag = tag;
-            SurfType = surfType;
-            ConstructionId = constructionId;
-            ZoneTag = zoneTag;
-            OutsideBC = outsideBC;
-            SunExposure = sunExposure;
-            WindExposure = windExposure;
-            ViewFactorToGround = viewFactorToGround;
+            Name = id;
+            Surface_Type = surfType;
+            Construction_Name = constructionId;
+            Zone_Name = zoneTag;
+            Outside_Boundary_Condition = outsideBC;
+            Outside_Boundary_Condition_Object = outsideBCObject;
+            Sun_Exposure = sunExposure;
+            Wind_Exposure = windExposure;
+            View_Factor_to_Ground = viewFactorToGround;
             VertexCoordinates = vertexCoordinates;
+            SubSurfaces = subSurfaceType;
         }
     }
 }

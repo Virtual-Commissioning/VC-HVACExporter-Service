@@ -1,32 +1,35 @@
 ﻿using Autodesk.Revit.DB;
 using HVACExporter.Models.Zone;
+using System;
 using System.Collections.Generic;
 
 namespace HVACExporter.Helpers.MaterialMappers
 {
     class WindowMaterialMapper
     {
-        public static List<WindowMat> MapAllWindows(FilteredElementCollector allWindows, Autodesk.Revit.DB.Document doc)
+        public static List<Dictionary<string, WindowMat>> MapAllWindows(FilteredElementCollector allWindows, FilteredElementCollector allWalls, Autodesk.Revit.DB.Document doc)
         {
-            var windowMaterials = new List<WindowMat>();
+            List<Dictionary<string, WindowMat>> windowMaterials = new List<Dictionary<string, WindowMat>>();
 
             foreach (FamilyInstance window in allWindows)
             {
                 ElementId windowSymbol = window.Symbol.Id;
                 FamilySymbol windowInfo = doc.GetElement(windowSymbol) as FamilySymbol;
 
-                string id = window.UniqueId;
-                string tag = window.Id.ToString();
-                double thermalResistance = windowInfo.GetThermalProperties().ThermalResistance;
-                double solarHeatGain = windowInfo.GetThermalProperties().SolarHeatGainCoefficient;
-                double visibleTransmittance = windowInfo.GetThermalProperties().VisualLightTransmittance;
+                string name = window.Id.ToString();
+                double uFactor = Math.Round(1 / windowInfo.GetThermalProperties().ThermalResistance,3);
+                double solarHeatGain = Math.Round(windowInfo.GetThermalProperties().SolarHeatGainCoefficient,3);
+                double visibleTransmittance = Math.Round(windowInfo.GetThermalProperties().VisualLightTransmittance,3);
 
-                var windowMaterial = new WindowMat(id, tag, thermalResistance,
+                WindowMat windowMaterial = new WindowMat(name, uFactor,
                     solarHeatGain, visibleTransmittance);
-
-                windowMaterials.Add(windowMaterial);
-
+                Dictionary<string, WindowMat> linkedWindowMaterial = new Dictionary<string, WindowMat>();
+                linkedWindowMaterial.Add(windowMaterial.Name, windowMaterial);
+                windowMaterials.Add(linkedWindowMaterial);
             }
+            List<Dictionary<string, WindowMat>> curtainWallWindowMaterials = CurtainWallWindowMaterialMapper.MapAllCurtainWallWindows(allWalls);
+            windowMaterials.AddRange(curtainWallWindowMaterials);
+
             return windowMaterials;
         }
     }
