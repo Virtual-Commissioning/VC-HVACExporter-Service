@@ -59,7 +59,7 @@ namespace HVACExporter.Helpers.ZoneMappers
                             }
                         }
                         Coordinate calculatedCenter = new Coordinate(allVertices.Average(p => p.X),
-                            allVertices.Average(p => p.Y), allVertices.Average(p => p.Z));
+                            allVertices.Average(p => p.Y), allVertices.Average(p => p.Z - 0.01));
 
                         centerPoint.Add(calculatedCenter);
                     }
