@@ -74,6 +74,8 @@
       <DependentUpon>PromptTokenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Component.cs" />
+    <Compile Include="Models\ComponentSubclasses\AirHandlingUnit.cs" />
+    <Compile Include="Models\ComponentSubclasses\AirHandlingUnitComponents\ComponentsInAHU.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDevice.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\HeatExchanger.cs" />
     <Compile Include="Models\ComponentSubclasses\EnergyConversionDeviceSubclasses\Radiator.cs" />
