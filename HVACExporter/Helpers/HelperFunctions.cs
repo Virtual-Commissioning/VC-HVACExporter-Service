@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HVACExporter.Models;
 using HVACExporter.Models.Controls;
+using HVACExporter.Models.ComponentSubclasses.AirHandlingUnitComponents;
 
 namespace HVACExporter.Helpers
 {
@@ -279,6 +280,24 @@ namespace HVACExporter.Helpers
             string url = prompt.url;
 
             return (userId, projectId, url);
+        }
+        public static ComponentsInAHU FindAHUComponents(MEPModel AirHandlingUnit)
+        {
+            var containsSupplyCooling = AirHandlingUnit.ConnectorManager.Owner.LookupParameter("FSC_SupplyContainsCoolingCoil").AsString().ToLower() == "Yes";
+            var containsSupplyHeating = AirHandlingUnit.ConnectorManager.Owner.LookupParameter("FSC_SupplyContainsHeatingCoil").AsString().ToLower() == "Yes";
+            var containsSupplyFilter = AirHandlingUnit.ConnectorManager.Owner.LookupParameter("FSC_SupplyContainsFilter").AsString().ToLower() == "Yes";
+            var containsExtractFilter = AirHandlingUnit.ConnectorManager.Owner.LookupParameter("FSC_ExtractContainsFilter").AsString().ToLower() == "Yes";
+            var containsSupplyFan = AirHandlingUnit.ConnectorManager.Owner.LookupParameter("FSC_SupplyContainsFan").AsString().ToLower() == "Yes";
+            var containsExtractFan = AirHandlingUnit.ConnectorManager.Owner.LookupParameter("FSC_ExtractContainsFan").AsString().ToLower() == "Yes";
+            var containsHeatExchanger = AirHandlingUnit.ConnectorManager.Owner.LookupParameter("FSC_ContainsHeatExchanger").AsString().ToLower() == "Yes";
+
+            return new ComponentsInAHU(containsSupplyCooling,
+                                       containsSupplyHeating,
+                                       containsSupplyFilter,
+                                       containsExtractFilter,
+                                       containsSupplyFan,
+                                       containsExtractFan,
+                                       containsHeatExchanger);
         }
     }
 }

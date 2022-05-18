@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HVACExporter.Models.Controls;
+using HVACExporter.Models.ComponentSubclasses.AirHandlingUnitComponents;
+using HVACExporter.Models.ComponentSubclasses;
 
 namespace HVACExporter.Helpers.ComponentMappers
 {
@@ -136,6 +138,18 @@ namespace HVACExporter.Helpers.ComponentMappers
 
             ShuntValve component = new ShuntValve(id, tag, systemIdentifiers, systemType, shuntDiameter, hasCheckValve);
             component.FillConnectedComponents(mechanicalEquipment);
+
+            return component;
+        }
+        public static AirHandlingUnit MapToAirHandlingUnit(MEPModel mechanicalEquipment)
+        {
+            string id = mechanicalEquipment.ConnectorManager.Owner.UniqueId;
+            string tag = mechanicalEquipment.ConnectorManager.Owner.Id.ToString();
+            string systemIdentifiers = HelperFunctions.MapSystemOfMechEquipment(mechanicalEquipment);
+            string systemType = HelperFunctions.GetSystemType(systemIdentifiers);
+            ComponentsInAHU componentsInAHU = HelperFunctions.FindAHUComponents(mechanicalEquipment);
+
+            AirHandlingUnit component = new AirHandlingUnit(id, tag, systemType, systemIdentifiers, componentsInAHU);
 
             return component;
         }
