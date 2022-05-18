@@ -24,7 +24,7 @@ namespace HVACExporter.Helpers
             List<SurfaceMat> layerWallMaterials = WallMaterialMapper.MapAllWalls(allWalls, doc);
             foreach (SurfaceMat surfaceMat in layerWallMaterials)
             {
-                if (surfaceMat.ReadableName == "Air")
+                if (surfaceMat.ReadableName.Contains("Air") == true)
                 {
                     Dictionary<string, AirGapMat> linkedSurfaceMat = new Dictionary<string, AirGapMat>();
                     string name = surfaceMat.Name;
@@ -38,7 +38,7 @@ namespace HVACExporter.Helpers
             List<SurfaceMat> layerRoofMaterials = RoofMaterialMapper.MapAllRoofs(allRoofs, doc);
             foreach (SurfaceMat surfaceMat in layerRoofMaterials)
             {
-                if (surfaceMat.ReadableName == "Air")
+                if (surfaceMat.ReadableName.Contains("Air") == true)
                 {
                     Dictionary<string, AirGapMat> linkedSurfaceMat = new Dictionary<string, AirGapMat>();
                     string name = surfaceMat.Name;
@@ -52,7 +52,7 @@ namespace HVACExporter.Helpers
             List<SurfaceMat> layerFloorMaterials = FloorMaterialMapper.MapAllFloors(allFloors, doc);
             foreach (SurfaceMat surfaceMat in layerFloorMaterials)
             {
-                if (surfaceMat.ReadableName == "Air")
+                if (surfaceMat.ReadableName.Contains("Air") == true)
                 {
                     Dictionary<string, AirGapMat> linkedSurfaceMat = new Dictionary<string, AirGapMat>();
                     string name = surfaceMat.Name;

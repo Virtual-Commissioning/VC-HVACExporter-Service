@@ -31,11 +31,11 @@ namespace HVACExporter.Helpers
                 string northAxis;
                 if (rotation < 0)
                 {
-                    northAxis = (360 + rotation).ToString();
+                    northAxis = (360 + rotation).ToString().Replace(',', '.');
                 }
                 else
                 {
-                    northAxis = rotation.ToString();
+                    northAxis = rotation.ToString().Replace(',', '.');
                 }
                 string terrain = "";
                 string loadsConvergenceToleranceValue = "";

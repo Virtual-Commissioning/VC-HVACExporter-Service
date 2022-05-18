@@ -2,6 +2,7 @@
 using HVACExporter.Models.Zone;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HVACExporter.Helpers.MaterialMappers
 {
@@ -15,8 +16,7 @@ namespace HVACExporter.Helpers.MaterialMappers
             {
                 ElementId windowSymbol = window.Symbol.Id;
                 FamilySymbol windowInfo = doc.GetElement(windowSymbol) as FamilySymbol;
-
-                string name = window.Id.ToString();
+                string name = window.Symbol.GetThermalProperties().AnalyticConstructionTypeId.ToString();
                 double uFactor = Math.Round(1 / windowInfo.GetThermalProperties().ThermalResistance,3);
                 double solarHeatGain = Math.Round(windowInfo.GetThermalProperties().SolarHeatGainCoefficient,3);
                 double visibleTransmittance = Math.Round(windowInfo.GetThermalProperties().VisualLightTransmittance,3);
@@ -30,7 +30,10 @@ namespace HVACExporter.Helpers.MaterialMappers
             List<Dictionary<string, WindowMat>> curtainWallWindowMaterials = CurtainWallWindowMaterialMapper.MapAllCurtainWallWindows(allWalls);
             windowMaterials.AddRange(curtainWallWindowMaterials);
 
-            return windowMaterials;
+            List<Dictionary<string, WindowMat>> filteredDictionary =
+                windowMaterials.GroupBy(x => string.Join("", x.Select(i => string.Format("{0}{1}", i.Key, i.Value)))).Select(x => x.First()).ToList();
+
+            return filteredDictionary;
         }
     }
 }

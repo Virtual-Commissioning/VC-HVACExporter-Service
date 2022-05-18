@@ -14,7 +14,8 @@ namespace HVACExporter.Helpers
             foreach (FamilyInstance door in allDoors)
             {
                 string constructionId = door.Id.ToString();
-                string materialId = door.Id.ToString();
+                //string materialId = door.Id.ToString();
+                string materialId = door.Symbol.GetThermalProperties().AnalyticConstructionTypeId.ToString();
                 string layerId = "Layer1";
 
                 List<Dictionary<string, string>> constructionLayers = new List<Dictionary<string, string>>();

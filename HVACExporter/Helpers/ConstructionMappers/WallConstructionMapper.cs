@@ -20,7 +20,7 @@ namespace HVACExporter.Helpers
 
             foreach (SpatialElement space in allSpaces)
             {
-                if (space.Category.Name == "Spaces") continue;
+                if (space.Category.Name != "Spaces") continue;
 
                 IList<IList<Autodesk.Revit.DB.BoundarySegment>> segments = space.GetBoundarySegments(new SpatialElementBoundaryOptions());
 

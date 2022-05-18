@@ -26,7 +26,7 @@ namespace HVACExporter.Helpers
             {
                 foreach (SurfaceMat surfaceMat in layerWallMaterials)
                 {
-                    if (surfaceMat.ReadableName != "Air")
+                    if (surfaceMat.ReadableName.Contains("Air") != true)
                     {
                         Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
                         linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
@@ -40,7 +40,7 @@ namespace HVACExporter.Helpers
             {
                 foreach (SurfaceMat surfaceMat in layerCurtainWallMaterials)
                 {
-                    if (surfaceMat.ReadableName != "Air")
+                    if (surfaceMat.ReadableName.Contains("Air") != true)
                     {
                         Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
                         linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
@@ -54,7 +54,7 @@ namespace HVACExporter.Helpers
             {
                 foreach (SurfaceMat surfaceMat in layerRoofMaterials)
                 {
-                    if (surfaceMat.Name != "Air")
+                    if (surfaceMat.ReadableName.Contains("Air") != true)
                     {
                         Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
                         linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);
@@ -68,7 +68,7 @@ namespace HVACExporter.Helpers
             {
                 foreach (SurfaceMat surfaceMat in layerFloorMaterials)
                 {
-                    if (surfaceMat.Name != "Air")
+                    if (surfaceMat.ReadableName.Contains("Air") != true)
                     {
                         Dictionary<string, SurfaceMat> linkedSurfaceMat = new Dictionary<string, SurfaceMat>();
                         linkedSurfaceMat.Add(surfaceMat.Name, surfaceMat);

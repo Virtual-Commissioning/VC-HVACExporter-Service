@@ -52,7 +52,8 @@ namespace HVACExporter.Helpers.ZoneMappers
                         allElementIds.Add(element.Category + element.Id.ToString());
                     }
                     string allIds = string.Join(", ", allElementIds);
-                    constructionId = elements.Count.ToString() + " elements found. Possible Ids:" + allIds;
+                    //constructionId = elements.Count.ToString() + " elements found. Possible Ids:" + allIds;
+                    constructionId = "";
                 }
                 return constructionId;
             }

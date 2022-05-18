@@ -42,7 +42,7 @@ namespace HVACExporter.Helpers
                 }
                 else continue;
             }
-            if (constructionId.Contains("CW_") == true)
+            if (constructionId != null && constructionId.Contains("CW_") == true)
             {
                 SubSurfDoorAndWindow curtainWallWindows = CurtainWallWindowSubSurfaceMapper.MapCurtainWallWindowSubSurfaces
                     (energyAnalysisSurface, energyAnalysisSpace, doc, constructionId, analyticalZoneId);

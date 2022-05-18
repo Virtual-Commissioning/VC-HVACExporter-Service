@@ -22,6 +22,10 @@ namespace HVACExporter.Helpers.ZoneMappers
                     energyAnalysisSurface.SurfaceType.ToString() == "InteriorWall")
                 {
                     elements = collector.OfClass(typeof(Wall)).WherePasses(filter).ToElements();
+                    if (elements.Count == 0)
+                    {
+                        return null;
+                    }
                     Wall wall = doc.GetElement(elements[0].Id) as Wall;
                     if (wall.WallType.Kind.ToString() == "Curtain")
                     {
@@ -63,7 +67,8 @@ namespace HVACExporter.Helpers.ZoneMappers
                 }
                 else if (elements.Count == 0)
                 {
-                    constructionId = "No construction found";
+                    //constructionId = "No construction found";
+                    constructionId = "";
                 }
                 else
                 {
@@ -73,7 +78,8 @@ namespace HVACExporter.Helpers.ZoneMappers
                         allElementIds.Add(element.Category + element.Id.ToString());
                     }
                     string allIds = string.Join(", ", allElementIds);
-                    constructionId = elements.Count.ToString() + " elements found. Possible Ids:" + allIds;
+                    //constructionId = elements.Count.ToString() + " elements found. Possible Ids:" + allIds; 
+                    constructionId = "";
                 }
                 return constructionId;
             }
