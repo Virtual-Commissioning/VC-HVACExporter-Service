@@ -8,7 +8,7 @@ namespace HVACExporter.Models.Zone
 {
     public class Zone
     {
-        //public string Id { get; set; }
+        public string Arch_Tag { get; set; }
         public string Name { get; set; }
         public double? X_Origin { get; set; }
         public double? Y_Origin { get; set; }
@@ -26,11 +26,12 @@ namespace HVACExporter.Models.Zone
         public Infiltration Infiltration { get; set; }
         public List<ShadingZone> ZoneShadings { get; set; }
         
-        public Zone(string zoneId, double? xOrigin, double? yOrigin, double? zOrigin, string zoneType, 
+        public Zone(string arch_Tag, string zoneId, double? xOrigin, double? yOrigin, double? zOrigin, string zoneType, 
             double? ceilingHeight, double? floorArea, double? zoneVolume, string intConvAlg, string outConvAlg, 
             bool includedInTotArea, List<Dictionary<string, Surface>> surfaces, InternalGains internalGains, HVAC hvac,
             Infiltration infiltration, List<ShadingZone> shadingZone)
         {
+            Arch_Tag = arch_Tag;
             Name = zoneId;
             X_Origin = xOrigin;
             Y_Origin = yOrigin;

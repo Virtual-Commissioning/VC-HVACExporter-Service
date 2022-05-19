@@ -53,8 +53,8 @@ namespace HVACExporter
             LogicalAndFilter logicalAndFiter = new LogicalAndFilter(massCategoryFilter, familySymbolFilter);
             FilteredElementCollector allMasses = new FilteredElementCollector(doc).WherePasses(logicalAndFiter);
 
-            system = Mapper.MapAllComponents(allElements);
-            spaces = SpaceMapper.MapAllSpaces(allSpaces);
+            //system = Mapper.MapAllComponents(allElements);
+            //spaces = SpaceMapper.MapAllSpaces(allSpaces);
             allMaterials = MaterialMapper.MapAllMaterials(allWalls, allRoofs, allFloors, allDoors, allWindows, doc);
             allConstructions = ConstructionMapper.MapAllConstructions(allWalls, allFloors, allRoofs, allSpaces, allDoors, allWindows, allOpenings, doc);
             bot.Add("Site", SiteMapper.MapSite(doc, allSpaces, allAnalyticalSurfaces, allAnalyticalSpaces, allAnalyticalSubSurfaces, allMasses, allWalls, commandData));

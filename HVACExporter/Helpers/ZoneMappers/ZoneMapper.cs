@@ -48,7 +48,7 @@ namespace HVACExporter.Helpers
                 {
                     zoneType = associatedSpace.SpaceType.ToString();
                 }
-                //string id = associatedSpace.Id.ToString();
+                string arch_Tag = associatedSpace.Id.ToString();
                 string analyticalZoneId = energyAnalysisSpaces[n].Id.ToString();
                 double ceilingHeight = Math.Round(ImperialToMetricConverter.ConvertFromFeetToMeters(associatedSpace.UnboundedHeight),3);
                 double floorArea = Math.Round(ImperialToMetricConverter.ConvertFromSqFeetToSqMeters(associatedSpace.Area),3);
@@ -63,7 +63,8 @@ namespace HVACExporter.Helpers
                 HVAC hvac = HVACMapper.MapHVAC(analyticalZoneId);
                 Infiltration infiltration = InfiltrationMapper.MapInfiltration(analyticalZoneId);
                 List<ShadingZone> shadingZone = ZoneShadingMapper.MapZoneShading(analyticalZoneId);
-                var zoneToAdd = new Zone(analyticalZoneId,
+                var zoneToAdd = new Zone(arch_Tag, 
+                                     analyticalZoneId,
                                      x,
                                      y,
                                      z,
